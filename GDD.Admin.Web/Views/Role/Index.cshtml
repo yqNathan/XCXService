@@ -1,0 +1,33 @@
+﻿@{
+    Layout = null;
+    ViewBag.Title = "权限管理";
+}
+@Styles.Render("~/LayUI/layuicss")
+
+<table id="demo" lay-filter="table_demo"  class="layui-hide"></table>
+@Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/layui")
+    @Scripts.Render("~/bundles/modernizr")
+<script>
+    layui.use('table', function () {
+        var table = layui.table;
+        //第一个实例
+        table.render({
+            elem: '#demo'
+          , height: 312
+          , url: '/Home/GetRoles' //数据接口
+          , page: true //开启分页
+          , cols: [[ //表头
+            { field: 'id', title: 'ID', sort: true, fixed: 'left' }
+            , { field: 'Code', title: '编号' }
+            , { field: 'Name', title: '名称' }
+            , { field: 'Description', title: '说明', sort: true }
+          ]]
+           , parseData: function (res) {
+               console.log(res)
+           }
+        });
+
+    });
+</script>

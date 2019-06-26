@@ -1,0 +1,39 @@
+﻿
+<!DOCTYPE html>
+
+<html class="loginhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>GDD服务平台登录</title>
+    <!-- load css -->
+    @Styles.Render("~/bootstrap/css")
+    @Styles.Render("~/LayUI/layuicss")
+    @{
+        <style>
+            .loginBody {
+                background-color: transparent;
+            }
+
+            .loginhtml {
+                background-image: url('../../Image/blank-composition-data-373076.jpg');
+                background-repeat: no-repeat;
+                background-size: 100% 100%;
+                background-attachment: fixed;
+            }
+        </style>
+    }
+    <style>
+        .layui-tab-content,.layui-tab {
+            background-color: white;
+        }
+    </style>
+</head>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/bundles/layui")
+@Scripts.Render("~/bundles/modernizr")
+<body class="loginBody">
+    @RenderBody()
+</body>
+</html>

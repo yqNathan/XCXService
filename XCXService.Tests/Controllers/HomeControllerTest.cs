@@ -5,7 +5,7 @@ using System.Text;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using XCXService;
-using XCXService.Controllers;
+using GDD.Admin.Web.Controllers;
 
 namespace XCXService.Tests.Controllers
 {

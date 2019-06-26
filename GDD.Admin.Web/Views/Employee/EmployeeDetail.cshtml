@@ -1,0 +1,259 @@
+﻿@using GDD.Admin.VO
+@using GDD.Common
+@{
+    Layout = "";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>人员详情</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" type="text/css" id="theme" href="~/Content/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="~/LayUI/layui.css" />
+    <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+    <style>
+        /*无方框风格*/
+        .layui-breadcrumb {
+            visibility: visible;
+        }
+
+        .layui-form-label {
+            width: 120px;
+        }
+
+        .layui-input-block {
+            margin-left: 120px;
+        }
+
+        /*方框风格*/
+        label {
+            margin-bottom: 0px;
+        }
+
+        .layui-form-pane .layui-form-label {
+            width: 140px;
+        }
+
+        .layui-form-pane .layui-input-block {
+            margin-left: 140px;
+        }
+
+        .layui-form-pane {
+            margin-top: 2rem;
+        }
+        .layui-form{
+            padding-left:120px;
+        }
+    </style>
+</head>
+<body>
+    @{
+        var obj = ViewData["EmployeeData"] as EmployeeVO;
+        <div class="layui-breadcrumb" lay-separator="-">
+            <a href="#" onclick="backPage();">返回列表</a>
+        </div>
+        <form class="layui-form layui-form-pane" action="" id="form">
+
+            <input type="hidden" name="EmployeeID" value="@obj.EmployeeID">
+            <input type="hidden" name="DepartmentName" id="DepartmentName" value="@obj.DepartmentName">
+            <input type="hidden" name="FunctionalgroupName" id="FunctionalgroupName" value="@obj.FunctionalgroupName">
+            <div class="layui-form-item">
+                <label class="layui-form-label">姓名</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="EmployeeName" lay-verify="required" autocomplete="off" placeholder="请输入姓名" class="layui-input" value="@obj.EmployeeName">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">编号</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="EmployeeNumber" lay-verify="required" autocomplete="off" placeholder="请输入编号" class="layui-input" value="@obj.EmployeeNumber">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">性别</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="Sex" value="1" title="男" checked="@(obj.Sex == Sex.男.ToString() ? true : false)">
+                    <input type="radio" name="Sex" value="0" title="女" checked="@(obj.Sex == Sex.女.ToString() ? true : false)">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">手机号</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="Phone" lay-verify="required" autocomplete="off" placeholder="请输入手机号" class="layui-input" value="@obj.Phone">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">部门</label>
+                <div class="layui-input-inline">
+                    <select name="DepartmentID" id="selectDepartment" lay-filter="selectDepartment">
+                    </select>
+                </div>
+                <label class="layui-form-label">功能组</label>
+                <div class="layui-input-inline">
+                    <select name="FunctionalgroupID" id="selectFunctionalgroup" lay-filter="selectFunctionalgroup">
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">入职时间</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="HireTime" id="StartDate" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input" value="@obj.HireTime">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <input class="layui-btn" lay-submit="" lay-filter="form" value="立即提交" />
+                    <input type="reset" class="layui-btn layui-btn-primary" value="重置" />
+                </div>
+            </div>
+        </form>
+    }
+
+
+</body>
+</html>
+<script type="text/javascript" src="~/Scripts/jquery-3.3.1.js"></script>
+<script type='text/javascript' src='~/Scripts/bootstrap.js'></script>
+<script type='text/javascript' src='~/Scripts/respond.js'></script>
+<script type='text/javascript' src='~/LayUI/layui.js'></script>
+<script>
+    layui.use(['form', 'layedit', 'laydate'], function () {
+        var form = layui.form
+        , layer = layui.layer
+        , layedit = layui.layedit
+        , laydate = layui.laydate;
+
+
+        form.on('select(selectDepartment)', function (data) {
+            if (data.value == 0) {
+                $("#selectFunctionalgroup").empty();
+                $('#selectFunctionalgroup').append(new Option('请选择', 0));//往下拉菜单里添加元素
+                form.render('select');
+                return;
+            }
+            BindFunctionalGroup();
+        });
+
+        $.ajax({
+            dataType: 'JSON',
+            type: "Get",
+            url: "/Department/List",
+            success: function (data) {
+                var select = false;
+                $('#selectDepartment').append(new Option('请选择', 0));
+                $.each(data.data, function (index, item) {
+                    //option  第一个参数是页面显示的值，第二个参数是传递到后台的值
+                    if ($("#DepartmentName").val() == item.DepartmentName) {
+                        select = true;
+                    }
+                    else {
+                        select = false;
+                    }
+                    $('#selectDepartment').append(new Option(item.DepartmentName, item.DepartmentID, select, select));//往下拉菜单里添加元素
+                    //设置value（这个值就可以是在更新的时候后台传递到前台的值）为2的值为默认选中
+                    //$('#selectId').val(2);
+                })
+                form.render('select');
+                BindFunctionalGroup();
+            }
+        });
+
+        function BindFunctionalGroup() {
+            $.ajax({
+                dataType: 'JSON',
+                type: "Get",
+                url: "/FunctionalGroup/List",
+                data: { DepartmentId: $("#selectDepartment").val() },
+                success: function (result) {
+                    var select = false;
+
+                    $("#selectFunctionalgroup").empty();
+                    $('#selectFunctionalgroup').append(new Option('请选择', 0));
+                    $.each(result.data, function (index, item) {
+                        if ($("#FunctionalgroupName").val() == item.FunctionalGroupName) {
+                            select = true;
+                        }
+                        else {
+                            select = false;
+                        }
+                        $('#selectFunctionalgroup').append(new Option(item.FunctionalGroupName, item.FunctionalGroupID, select, select));
+                    })
+                    form.render('select');
+                    //刷新表单select选择框渲染
+                }
+            });
+        }
+        
+
+        //日期
+        laydate.render({
+            elem: '#StartDate'
+        });
+        laydate.render({
+            elem: '#EndDate'
+        });
+
+        //监听指定开关
+        form.on('switch(switchTest)', function (data) {
+            layer.tips('温馨提示：已开启关联人员信息', data.othis)
+        });
+
+
+        //监听提交
+        form.on('submit(form)', function (data) {
+            if (data.field.DepartmentID == '0') {
+                layer.alert("请选择部门", {
+                    title: '温馨提示'
+                })
+                return;
+            }
+            //QuestionnaireID为空，新增操作
+            if (data.field.EmployeeID == "" || data.field.EmployeeID == null) {
+                $.ajax({
+                    dataType: 'JSON',
+                    type: "post",
+                    url: "/Employee/Add",
+                    data: data.field,
+                    success: function (data) {
+                        layer.alert(data.msg, {
+                            title: '新增数据提示'
+                        })
+                        $('form')[0].reset();
+                        layui.form.render();
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+                    }
+                })
+                return;
+            }
+            //EmployeeID不为空，修改操作
+            $.ajax({
+                dataType: 'JSON',
+                type: "post",
+                url: "/Employee/Edit",
+                data: data.field,
+                success: function (data) {
+                    layer.alert(data.msg, {
+                        title: '编辑数据提示'
+                    })
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+                }
+            })
+
+        });
+    });
+
+
+    function backPage() {
+        history.back();
+    }
+</script>

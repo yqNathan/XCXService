@@ -1,0 +1,105 @@
+2019-04-24 11:20:42,790 线程ID:[1] 日志级别:[INFO ] : [AppStart]
+2019-04-24 11:20:42,799 线程ID:[1] 日志级别:[WARN ] : [Warning]
+2019-04-24 11:20:42,799 线程ID:[1] 日志级别:[ERROR] : [Error]
+2019-04-24 11:20:42,799 线程ID:[1] 日志级别:[FATAL] : [Fatal]
+2019-04-24 11:20:42,800 线程ID:[1] 日志级别:[ERROR] : [尝试除以零。]
+System.DivideByZeroException: 尝试除以零。
+   在 GDD.Admin.Web.MvcApplication.Application_Start() 位置 G:\Work\Project\XCXService\GDD.Admin.Web\Global.asax.cs:行号 34
+2019-04-24 11:21:16,093 线程ID:[14] 日志级别:[INFO ] : [查询成功]
+2019-04-24 11:24:49,028 线程ID:[1] 日志级别:[INFO ] : [AppStart]
+2019-04-24 11:24:49,037 线程ID:[1] 日志级别:[WARN ] : [Warning]
+2019-04-24 11:24:49,037 线程ID:[1] 日志级别:[ERROR] : [Error]
+2019-04-24 11:24:49,038 线程ID:[1] 日志级别:[FATAL] : [Fatal]
+2019-04-24 11:24:49,039 线程ID:[1] 日志级别:[ERROR] : [尝试除以零。]
+System.DivideByZeroException: 尝试除以零。
+   在 GDD.Admin.Web.MvcApplication.Application_Start() 位置 G:\Work\Project\XCXService\GDD.Admin.Web\Global.asax.cs:行号 34
+2019-04-24 11:24:53,495 线程ID:[32] 日志级别:[INFO ] : [查询成功]
+2019-04-24 11:25:15,584 线程ID:[28] 日志级别:[INFO ] : [查询成功]
+2019-04-24 11:32:39,105 线程ID:[17] 日志级别:[INFO ] : [查询成功]
+2019-04-24 11:32:44,319 线程ID:[17] 日志级别:[INFO ] : [查询成功]
+2019-04-24 15:56:25,652 线程ID:[1] 日志级别:[INFO ] : [AppStart]
+2019-04-24 15:56:25,660 线程ID:[1] 日志级别:[WARN ] : [Warning]
+2019-04-24 15:56:25,660 线程ID:[1] 日志级别:[ERROR] : [Error]
+2019-04-24 15:56:25,660 线程ID:[1] 日志级别:[FATAL] : [Fatal]
+2019-04-24 15:56:25,661 线程ID:[1] 日志级别:[ERROR] : [尝试除以零。]
+System.DivideByZeroException: 尝试除以零。
+   在 GDD.Admin.Web.MvcApplication.Application_Start() 位置 G:\Work\Project\XCXService\GDD.Admin.Web\Global.asax.cs:行号 34
+2019-04-24 15:59:46,452 线程ID:[338] 日志级别:[INFO ] : [查询成功]
+2019-04-24 16:01:01,007 线程ID:[332] 日志级别:[INFO ] : [查询成功]
+2019-04-24 16:05:38,646 线程ID:[325] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Models.Employee, GDD.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.EmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-04-24 16:05:46,567 线程ID:[338] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Models.Employee, GDD.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.EmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-04-24 16:06:32,571 线程ID:[1] 日志级别:[INFO ] : [AppStart]
+2019-04-24 16:06:32,581 线程ID:[1] 日志级别:[WARN ] : [Warning]
+2019-04-24 16:06:32,581 线程ID:[1] 日志级别:[ERROR] : [Error]
+2019-04-24 16:06:32,582 线程ID:[1] 日志级别:[FATAL] : [Fatal]
+2019-04-24 16:06:32,596 线程ID:[1] 日志级别:[ERROR] : [尝试除以零。]
+System.DivideByZeroException: 尝试除以零。
+   在 GDD.Admin.Web.MvcApplication.Application_Start() 位置 G:\Work\Project\XCXService\GDD.Admin.Web\Global.asax.cs:行号 34
+2019-04-24 16:07:41,726 线程ID:[15] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Models.Employee, GDD.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.EmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-04-24 16:08:43,906 线程ID:[1] 日志级别:[INFO ] : [AppStart]
+2019-04-24 16:08:43,914 线程ID:[1] 日志级别:[WARN ] : [Warning]
+2019-04-24 16:08:43,915 线程ID:[1] 日志级别:[ERROR] : [Error]
+2019-04-24 16:08:43,916 线程ID:[1] 日志级别:[FATAL] : [Fatal]
+2019-04-24 16:08:43,916 线程ID:[1] 日志级别:[ERROR] : [尝试除以零。]
+System.DivideByZeroException: 尝试除以零。
+   在 GDD.Admin.Web.MvcApplication.Application_Start() 位置 G:\Work\Project\XCXService\GDD.Admin.Web\Global.asax.cs:行号 34
+2019-04-24 16:09:58,605 线程ID:[14] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Models.Employee, GDD.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.EmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-04-24 16:10:52,369 线程ID:[8] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Models.Employee, GDD.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.EmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-04-24 16:11:12,646 线程ID:[1] 日志级别:[INFO ] : [AppStart]
+2019-04-24 16:11:13,832 线程ID:[1] 日志级别:[WARN ] : [Warning]
+2019-04-24 16:11:14,201 线程ID:[1] 日志级别:[ERROR] : [Error]
+2019-04-24 16:11:14,444 线程ID:[1] 日志级别:[FATAL] : [Fatal]
+2019-04-24 16:11:16,170 线程ID:[1] 日志级别:[ERROR] : [尝试除以零。]
+System.DivideByZeroException: 尝试除以零。
+   在 GDD.Admin.Web.MvcApplication.Application_Start() 位置 G:\Work\Project\XCXService\GDD.Admin.Web\Global.asax.cs:行号 34
+2019-04-24 16:16:02,300 线程ID:[1] 日志级别:[INFO ] : [AppStart]
+2019-04-24 16:16:02,308 线程ID:[1] 日志级别:[WARN ] : [Warning]
+2019-04-24 16:16:02,309 线程ID:[1] 日志级别:[ERROR] : [Error]
+2019-04-24 16:16:02,309 线程ID:[1] 日志级别:[FATAL] : [Fatal]
+2019-04-24 16:16:02,310 线程ID:[1] 日志级别:[ERROR] : [尝试除以零。]
+System.DivideByZeroException: 尝试除以零。
+   在 GDD.Admin.Web.MvcApplication.Application_Start() 位置 G:\Work\Project\XCXService\GDD.Admin.Web\Global.asax.cs:行号 34
+2019-04-24 16:16:06,547 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-04-24 16:25:39,638 线程ID:[1] 日志级别:[INFO ] : [AppStart]
+2019-04-24 16:25:39,645 线程ID:[1] 日志级别:[WARN ] : [Warning]
+2019-04-24 16:25:39,646 线程ID:[1] 日志级别:[ERROR] : [Error]
+2019-04-24 16:25:39,646 线程ID:[1] 日志级别:[FATAL] : [Fatal]
+2019-04-24 16:25:39,647 线程ID:[1] 日志级别:[ERROR] : [尝试除以零。]
+System.DivideByZeroException: 尝试除以零。
+   在 GDD.Admin.Web.MvcApplication.Application_Start() 位置 G:\Work\Project\XCXService\GDD.Admin.Web\Global.asax.cs:行号 34
+2019-04-24 16:25:45,578 线程ID:[17] 日志级别:[INFO ] : [查询成功]
+2019-04-24 16:31:57,394 线程ID:[1] 日志级别:[INFO ] : [AppStart]
+2019-04-24 16:31:57,402 线程ID:[1] 日志级别:[WARN ] : [Warning]
+2019-04-24 16:31:57,403 线程ID:[1] 日志级别:[ERROR] : [Error]
+2019-04-24 16:31:57,403 线程ID:[1] 日志级别:[FATAL] : [Fatal]
+2019-04-24 16:31:57,404 线程ID:[1] 日志级别:[ERROR] : [尝试除以零。]
+System.DivideByZeroException: 尝试除以零。
+   在 GDD.Admin.Web.MvcApplication.Application_Start() 位置 G:\Work\Project\XCXService\GDD.Admin.Web\Global.asax.cs:行号 34
+2019-04-24 16:32:01,565 线程ID:[21] 日志级别:[INFO ] : [查询成功]
+2019-04-24 16:33:13,725 线程ID:[35] 日志级别:[INFO ] : [查询成功]
+2019-04-24 16:33:34,697 线程ID:[28] 日志级别:[INFO ] : [查询成功]
+2019-04-24 16:34:10,968 线程ID:[27] 日志级别:[INFO ] : [查询成功]
+2019-04-24 16:34:27,485 线程ID:[31] 日志级别:[INFO ] : [查询成功]
+2019-04-24 16:34:34,899 线程ID:[12] 日志级别:[INFO ] : [查询成功]
+2019-04-24 16:35:54,753 线程ID:[6] 日志级别:[INFO ] : [查询成功]
+2019-04-24 16:35:56,597 线程ID:[37] 日志级别:[INFO ] : [查询成功]

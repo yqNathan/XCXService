@@ -1,0 +1,19 @@
+﻿.table thead tr th:nth-child(1) {
+    width:10%;
+}
+
+.table tbody tr td:nth-child(1) {
+    width:10%;
+}
+
+.table thead tr th:nth-child(3) {
+    width:13%;
+}
+
+.table tbody tr td:nth-child(3) {
+    width:13%;
+}
+
+.AddButtonBox{
+    position:relative;top:2px; margin-left:50%; margin-right:30px; background:#ff6a00; border:none; color:#ffffff; font-family:'微软雅黑'; font-weight:lighter;width:100px; height:30px; border-radius:5px;
+}

@@ -1,0 +1,134 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+@{
+    <style>
+        .layui-btn {
+            outline: none;
+        }
+
+        .layui-form-pane .layui-form-label {
+            width: 80px;
+        }
+
+        .layui-form-pane .layui-input-block {
+            margin-left: 80px;
+        }
+
+        .layui-row {
+            background-color: rgba(0, 0, 0, 0.45);
+            padding: 30px 40px;
+        }
+
+        .layui-form {
+            margin-top: 30px;
+        }
+
+        .point {
+            width: 400px;
+            margin: 280px auto;
+            box-sizing: border-box;
+        }
+
+        .title {
+            text-align: center;
+            line-height: 5vh;
+            height: 5vh;
+            font-size: 1.5vw;
+            color: white;
+        }
+
+        .layui-btn {
+            width: 100%;
+        }
+    </style>
+}
+
+<div class="layui-row layui-col-space10 point">
+    <div class="title">
+        GDD服务平台登录
+    </div>
+    <form class="layui-form layui-form-pane" action="#">
+        <div class="layui-form-item">
+            <label class="layui-form-label"><i class="layui-icon layui-icon-username"></i></label>
+
+            <div class="layui-input-block">
+                <input type="text" lay-verify="required" name="EmployeeNumber" autocomplete="off" placeholder="请输入工号......" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"><i class="layui-icon layui-icon-password"></i></label>
+            <div class="layui-input-block">
+                <input type="password" lay-verify="required" name="Password" placeholder="请输入密码......" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <button class="layui-btn" lay-submit="" lay-filter="form">登入</button>
+        </div>
+    </form>
+</div>
+<script>
+    
+
+    layui.use(['form', 'layedit', 'laydate'], function () {
+        var form = layui.form
+        , layer = layui.layer;
+        $(function () {
+            var state = getQueryString("state")
+            console.log(state)
+            if (state != null) {
+                layer.alert("请先登录账号", {
+                    title: '温馨提示'
+                })
+                return;
+            }
+        })
+
+        //监听提交
+        form.on('submit(form)', function (data) {
+            $.ajax({
+                dataType: 'JSON',
+                type: "get",
+                url: "/Employee/Get",
+                data: {
+                    employeeNumber: data.field.EmployeeNumber,
+                    password: data.field.Password
+                },
+                success: function (result) {
+                    console.log(result);
+                    if (result.Code != 0) {
+                        layer.alert(result.Msg, {
+                            title: '温馨提示'
+                        })
+                        return;
+                    }
+                    var returnUrl = getQueryString("returnUrl")
+                    //if (returnUrl != null) {
+                    //    location.href = "/" + returnUrl;
+                    //}
+                    //else {
+                        location.href = "/Home/Index";
+                    //}
+                    
+                    //layer.alert(data.msg, {
+                    //    title: '温馨提示'
+                    //})
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+                }
+            })
+            return false;
+        });
+    });
+
+    function getQueryString(name) {
+        var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) {
+            return unescape(r[2]);
+        }
+        return null;
+    }
+</script>

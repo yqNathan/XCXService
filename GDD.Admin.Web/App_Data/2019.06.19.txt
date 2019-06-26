@@ -1,0 +1,764 @@
+2019-06-19 08:35:28,064 线程ID:[1] 日志级别:[INFO ] : [AppStart]
+2019-06-19 08:35:28,073 线程ID:[1] 日志级别:[WARN ] : [Warning]
+2019-06-19 08:35:28,073 线程ID:[1] 日志级别:[ERROR] : [Error]
+2019-06-19 08:35:28,074 线程ID:[1] 日志级别:[FATAL] : [Fatal]
+2019-06-19 08:35:31,681 线程ID:[9] 日志级别:[INFO ] : [登录成功]
+2019-06-19 08:35:38,146 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-06-19 08:35:38,216 线程ID:[10] 日志级别:[INFO ] : [查询成功]
+2019-06-19 08:35:39,204 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-06-19 08:35:39,244 线程ID:[10] 日志级别:[INFO ] : [查询成功]
+2019-06-19 08:35:41,532 线程ID:[13] 日志级别:[INFO ] : [查询成功]
+2019-06-19 08:35:41,952 线程ID:[16] 日志级别:[INFO ] : [查询成功]
+2019-06-19 08:35:55,444 线程ID:[15] 日志级别:[INFO ] : [查询成功]
+2019-06-19 08:35:55,505 线程ID:[20] 日志级别:[INFO ] : [查询成功]
+2019-06-19 08:35:55,512 线程ID:[19] 日志级别:[INFO ] : [查询成功]
+2019-06-19 08:35:55,518 线程ID:[18] 日志级别:[INFO ] : [查询成功]
+2019-06-19 08:35:56,009 线程ID:[13] 日志级别:[INFO ] : [查询成功]
+2019-06-19 08:36:02,745 线程ID:[20] 日志级别:[INFO ] : [查询成功]
+2019-06-19 08:36:06,704 线程ID:[12] 日志级别:[INFO ] : [查询成功]
+2019-06-19 08:36:07,187 线程ID:[16] 日志级别:[INFO ] : [查询成功]
+2019-06-19 08:36:09,388 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-06-19 08:36:09,871 线程ID:[20] 日志级别:[INFO ] : [查询成功]
+2019-06-19 08:36:14,015 线程ID:[10] 日志级别:[INFO ] : [查询成功]
+2019-06-19 08:36:14,515 线程ID:[17] 日志级别:[INFO ] : [查询成功]
+2019-06-19 08:36:15,926 线程ID:[14] 日志级别:[INFO ] : [查询成功]
+2019-06-19 08:36:16,418 线程ID:[20] 日志级别:[INFO ] : [查询成功]
+2019-06-19 08:36:21,029 线程ID:[18] 日志级别:[INFO ] : [查询成功]
+2019-06-19 08:36:21,529 线程ID:[11] 日志级别:[INFO ] : [查询成功]
+2019-06-19 08:36:26,931 线程ID:[14] 日志级别:[INFO ] : [查询成功]
+2019-06-19 08:36:27,418 线程ID:[16] 日志级别:[INFO ] : [查询成功]
+2019-06-19 08:36:38,221 线程ID:[20] 日志级别:[INFO ] : [查询成功]
+2019-06-19 08:36:38,710 线程ID:[17] 日志级别:[INFO ] : [查询成功]
+2019-06-19 08:36:48,513 线程ID:[20] 日志级别:[INFO ] : [查询成功]
+2019-06-19 08:36:49,004 线程ID:[13] 日志级别:[INFO ] : [查询成功]
+2019-06-19 08:36:57,403 线程ID:[20] 日志级别:[INFO ] : [查询成功]
+2019-06-19 08:36:57,891 线程ID:[18] 日志级别:[INFO ] : [查询成功]
+2019-06-19 08:37:02,737 线程ID:[13] 日志级别:[INFO ] : [查询成功]
+2019-06-19 08:37:04,924 线程ID:[14] 日志级别:[INFO ] : [查询成功]
+2019-06-19 08:37:07,072 线程ID:[10] 日志级别:[INFO ] : [查询成功]
+2019-06-19 08:37:07,554 线程ID:[11] 日志级别:[INFO ] : [查询成功]
+2019-06-19 08:37:09,912 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-06-19 08:37:10,483 线程ID:[13] 日志级别:[INFO ] : [查询成功]
+2019-06-19 08:37:10,718 线程ID:[14] 日志级别:[INFO ] : [查询成功]
+2019-06-19 08:37:22,974 线程ID:[17] 日志级别:[INFO ] : [查询成功]
+2019-06-19 08:38:02,209 线程ID:[14] 日志级别:[INFO ] : [查询成功]
+2019-06-19 08:43:22,855 线程ID:[37] 日志级别:[INFO ] : [查询成功]
+2019-06-19 09:13:56,576 线程ID:[90] 日志级别:[INFO ] : [登录成功]
+2019-06-19 09:13:56,650 线程ID:[92] 日志级别:[INFO ] : [查询成功]
+2019-06-19 09:13:56,669 线程ID:[75] 日志级别:[INFO ] : [查询成功]
+2019-06-19 09:13:57,177 线程ID:[77] 日志级别:[INFO ] : [查询成功]
+2019-06-19 09:13:57,677 线程ID:[75] 日志级别:[INFO ] : [查询成功]
+2019-06-19 09:13:58,178 线程ID:[84] 日志级别:[INFO ] : [查询成功]
+2019-06-19 09:13:58,184 线程ID:[51] 日志级别:[INFO ] : [查询成功]
+2019-06-19 09:18:55,785 线程ID:[97] 日志级别:[INFO ] : [查询成功]
+2019-06-19 09:18:55,821 线程ID:[103] 日志级别:[INFO ] : [查询成功]
+2019-06-19 09:30:03,291 线程ID:[93] 日志级别:[INFO ] : [查询成功]
+2019-06-19 09:30:03,768 线程ID:[94] 日志级别:[INFO ] : [查询成功]
+2019-06-19 09:30:06,290 线程ID:[106] 日志级别:[INFO ] : [查询成功]
+2019-06-19 09:30:06,788 线程ID:[90] 日志级别:[INFO ] : [查询成功]
+2019-06-19 09:30:08,982 线程ID:[92] 日志级别:[INFO ] : [查询成功]
+2019-06-19 09:30:09,468 线程ID:[79] 日志级别:[INFO ] : [查询成功]
+2019-06-19 09:57:56,031 线程ID:[160] 日志级别:[INFO ] : [AppStart]
+2019-06-19 09:57:56,039 线程ID:[160] 日志级别:[WARN ] : [Warning]
+2019-06-19 09:57:56,040 线程ID:[160] 日志级别:[ERROR] : [Error]
+2019-06-19 09:57:56,040 线程ID:[160] 日志级别:[FATAL] : [Fatal]
+2019-06-19 09:57:58,361 线程ID:[150] 日志级别:[INFO ] : [查询成功]
+2019-06-19 09:57:58,361 线程ID:[151] 日志级别:[INFO ] : [查询成功]
+2019-06-19 09:57:58,444 线程ID:[158] 日志级别:[INFO ] : [查询成功]
+2019-06-19 09:57:58,445 线程ID:[148] 日志级别:[INFO ] : [查询成功]
+2019-06-19 09:58:12,937 线程ID:[137] 日志级别:[INFO ] : [AppStart]
+2019-06-19 09:58:12,945 线程ID:[137] 日志级别:[WARN ] : [Warning]
+2019-06-19 09:58:12,945 线程ID:[137] 日志级别:[ERROR] : [Error]
+2019-06-19 09:58:12,946 线程ID:[137] 日志级别:[FATAL] : [Fatal]
+2019-06-19 09:58:16,847 线程ID:[145] 日志级别:[INFO ] : [登录成功]
+2019-06-19 09:58:19,754 线程ID:[142] 日志级别:[INFO ] : [查询成功]
+2019-06-19 09:58:19,760 线程ID:[148] 日志级别:[INFO ] : [查询成功]
+2019-06-19 09:58:19,795 线程ID:[153] 日志级别:[INFO ] : [查询成功]
+2019-06-19 09:58:20,177 线程ID:[150] 日志级别:[INFO ] : [查询成功]
+2019-06-19 09:58:23,779 线程ID:[148] 日志级别:[INFO ] : [查询成功]
+2019-06-19 09:58:26,350 线程ID:[152] 日志级别:[INFO ] : [查询成功]
+2019-06-19 09:58:26,760 线程ID:[149] 日志级别:[INFO ] : [查询成功]
+2019-06-19 09:59:25,483 线程ID:[156] 日志级别:[INFO ] : [查询成功]
+2019-06-19 09:59:25,977 线程ID:[153] 日志级别:[INFO ] : [查询成功]
+2019-06-19 09:59:45,235 线程ID:[151] 日志级别:[INFO ] : [查询成功]
+2019-06-19 09:59:45,724 线程ID:[71] 日志级别:[INFO ] : [查询成功]
+2019-06-19 09:59:53,119 线程ID:[157] 日志级别:[INFO ] : [查询成功]
+2019-06-19 09:59:53,628 线程ID:[156] 日志级别:[INFO ] : [查询成功]
+2019-06-19 10:00:03,399 线程ID:[157] 日志级别:[INFO ] : [查询成功]
+2019-06-19 10:00:03,906 线程ID:[71] 日志级别:[INFO ] : [查询成功]
+2019-06-19 10:00:07,020 线程ID:[151] 日志级别:[INFO ] : [查询成功]
+2019-06-19 10:00:07,508 线程ID:[156] 日志级别:[INFO ] : [查询成功]
+2019-06-19 10:20:18,883 线程ID:[57] 日志级别:[INFO ] : [登录成功]
+2019-06-19 10:20:22,718 线程ID:[141] 日志级别:[INFO ] : [查询成功]
+2019-06-19 10:20:22,724 线程ID:[77] 日志级别:[INFO ] : [查询成功]
+2019-06-19 10:20:22,729 线程ID:[19] 日志级别:[INFO ] : [查询成功]
+2019-06-19 10:20:23,220 线程ID:[71] 日志级别:[INFO ] : [查询成功]
+2019-06-19 10:22:17,519 线程ID:[151] 日志级别:[INFO ] : [查询成功]
+2019-06-19 10:23:12,592 线程ID:[4] 日志级别:[INFO ] : [查询成功]
+2019-06-19 10:23:14,433 线程ID:[19] 日志级别:[INFO ] : [查询成功]
+2019-06-19 10:23:14,935 线程ID:[38] 日志级别:[INFO ] : [查询成功]
+2019-06-19 10:23:47,172 线程ID:[4] 日志级别:[INFO ] : [查询成功]
+2019-06-19 10:23:47,672 线程ID:[157] 日志级别:[INFO ] : [查询成功]
+2019-06-19 10:23:49,468 线程ID:[10] 日志级别:[INFO ] : [查询成功]
+2019-06-19 10:23:49,956 线程ID:[30] 日志级别:[INFO ] : [查询成功]
+2019-06-19 10:36:22,797 线程ID:[30] 日志级别:[INFO ] : [查询成功]
+2019-06-19 10:36:23,352 线程ID:[52] 日志级别:[INFO ] : [查询成功]
+2019-06-19 14:47:45,169 线程ID:[350] 日志级别:[INFO ] : [AppStart]
+2019-06-19 14:47:45,177 线程ID:[350] 日志级别:[WARN ] : [Warning]
+2019-06-19 14:47:45,178 线程ID:[350] 日志级别:[ERROR] : [Error]
+2019-06-19 14:47:45,178 线程ID:[350] 日志级别:[FATAL] : [Fatal]
+2019-06-19 14:50:13,598 线程ID:[350] 日志级别:[INFO ] : [AppStart]
+2019-06-19 14:50:13,606 线程ID:[350] 日志级别:[WARN ] : [Warning]
+2019-06-19 14:50:13,606 线程ID:[350] 日志级别:[ERROR] : [Error]
+2019-06-19 14:50:13,607 线程ID:[350] 日志级别:[FATAL] : [Fatal]
+2019-06-19 14:50:21,264 线程ID:[321] 日志级别:[INFO ] : [登录成功]
+2019-06-19 14:50:22,009 线程ID:[346] 日志级别:[INFO ] : [登录成功]
+2019-06-19 14:50:24,351 线程ID:[326] 日志级别:[INFO ] : [查询成功]
+2019-06-19 14:50:24,357 线程ID:[349] 日志级别:[INFO ] : [查询成功]
+2019-06-19 14:50:24,395 线程ID:[346] 日志级别:[INFO ] : [查询成功]
+2019-06-19 14:50:24,778 线程ID:[321] 日志级别:[INFO ] : [查询成功]
+2019-06-19 14:51:33,449 线程ID:[1] 日志级别:[INFO ] : [AppStart]
+2019-06-19 14:51:33,457 线程ID:[1] 日志级别:[WARN ] : [Warning]
+2019-06-19 14:51:33,458 线程ID:[1] 日志级别:[ERROR] : [Error]
+2019-06-19 14:51:33,458 线程ID:[1] 日志级别:[FATAL] : [Fatal]
+2019-06-19 14:51:38,899 线程ID:[9] 日志级别:[INFO ] : [登录成功]
+2019-06-19 14:52:16,861 线程ID:[1] 日志级别:[INFO ] : [AppStart]
+2019-06-19 14:52:16,869 线程ID:[1] 日志级别:[WARN ] : [Warning]
+2019-06-19 14:52:16,870 线程ID:[1] 日志级别:[ERROR] : [Error]
+2019-06-19 14:52:16,870 线程ID:[1] 日志级别:[FATAL] : [Fatal]
+2019-06-19 14:52:29,759 线程ID:[9] 日志级别:[INFO ] : [登录成功]
+2019-06-19 14:52:36,481 线程ID:[9] 日志级别:[INFO ] : [登录成功]
+2019-06-19 14:52:40,952 线程ID:[14] 日志级别:[INFO ] : [查询成功]
+2019-06-19 14:52:40,960 线程ID:[14] 日志级别:[INFO ] : [查询成功]
+2019-06-19 14:52:41,391 线程ID:[12] 日志级别:[INFO ] : [查询成功]
+2019-06-19 14:52:41,499 线程ID:[11] 日志级别:[INFO ] : [查询成功]
+2019-06-19 14:54:23,598 线程ID:[1] 日志级别:[INFO ] : [AppStart]
+2019-06-19 14:54:23,607 线程ID:[1] 日志级别:[WARN ] : [Warning]
+2019-06-19 14:54:23,607 线程ID:[1] 日志级别:[ERROR] : [Error]
+2019-06-19 14:54:23,608 线程ID:[1] 日志级别:[FATAL] : [Fatal]
+2019-06-19 14:54:32,839 线程ID:[8] 日志级别:[INFO ] : [登录成功]
+2019-06-19 14:54:36,000 线程ID:[12] 日志级别:[INFO ] : [查询成功]
+2019-06-19 14:54:36,006 线程ID:[14] 日志级别:[INFO ] : [查询成功]
+2019-06-19 14:54:36,050 线程ID:[11] 日志级别:[INFO ] : [查询成功]
+2019-06-19 14:54:36,479 线程ID:[16] 日志级别:[INFO ] : [查询成功]
+2019-06-19 14:54:36,484 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-06-19 14:54:36,502 线程ID:[18] 日志级别:[INFO ] : [查询成功]
+2019-06-19 14:54:36,518 线程ID:[10] 日志级别:[INFO ] : [查询成功]
+2019-06-19 14:54:36,528 线程ID:[12] 日志级别:[INFO ] : [查询成功]
+2019-06-19 14:54:45,112 线程ID:[13] 日志级别:[INFO ] : [查询成功]
+2019-06-19 14:54:47,036 线程ID:[17] 日志级别:[INFO ] : [查询成功]
+2019-06-19 14:56:02,778 线程ID:[27] 日志级别:[INFO ] : [查询成功]
+2019-06-19 14:56:02,783 线程ID:[12] 日志级别:[INFO ] : [查询成功]
+2019-06-19 14:56:02,790 线程ID:[25] 日志级别:[INFO ] : [查询成功]
+2019-06-19 14:56:02,972 线程ID:[26] 日志级别:[INFO ] : [查询成功]
+2019-06-19 14:56:02,986 线程ID:[11] 日志级别:[INFO ] : [查询成功]
+2019-06-19 14:56:03,282 线程ID:[23] 日志级别:[INFO ] : [查询成功]
+2019-06-19 14:56:03,287 线程ID:[10] 日志级别:[INFO ] : [查询成功]
+2019-06-19 14:56:03,295 线程ID:[15] 日志级别:[INFO ] : [查询成功]
+2019-06-19 14:56:04,342 线程ID:[22] 日志级别:[INFO ] : [查询成功]
+2019-06-19 14:56:05,725 线程ID:[26] 日志级别:[INFO ] : [查询成功]
+2019-06-19 14:56:46,597 线程ID:[23] 日志级别:[INFO ] : [查询成功]
+2019-06-19 14:56:46,609 线程ID:[27] 日志级别:[INFO ] : [查询成功]
+2019-06-19 14:56:47,097 线程ID:[10] 日志级别:[INFO ] : [查询成功]
+2019-06-19 14:56:47,104 线程ID:[12] 日志级别:[INFO ] : [查询成功]
+2019-06-19 14:56:48,741 线程ID:[13] 日志级别:[INFO ] : [查询成功]
+2019-06-19 14:58:06,235 线程ID:[26] 日志级别:[INFO ] : [查询成功]
+2019-06-19 14:58:06,247 线程ID:[27] 日志级别:[INFO ] : [查询成功]
+2019-06-19 14:58:06,735 线程ID:[24] 日志级别:[INFO ] : [查询成功]
+2019-06-19 14:58:06,742 线程ID:[10] 日志级别:[INFO ] : [查询成功]
+2019-06-19 14:58:08,092 线程ID:[25] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:06:56,192 线程ID:[23] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:07:16,302 线程ID:[28] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:07:16,308 线程ID:[37] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:07:16,316 线程ID:[11] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:07:16,652 线程ID:[41] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:07:16,662 线程ID:[44] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:07:16,811 线程ID:[36] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:07:16,816 线程ID:[39] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:07:16,822 线程ID:[10] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:07:18,868 线程ID:[37] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:08:40,085 线程ID:[42] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:08:40,728 线程ID:[11] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:08:40,749 线程ID:[44] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:08:41,184 线程ID:[42] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:08:41,188 线程ID:[15] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:08:41,233 线程ID:[37] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:08:41,238 线程ID:[36] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:08:41,241 线程ID:[10] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:08:41,704 线程ID:[28] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:09:53,319 线程ID:[31] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:09:54,684 线程ID:[36] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:11:46,458 线程ID:[6] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:11:46,463 线程ID:[30] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:11:46,470 线程ID:[19] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:11:46,517 线程ID:[44] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:11:46,527 线程ID:[28] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:11:46,970 线程ID:[42] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:11:46,975 线程ID:[34] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:11:46,984 线程ID:[15] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:11:55,160 线程ID:[15] 日志级别:[INFO ] : [登录成功]
+2019-06-19 15:12:19,196 线程ID:[42] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:12:19,233 线程ID:[37] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:12:19,696 线程ID:[15] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:12:19,703 线程ID:[7] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:14:23,366 线程ID:[19] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:15:00,985 线程ID:[29] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:15:00,998 线程ID:[57] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:15:01,484 线程ID:[28] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:15:01,491 线程ID:[47] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:15:04,941 线程ID:[42] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:15:08,819 线程ID:[53] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:15:10,766 线程ID:[7] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:15:12,284 线程ID:[28] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:15:12,865 线程ID:[29] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:15:15,592 线程ID:[42] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:15:16,159 线程ID:[6] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:15:16,344 线程ID:[7] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:15:16,517 线程ID:[52] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:15:16,694 线程ID:[47] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:15:16,870 线程ID:[28] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:15:50,540 线程ID:[36] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:15:54,327 线程ID:[35] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:15:56,454 线程ID:[7] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:15:56,614 线程ID:[29] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:15:56,774 线程ID:[55] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:15:56,950 线程ID:[53] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:15:57,118 线程ID:[37] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:15:57,311 线程ID:[42] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:16:12,500 线程ID:[1] 日志级别:[INFO ] : [AppStart]
+2019-06-19 15:16:12,510 线程ID:[1] 日志级别:[WARN ] : [Warning]
+2019-06-19 15:16:12,510 线程ID:[1] 日志级别:[ERROR] : [Error]
+2019-06-19 15:16:12,511 线程ID:[1] 日志级别:[FATAL] : [Fatal]
+2019-06-19 15:16:18,085 线程ID:[10] 日志级别:[INFO ] : [登录成功]
+2019-06-19 15:16:23,037 线程ID:[11] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:16:23,079 线程ID:[12] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:16:23,520 线程ID:[10] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:16:23,536 线程ID:[11] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:16:28,605 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:16:31,479 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:17:49,978 线程ID:[1] 日志级别:[INFO ] : [AppStart]
+2019-06-19 15:17:49,986 线程ID:[1] 日志级别:[WARN ] : [Warning]
+2019-06-19 15:17:49,987 线程ID:[1] 日志级别:[ERROR] : [Error]
+2019-06-19 15:17:49,988 线程ID:[1] 日志级别:[FATAL] : [Fatal]
+2019-06-19 15:17:53,944 线程ID:[9] 日志级别:[INFO ] : [登录成功]
+2019-06-19 15:17:55,508 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:17:55,518 线程ID:[10] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:17:58,671 线程ID:[11] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:17:59,037 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:17:59,043 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:17:59,083 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:17:59,093 线程ID:[10] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:17:59,570 线程ID:[10] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:18:00,956 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:18:35,057 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:18:52,248 线程ID:[10] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:18:57,200 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:19:00,914 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:19:02,083 线程ID:[11] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:19:04,889 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:19:06,670 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:19:08,836 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:19:12,302 线程ID:[11] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:19:14,703 线程ID:[11] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:19:16,796 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:20:08,769 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:21:21,266 线程ID:[1] 日志级别:[INFO ] : [AppStart]
+2019-06-19 15:21:21,275 线程ID:[1] 日志级别:[WARN ] : [Warning]
+2019-06-19 15:21:21,276 线程ID:[1] 日志级别:[ERROR] : [Error]
+2019-06-19 15:21:21,277 线程ID:[1] 日志级别:[FATAL] : [Fatal]
+2019-06-19 15:21:24,055 线程ID:[9] 日志级别:[INFO ] : [登录成功]
+2019-06-19 15:21:29,280 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:21:29,319 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:21:29,762 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:21:29,776 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:21:30,993 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:21:45,111 线程ID:[16] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:21:45,122 线程ID:[18] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:21:45,612 线程ID:[5] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:21:45,618 线程ID:[12] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:24:15,460 线程ID:[26] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:24:17,993 线程ID:[21] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:24:20,138 线程ID:[27] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:24:22,558 线程ID:[15] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:27:38,633 线程ID:[20] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:27:38,646 线程ID:[26] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:27:39,133 线程ID:[31] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:27:39,141 线程ID:[24] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:27:39,277 线程ID:[32] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:27:49,841 线程ID:[27] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:28:27,766 线程ID:[15] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:28:28,202 线程ID:[20] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:28:28,377 线程ID:[11] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:28:28,545 线程ID:[27] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:28:28,715 线程ID:[28] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:28:29,682 线程ID:[33] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:28:29,690 线程ID:[15] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:28:29,697 线程ID:[20] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:28:30,182 线程ID:[11] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:28:32,327 线程ID:[21] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:28:32,338 线程ID:[31] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:28:32,828 线程ID:[24] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:28:32,834 线程ID:[27] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:28:32,864 线程ID:[11] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:29:14,310 线程ID:[1] 日志级别:[INFO ] : [AppStart]
+2019-06-19 15:29:14,319 线程ID:[1] 日志级别:[WARN ] : [Warning]
+2019-06-19 15:29:14,319 线程ID:[1] 日志级别:[ERROR] : [Error]
+2019-06-19 15:29:14,320 线程ID:[1] 日志级别:[FATAL] : [Fatal]
+2019-06-19 15:29:22,362 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:29:27,699 线程ID:[9] 日志级别:[INFO ] : [登录成功]
+2019-06-19 15:29:31,867 线程ID:[12] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:29:31,909 线程ID:[10] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:29:32,367 线程ID:[12] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:29:32,384 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:31:39,269 线程ID:[1] 日志级别:[INFO ] : [AppStart]
+2019-06-19 15:31:39,278 线程ID:[1] 日志级别:[WARN ] : [Warning]
+2019-06-19 15:31:39,278 线程ID:[1] 日志级别:[ERROR] : [Error]
+2019-06-19 15:31:39,279 线程ID:[1] 日志级别:[FATAL] : [Fatal]
+2019-06-19 15:31:43,371 线程ID:[19] 日志级别:[INFO ] : [登录成功]
+2019-06-19 15:31:45,642 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:31:45,681 线程ID:[19] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:31:46,125 线程ID:[15] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:31:46,142 线程ID:[10] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:31:49,092 线程ID:[17] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:31:52,659 线程ID:[20] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:31:52,670 线程ID:[10] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:31:53,160 线程ID:[16] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:31:53,168 线程ID:[17] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:32:00,575 线程ID:[14] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:32:00,596 线程ID:[15] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:32:01,074 线程ID:[13] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:32:01,080 线程ID:[18] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:32:01,122 线程ID:[11] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:32:52,326 线程ID:[25] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:32:52,340 线程ID:[13] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:32:52,824 线程ID:[19] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:32:52,832 线程ID:[16] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:32:52,852 线程ID:[12] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:32:53,732 线程ID:[25] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:32:53,740 线程ID:[25] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:32:53,746 线程ID:[13] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:32:54,232 线程ID:[19] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:33:00,508 线程ID:[15] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:33:02,609 线程ID:[23] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployee, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-06-19 15:33:03,087 线程ID:[18] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:33:11,570 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:33:33,250 线程ID:[15] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:33:33,263 线程ID:[13] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:33:33,750 线程ID:[21] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:33:33,756 线程ID:[25] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:33:35,521 线程ID:[21] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:33:37,748 线程ID:[25] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:34:38,530 线程ID:[21] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:34:38,536 线程ID:[23] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:34:38,546 线程ID:[16] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:34:39,031 线程ID:[18] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:34:42,784 线程ID:[16] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:34:43,432 线程ID:[19] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:34:43,876 线程ID:[23] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:34:43,916 线程ID:[25] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:34:44,399 线程ID:[18] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:34:44,432 线程ID:[20] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:34:44,932 线程ID:[15] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:34:45,517 线程ID:[17] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:34:51,042 线程ID:[21] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:34:53,006 线程ID:[23] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployee, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-06-19 15:34:53,521 线程ID:[17] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:34:59,981 线程ID:[21] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployee, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-06-19 15:35:00,488 线程ID:[12] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:35:00,641 线程ID:[21] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployee, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-06-19 15:35:01,141 线程ID:[15] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:35:09,153 线程ID:[12] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployee, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-06-19 15:35:09,666 线程ID:[16] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:35:09,858 线程ID:[20] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployee, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-06-19 15:35:10,073 线程ID:[24] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployee, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-06-19 15:35:10,363 线程ID:[12] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:35:10,369 线程ID:[21] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:35:22,144 线程ID:[19] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployee, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-06-19 15:35:22,640 线程ID:[12] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:35:27,018 线程ID:[25] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:35:28,762 线程ID:[18] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployee, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-06-19 15:35:29,262 线程ID:[27] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:35:31,009 线程ID:[24] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployee, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-06-19 15:35:31,509 线程ID:[29] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:36:09,905 线程ID:[17] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:36:12,938 线程ID:[25] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployee, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-06-19 15:36:13,438 线程ID:[15] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:36:13,682 线程ID:[28] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployee, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-06-19 15:36:13,880 线程ID:[27] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployee, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-06-19 15:36:14,113 线程ID:[16] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployee, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-06-19 15:36:14,191 线程ID:[20] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:36:14,197 线程ID:[14] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:36:14,203 线程ID:[24] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:36:14,361 线程ID:[19] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployee, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-06-19 15:36:14,860 线程ID:[12] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:36:14,960 线程ID:[25] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployee, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-06-19 15:36:15,468 线程ID:[18] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:36:15,514 线程ID:[28] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployee, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-06-19 15:36:15,792 线程ID:[16] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployee, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-06-19 15:36:16,024 线程ID:[22] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:36:16,030 线程ID:[24] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:36:21,313 线程ID:[21] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployee, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-06-19 15:36:21,800 线程ID:[20] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:36:22,984 线程ID:[16] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:36:23,482 线程ID:[27] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:36:25,253 线程ID:[25] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployee, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-06-19 15:36:25,752 线程ID:[19] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:36:34,715 线程ID:[25] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:36:34,722 线程ID:[20] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:36:34,731 线程ID:[24] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:36:35,223 线程ID:[19] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:36:36,848 线程ID:[24] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:36:38,646 线程ID:[16] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployee, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-06-19 15:36:39,150 线程ID:[14] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:36:41,285 线程ID:[24] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployee, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-06-19 15:36:41,784 线程ID:[19] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:36:41,793 线程ID:[14] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:36:41,994 线程ID:[18] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:36:42,287 线程ID:[16] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployee, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-06-19 15:36:42,295 线程ID:[28] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployee, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-06-19 15:38:16,627 线程ID:[1] 日志级别:[INFO ] : [AppStart]
+2019-06-19 15:38:16,636 线程ID:[1] 日志级别:[WARN ] : [Warning]
+2019-06-19 15:38:16,636 线程ID:[1] 日志级别:[ERROR] : [Error]
+2019-06-19 15:38:16,637 线程ID:[1] 日志级别:[FATAL] : [Fatal]
+2019-06-19 15:38:21,747 线程ID:[10] 日志级别:[INFO ] : [登录成功]
+2019-06-19 15:38:39,617 线程ID:[11] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:38:39,664 线程ID:[14] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:38:40,100 线程ID:[12] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:38:40,117 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:38:40,258 线程ID:[11] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:38:40,268 线程ID:[11] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:38:40,758 线程ID:[10] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:38:40,774 线程ID:[11] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:38:44,870 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:39:34,252 线程ID:[9] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployee, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-06-19 15:40:42,350 线程ID:[1] 日志级别:[INFO ] : [AppStart]
+2019-06-19 15:40:42,358 线程ID:[1] 日志级别:[WARN ] : [Warning]
+2019-06-19 15:40:42,359 线程ID:[1] 日志级别:[ERROR] : [Error]
+2019-06-19 15:40:42,359 线程ID:[1] 日志级别:[FATAL] : [Fatal]
+2019-06-19 15:41:46,104 线程ID:[11] 日志级别:[INFO ] : [登录成功]
+2019-06-19 15:41:46,116 线程ID:[11] 日志级别:[INFO ] : [登录成功]
+2019-06-19 15:41:49,018 线程ID:[13] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:41:49,061 线程ID:[12] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:41:49,503 线程ID:[13] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:41:49,521 线程ID:[12] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:41:51,975 线程ID:[12] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:41:52,664 线程ID:[12] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:41:52,673 线程ID:[13] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:41:53,173 线程ID:[16] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:41:53,190 线程ID:[11] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:41:54,792 线程ID:[11] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:52:25,411 线程ID:[1] 日志级别:[INFO ] : [AppStart]
+2019-06-19 15:52:25,420 线程ID:[1] 日志级别:[WARN ] : [Warning]
+2019-06-19 15:52:25,420 线程ID:[1] 日志级别:[ERROR] : [Error]
+2019-06-19 15:52:25,421 线程ID:[1] 日志级别:[FATAL] : [Fatal]
+2019-06-19 15:52:48,692 线程ID:[5] 日志级别:[INFO ] : [登录成功]
+2019-06-19 15:52:48,805 线程ID:[11] 日志级别:[INFO ] : [登录成功]
+2019-06-19 15:53:36,781 线程ID:[25] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:53:36,823 线程ID:[23] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:53:37,264 线程ID:[20] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:53:37,278 线程ID:[22] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:54:09,036 线程ID:[5] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:54:13,336 线程ID:[25] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:54:13,428 线程ID:[22] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:54:29,740 线程ID:[11] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:54:29,748 线程ID:[11] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:54:29,758 线程ID:[21] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:54:30,241 线程ID:[10] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:54:31,481 线程ID:[25] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:54:34,069 线程ID:[5] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployee, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-06-19 15:54:34,551 线程ID:[19] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:54:53,946 线程ID:[20] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployee, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-06-19 15:54:54,447 线程ID:[24] 日志级别:[INFO ] : [查询成功]
+2019-06-19 15:54:59,243 线程ID:[21] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:16:26,634 线程ID:[56] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployee, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-06-19 16:16:27,090 线程ID:[93] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployee, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-06-19 16:16:27,138 线程ID:[106] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:16:28,160 线程ID:[95] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:16:36,964 线程ID:[105] 日志级别:[INFO ] : [登录成功]
+2019-06-19 16:16:38,738 线程ID:[98] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:16:38,745 线程ID:[91] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:16:38,752 线程ID:[86] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:16:39,237 线程ID:[96] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:16:41,898 线程ID:[103] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:16:44,182 线程ID:[104] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployee, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-06-19 16:16:44,191 线程ID:[107] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:17:25,684 线程ID:[90] 日志级别:[INFO ] : [AppStart]
+2019-06-19 16:17:25,693 线程ID:[90] 日志级别:[WARN ] : [Warning]
+2019-06-19 16:17:25,694 线程ID:[90] 日志级别:[ERROR] : [Error]
+2019-06-19 16:17:25,694 线程ID:[90] 日志级别:[FATAL] : [Fatal]
+2019-06-19 16:17:30,449 线程ID:[100] 日志级别:[INFO ] : [登录成功]
+2019-06-19 16:17:32,849 线程ID:[92] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:17:32,890 线程ID:[53] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:17:33,277 线程ID:[99] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:17:33,285 线程ID:[45] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:17:33,299 线程ID:[96] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:17:33,780 线程ID:[100] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:17:33,785 线程ID:[71] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:17:34,300 线程ID:[86] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:17:36,238 线程ID:[56] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:17:38,643 线程ID:[93] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployee, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-06-19 16:17:39,060 线程ID:[102] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:19:42,692 线程ID:[1] 日志级别:[INFO ] : [AppStart]
+2019-06-19 16:19:42,700 线程ID:[1] 日志级别:[WARN ] : [Warning]
+2019-06-19 16:19:42,701 线程ID:[1] 日志级别:[ERROR] : [Error]
+2019-06-19 16:19:42,701 线程ID:[1] 日志级别:[FATAL] : [Fatal]
+2019-06-19 16:19:46,858 线程ID:[94] 日志级别:[INFO ] : [登录成功]
+2019-06-19 16:19:49,360 线程ID:[19] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:19:49,416 线程ID:[95] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:19:49,560 线程ID:[79] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:19:49,566 线程ID:[53] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:19:49,714 线程ID:[23] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:19:49,719 线程ID:[23] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:19:49,733 线程ID:[100] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:19:50,071 线程ID:[22] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:19:51,227 线程ID:[20] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:19:54,862 线程ID:[101] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployee, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-06-19 16:19:55,285 线程ID:[79] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:20:20,812 线程ID:[1] 日志级别:[INFO ] : [AppStart]
+2019-06-19 16:20:20,821 线程ID:[1] 日志级别:[WARN ] : [Warning]
+2019-06-19 16:20:20,821 线程ID:[1] 日志级别:[ERROR] : [Error]
+2019-06-19 16:20:20,822 线程ID:[1] 日志级别:[FATAL] : [Fatal]
+2019-06-19 16:20:26,573 线程ID:[10] 日志级别:[INFO ] : [登录成功]
+2019-06-19 16:20:29,349 线程ID:[11] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:20:29,358 线程ID:[10] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:20:29,399 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:20:29,833 线程ID:[11] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:20:31,616 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:20:54,461 线程ID:[9] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployee, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-06-19 16:20:54,920 线程ID:[11] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:22:08,063 线程ID:[9] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployee, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-06-19 16:22:08,543 线程ID:[11] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:22:31,744 线程ID:[11] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployee, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-06-19 16:22:32,217 线程ID:[10] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:22:56,735 线程ID:[9] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployee, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-06-19 16:22:57,217 线程ID:[11] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:22:57,618 线程ID:[10] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployee, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-06-19 16:22:58,110 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:22:58,608 线程ID:[10] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployee, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.SubmittedEmployeeVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-06-19 16:22:59,100 线程ID:[21] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:27:36,236 线程ID:[1] 日志级别:[INFO ] : [AppStart]
+2019-06-19 16:27:36,245 线程ID:[1] 日志级别:[WARN ] : [Warning]
+2019-06-19 16:27:36,246 线程ID:[1] 日志级别:[ERROR] : [Error]
+2019-06-19 16:27:36,246 线程ID:[1] 日志级别:[FATAL] : [Fatal]
+2019-06-19 16:27:40,089 线程ID:[10] 日志级别:[INFO ] : [登录成功]
+2019-06-19 16:27:42,691 线程ID:[12] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:27:42,699 线程ID:[10] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:27:42,743 线程ID:[11] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:27:43,174 线程ID:[12] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:27:45,384 线程ID:[11] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:32:18,742 线程ID:[1] 日志级别:[INFO ] : [AppStart]
+2019-06-19 16:32:18,750 线程ID:[1] 日志级别:[WARN ] : [Warning]
+2019-06-19 16:32:18,751 线程ID:[1] 日志级别:[ERROR] : [Error]
+2019-06-19 16:32:18,751 线程ID:[1] 日志级别:[FATAL] : [Fatal]
+2019-06-19 16:36:01,506 线程ID:[23] 日志级别:[INFO ] : [登录成功]
+2019-06-19 16:36:06,207 线程ID:[5] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:36:06,215 线程ID:[13] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:36:06,254 线程ID:[15] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:36:06,691 线程ID:[6] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:36:08,251 线程ID:[25] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:36:10,616 线程ID:[24] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:36:11,075 线程ID:[23] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:36:23,045 线程ID:[10] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:36:23,563 线程ID:[24] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:36:24,041 线程ID:[5] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:36:26,381 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:36:27,542 线程ID:[23] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:36:29,027 线程ID:[10] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:39:00,458 线程ID:[19] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:39:00,465 线程ID:[19] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:39:00,472 线程ID:[5] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:39:00,654 线程ID:[15] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:39:00,665 线程ID:[16] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:39:00,960 线程ID:[27] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:39:00,967 线程ID:[11] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:39:00,975 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:39:03,703 线程ID:[12] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:39:05,549 线程ID:[15] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:39:06,035 线程ID:[27] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:39:20,815 线程ID:[30] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:39:21,890 线程ID:[27] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:39:22,785 线程ID:[31] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:39:23,563 线程ID:[19] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:39:24,324 线程ID:[15] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:39:24,987 线程ID:[35] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:40:23,555 线程ID:[36] 日志级别:[INFO ] : [AppStart]
+2019-06-19 16:40:23,563 线程ID:[36] 日志级别:[WARN ] : [Warning]
+2019-06-19 16:40:23,564 线程ID:[36] 日志级别:[ERROR] : [Error]
+2019-06-19 16:40:23,564 线程ID:[36] 日志级别:[FATAL] : [Fatal]
+2019-06-19 16:40:31,189 线程ID:[13] 日志级别:[INFO ] : [登录成功]
+2019-06-19 16:40:33,673 线程ID:[34] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:40:33,679 线程ID:[11] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:40:33,715 线程ID:[13] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:40:34,099 线程ID:[18] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:40:36,038 线程ID:[15] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:40:38,165 线程ID:[17] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:40:38,572 线程ID:[29] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:40:59,568 线程ID:[34] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:41:00,348 线程ID:[32] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:41:01,744 线程ID:[30] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:41:06,063 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:41:06,077 线程ID:[31] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:41:06,563 线程ID:[34] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:41:06,572 线程ID:[30] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:41:12,946 线程ID:[13] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:41:14,910 线程ID:[17] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:41:43,718 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:41:43,731 线程ID:[27] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:41:44,219 线程ID:[30] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:41:44,225 线程ID:[12] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:41:50,001 线程ID:[32] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:41:52,855 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:42:05,532 线程ID:[18] 日志级别:[INFO ] : [查询成功]
+2019-06-19 16:42:08,079 线程ID:[12] 日志级别:[INFO ] : [查询成功]

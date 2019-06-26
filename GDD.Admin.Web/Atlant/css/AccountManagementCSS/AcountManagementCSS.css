@@ -1,0 +1,31 @@
+﻿.inputDiv {
+    margin-top:25px;
+}
+
+.InputBox{
+    width:200px;
+    height:30px;
+    border-radius:5px;
+    font-family:'微软雅黑';
+    font-size:13px;
+    border:1px solid #E5E5E5;
+    text-indent:1em; 
+    color:#666;
+    outline:none;
+}
+
+.label-control{
+    width:80px;
+    float:left;
+}
+
+.inputButton {
+    width:100px;
+    border:none;
+    border-radius:5px;
+    outline:none;
+    background:#ff6a00;
+    color:#fff;
+    padding:5px;
+    margin-bottom:3%;
+}

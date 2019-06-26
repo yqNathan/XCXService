@@ -1,0 +1,88 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>批量导入</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" type="text/css" id="theme" href="~/Content/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="~/LayUI/layui.css" />
+    <style>
+        .main {
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .btndownload {
+            margin-top: 15px;
+        }
+
+        .layui-icon-download-circle {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <input type="hidden" id="Name" value="@ViewBag.Name">
+    <div class="main">
+        <div class="layui-upload-drag" id="importFile">
+            <i class="layui-icon"></i>
+            <p>点击上传，或将文件拖拽到此处</p>
+        </div>
+        <div class="btndownload"><button data-method="setTop" class="layui-btn" id="import"><i class="layui-icon layui-icon-download-circle"></i>下载模板</button></div>
+    </div>
+</body>
+</html>
+<script type="text/javascript" src="~/Scripts/jquery-3.3.1.js"></script>
+<script type='text/javascript' src='~/Scripts/bootstrap.js'></script>
+<script type='text/javascript' src='~/Scripts/respond.js'></script>
+<script type='text/javascript' src='~/LayUI/layui.js'></script>
+<script>
+    var name = $("#Name").val();
+    layui.use('upload', function () {
+        var upload = layui.upload;
+        //执行实例
+        var uploadInst = upload.render({
+            elem: '#importFile' //绑定元素
+            , url: '/Import/Upload?name=' + name //上传接口
+            , method: 'POST'
+            , type: "file"
+            , accept: 'file'
+            , before: function (obj) {
+                layer.load(); //上传loading
+            }
+            , done: function (res) {
+                //上传完毕回调
+                layer.closeAll('loading');
+                layer.alert(res.msg, {
+                    title: '导入提示'
+                })
+                window.parent.$("#search").click();//调用父窗体的查询方法
+                //parent.location.reload();//刷新父页面
+            }
+            , error: function () {
+                layer.closeAll('loading');
+            }
+        });
+    });
+
+    $('#import').on('click', function () {
+        if (name == "Employee") {
+            window.open("/File/员工信息Demo.xlsx");
+        }
+        else if (name == "Option") {
+            window.open("/File/选项信息Demo.xlsx");
+        }
+        else if (name == "QuestionType") {
+            window.open("/File/题目类型信息Demo.xlsx");
+        }
+
+    });
+
+</script>

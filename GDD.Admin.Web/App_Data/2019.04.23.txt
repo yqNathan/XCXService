@@ -1,0 +1,64 @@
+2019-04-23 14:04:06,187 线程ID:[1] 日志级别:[INFO ] : [AppStart]
+2019-04-23 14:04:06,196 线程ID:[1] 日志级别:[WARN ] : [Warning]
+2019-04-23 14:04:06,196 线程ID:[1] 日志级别:[ERROR] : [Error]
+2019-04-23 14:04:06,197 线程ID:[1] 日志级别:[FATAL] : [Fatal]
+2019-04-23 14:04:06,197 线程ID:[1] 日志级别:[ERROR] : [尝试除以零。]
+System.DivideByZeroException: 尝试除以零。
+   在 GDD.Admin.Web.MvcApplication.Application_Start() 位置 G:\Work\Project\XCXService\GDD.Admin.Web\Global.asax.cs:行号 34
+2019-04-23 14:04:57,434 线程ID:[13] 日志级别:[INFO ] : [查询成功]
+2019-04-23 14:05:09,506 线程ID:[14] 日志级别:[INFO ] : [查询成功]
+2019-04-23 14:09:09,774 线程ID:[1] 日志级别:[INFO ] : [AppStart]
+2019-04-23 14:09:09,783 线程ID:[1] 日志级别:[WARN ] : [Warning]
+2019-04-23 14:09:09,784 线程ID:[1] 日志级别:[ERROR] : [Error]
+2019-04-23 14:09:09,784 线程ID:[1] 日志级别:[FATAL] : [Fatal]
+2019-04-23 14:09:09,785 线程ID:[1] 日志级别:[ERROR] : [尝试除以零。]
+System.DivideByZeroException: 尝试除以零。
+   在 GDD.Admin.Web.MvcApplication.Application_Start() 位置 G:\Work\Project\XCXService\GDD.Admin.Web\Global.asax.cs:行号 34
+2019-04-23 14:09:17,003 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-04-23 14:10:13,996 线程ID:[1] 日志级别:[INFO ] : [AppStart]
+2019-04-23 14:10:14,006 线程ID:[1] 日志级别:[WARN ] : [Warning]
+2019-04-23 14:10:14,006 线程ID:[1] 日志级别:[ERROR] : [Error]
+2019-04-23 14:10:14,007 线程ID:[1] 日志级别:[FATAL] : [Fatal]
+2019-04-23 14:10:14,007 线程ID:[1] 日志级别:[ERROR] : [尝试除以零。]
+System.DivideByZeroException: 尝试除以零。
+   在 GDD.Admin.Web.MvcApplication.Application_Start() 位置 G:\Work\Project\XCXService\GDD.Admin.Web\Global.asax.cs:行号 34
+2019-04-23 14:10:30,010 线程ID:[27] 日志级别:[INFO ] : [查询成功]
+2019-04-23 14:10:48,471 线程ID:[11] 日志级别:[INFO ] : [查询成功]
+2019-04-23 14:12:44,759 线程ID:[1] 日志级别:[INFO ] : [AppStart]
+2019-04-23 14:12:44,767 线程ID:[1] 日志级别:[WARN ] : [Warning]
+2019-04-23 14:12:44,768 线程ID:[1] 日志级别:[ERROR] : [Error]
+2019-04-23 14:12:44,768 线程ID:[1] 日志级别:[FATAL] : [Fatal]
+2019-04-23 14:12:44,769 线程ID:[1] 日志级别:[ERROR] : [尝试除以零。]
+System.DivideByZeroException: 尝试除以零。
+   在 GDD.Admin.Web.MvcApplication.Application_Start() 位置 G:\Work\Project\XCXService\GDD.Admin.Web\Global.asax.cs:行号 34
+2019-04-23 14:12:50,020 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-04-23 14:12:53,287 线程ID:[21] 日志级别:[INFO ] : [查询成功]
+2019-04-23 14:49:41,603 线程ID:[1] 日志级别:[INFO ] : [AppStart]
+2019-04-23 14:49:41,612 线程ID:[1] 日志级别:[WARN ] : [Warning]
+2019-04-23 14:49:41,612 线程ID:[1] 日志级别:[ERROR] : [Error]
+2019-04-23 14:49:41,613 线程ID:[1] 日志级别:[FATAL] : [Fatal]
+2019-04-23 14:49:41,614 线程ID:[1] 日志级别:[ERROR] : [尝试除以零。]
+System.DivideByZeroException: 尝试除以零。
+   在 GDD.Admin.Web.MvcApplication.Application_Start() 位置 G:\Work\Project\XCXService\GDD.Admin.Web\Global.asax.cs:行号 34
+2019-04-23 14:49:49,652 线程ID:[129] 日志级别:[INFO ] : [查询成功]
+2019-04-23 14:49:57,127 线程ID:[134] 日志级别:[INFO ] : [添加成功]
+2019-04-23 14:50:02,103 线程ID:[126] 日志级别:[INFO ] : [查询成功]
+2019-04-23 14:50:51,652 线程ID:[138] 日志级别:[INFO ] : [查询成功]
+2019-04-23 14:50:56,933 线程ID:[123] 日志级别:[ERROR] : [未将对象引用设置到对象的实例。]
+2019-04-23 14:57:00,589 线程ID:[1] 日志级别:[INFO ] : [AppStart]
+2019-04-23 14:57:00,598 线程ID:[1] 日志级别:[WARN ] : [Warning]
+2019-04-23 14:57:00,599 线程ID:[1] 日志级别:[ERROR] : [Error]
+2019-04-23 14:57:00,599 线程ID:[1] 日志级别:[FATAL] : [Fatal]
+2019-04-23 14:57:00,612 线程ID:[1] 日志级别:[ERROR] : [尝试除以零。]
+System.DivideByZeroException: 尝试除以零。
+   在 GDD.Admin.Web.MvcApplication.Application_Start() 位置 G:\Work\Project\XCXService\GDD.Admin.Web\Global.asax.cs:行号 34
+2019-04-23 14:57:07,023 线程ID:[14] 日志级别:[INFO ] : [查询成功]
+2019-04-23 14:58:08,939 线程ID:[1] 日志级别:[INFO ] : [AppStart]
+2019-04-23 14:58:08,948 线程ID:[1] 日志级别:[WARN ] : [Warning]
+2019-04-23 14:58:08,949 线程ID:[1] 日志级别:[ERROR] : [Error]
+2019-04-23 14:58:08,949 线程ID:[1] 日志级别:[FATAL] : [Fatal]
+2019-04-23 14:58:08,961 线程ID:[1] 日志级别:[ERROR] : [尝试除以零。]
+System.DivideByZeroException: 尝试除以零。
+   在 GDD.Admin.Web.MvcApplication.Application_Start() 位置 G:\Work\Project\XCXService\GDD.Admin.Web\Global.asax.cs:行号 34
+2019-04-23 14:58:36,703 线程ID:[12] 日志级别:[INFO ] : [查询成功]
+2019-04-23 14:59:22,987 线程ID:[10] 日志级别:[INFO ] : [修改成功]

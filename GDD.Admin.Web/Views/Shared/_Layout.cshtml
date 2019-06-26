@@ -1,0 +1,155 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>GDD服务平台</title>
+    @Styles.Render("~/bootstrap/css")
+    @Styles.Render("~/LayUI/layuicss")
+    <style>
+        .layui-tab {
+            margin: 0;
+        }
+
+        .layui-tab-item {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="layui-layout-body site-mobile">
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header">
+            <div class="layui-logo">GDD服务平台</div>
+            <!-- 头部区域（可配合layui已有的水平导航） -->
+            <ul class="layui-nav layui-layout-left">
+                <li class="layui-nav-item"><a href="">控制台</a></li>
+                <li class="layui-nav-item"><a href="">商品管理</a></li>
+                <li class="layui-nav-item"><a href="">用户</a></li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">其它系统</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="">邮件管理</a></dd>
+                        <dd><a href="">消息管理</a></dd>
+                        <dd><a href="">授权管理</a></dd>
+                    </dl>
+                </li>
+            </ul>
+            <ul class="layui-nav layui-layout-right">
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                        测试员
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="">基本资料</a></dd>
+                        <dd><a href="">安全设置</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="">退了</a></li>
+            </ul>
+        </div>
+
+        <div class="layui-side layui-bg-black visible-md-block">
+            <div class="layui-side-scroll">
+                <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+                <ul class="layui-nav layui-nav-tree" lay-filter="test" id="Menu">
+                    @Html.Action("Menu", "Menu")
+                    @*<li class="layui-nav-item layui-this"><a href="javascript:;" class="site-demo-active" data-type="tabAdd" nonce="1">主页</a></li>
+                                        <li class="layui-nav-item layui-nav-itemed">
+                            <a class="" href="javascript:;">满意度调查</a>
+                            <dl class="layui-nav-child">
+                                <dd><a href="javascript:;" lay-href="Home/About" class="site-demo-active" data-type="tabAdd" nonce="2">用户管理</a></dd>
+                                <dd><a href="javascript:;" lay-href="Role/Index" class="site-demo-active" data-type="tabAdd" nonce="3">权限管理</a></dd>
+                                <dd><a href="javascript:;" lay-href="www.baidu.com" class="site-demo-active" data-type="tabAdd" nonce="4">问卷管理</a></dd>
+                            </dl>
+                        </li>*@
+                </ul>
+            </div>
+        </div>
+
+        <div class="layui-body">
+            <div class="layui-tab  layui-tab-card" lay-filter="demo" lay-allowclose="true" style="height:99%">
+                <ul class="layui-tab-title">
+                    <li class="layui-this" lay-id="0">主页</li>
+                </ul>
+                <div class="layui-tab-content tabcontent" style="height:92%;">
+                    <div class="layui-tab-item layui-show">@RenderBody()</div>
+                </div>
+            </div>
+        </div>
+
+        @*<div class="layui-footer">
+                © layui.com - 底部固定区域
+            </div>*@
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/layui")
+    @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("scripts", false)
+    <script>
+        //已打开菜单的nonce数组，默认打开主页
+        var array = ['0'];
+        layui.use('layer', function () {
+            var $ = layui.$
+            , setIframe = function () {
+                var height = $(window).height() - 370;
+                $('#demoAdmin').height(height);
+            };
+            setIframe();
+            $(window).on('resize', setIframe);
+        });
+
+        layui.use('element', function () {
+            var element = layui.element;
+            //触发事件
+            var active = {
+                tabAdd: function (e) {
+                    var nonce = e[0].nonce;
+                    if (array.indexOf(nonce) < 0) {
+                        array.push(nonce)
+                        var strhtml = e[0].getAttribute('lay-href');
+                        //新增一个Tab项
+                        element.tabAdd('demo', {
+                            title: e[0].innerHTML
+                         , content: '<iframe name="myiframe' + nonce + '" id="myrame' + nonce + '" src="' + strhtml + '" scrolling="auto" frameborder="0" scrolling="no"  width="100%" height="100%"><p>你的浏览器不支持iframe标签</p></iframe>'
+                          , id: nonce
+                        });
+                    }
+                    //修改当前选中的tab
+                    element.tabChange('demo', nonce);
+                }
+              , tabDelete: function (othis) {
+                  //删除指定Tab项
+                  element.tabDelete('demo', ''); //删除：“商品管理”
+                  othis.addClass('layui-btn-disabled');
+              }
+              , tabChange: function () {
+                  //切换到指定Tab项
+                  element.tabChange('demo', '1'); //切换到：用户管理
+              }
+            };
+            element.on('tab(demo)', function (data) {
+                $("a[class='site-demo-active']").each(function (e, item) {
+                    var nonce = item.getAttribute('nonce');
+                    console.log(nonce)
+                    $("a[nonce='" + nonce + "']").parent().removeClass("layui-this");
+                })
+                var layid = this.getAttribute('lay-id');
+                $("a[nonce='" + layid + "']").parent().addClass("layui-this");
+            });
+            element.on('tabDelete(demo)', function (data) {
+                var layid = this.parentNode.getAttribute('lay-id');
+                var index = array.indexOf(layid);
+                array.splice(index, 1);
+            });
+
+            $('.site-demo-active').on('click', function () {
+                var othis = $(this), type = othis.data('type');
+                active[type] ? active[type].call(this, othis) : '';
+            });
+        });
+    </script>
+</body>
+</html>

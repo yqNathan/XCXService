@@ -1,0 +1,123 @@
+﻿@{
+    Layout = null;
+}
+<link rel="stylesheet" type="text/css" id="theme" href="~/Content/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="~/LayUI/layui.css" />
+<style>
+    .layui-form-label {
+        width: 80px;
+        margin-bottom: 0px;
+        padding: 9px 0;
+    }
+
+    .layui-input-block {
+        margin-left: 80px;
+    }
+    .layui-btn {
+        margin-left: 10px;
+    }
+</style>
+<div class="demoTable">
+    搜索题目名称：
+    <div class="layui-inline">
+        <input class="layui-input" name="id" id="demoReload" autocomplete="off" placeholder="请输入题目名称">
+    </div>
+    <button class="layui-btn" data-type="reload" onclick="search();">搜索</button>
+    <button class="layui-btn " onclick="Add();"><i class="layui-icon layui-icon-add-1"></i></button>
+</div>
+<table class="layui-hide" id="table" lay-filter="table"></table>
+<script type="text/javascript" src="~/Scripts/jquery-3.3.1.js"></script>
+<script type='text/javascript' src='~/Scripts/bootstrap.js'></script>
+<script type='text/javascript' src='~/Scripts/respond.js'></script>
+<script type='text/javascript' src='~/LayUI/layui.js'></script>
+<script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+    </div>
+</script>
+<script type="text/html" id="barDemo">
+    @*<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>*@
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<script>
+    layui.use('table', getList);
+
+    function search() {
+        getList();
+    }
+
+    function getList() {
+        var table = layui.table;
+        var name = document.getElementById("demoReload").value;
+        var pageIndex = 1;
+        var pageSize = 10;
+        //监听工具条
+        table.on('tool(table)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'detail') {
+                layer.msg('ID：' + data.QuestionID + ' 的查看操作');
+            } else if (obj.event === 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    Del(data.QuestionID);
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if (obj.event === 'edit') {
+                location.href = '/Question/QuestionDetail?obj=' + JSON.stringify(data);
+                //var param = "1";
+                //RedirectToRoute(new { controller: "Question", action: "QuestionnaireDetail", id: 123 });
+                //layer.alert('编辑行：<br>' + JSON.stringify(data))
+            }
+        });
+
+        table.render({
+            elem: '#table'
+            , url: '/Question/List?title=' + name
+            , toolbar: '#toolbarDemo'
+            , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            , loading: true
+            , page: true
+            , request: {
+                pageName: 'pageIndex' //页码的参数名称，默认：page
+             , limitName: 'pageSize' //每页数据量的参数名，默认：limit
+            }, response: {
+                statusName: 'code' //规定数据状态的字段名称，默认：code
+                , statusCode: 0 //规定成功的状态码，默认：0
+                , msgName: 'msg' //规定状态信息的字段名称，默认：msg
+                , countName: 'count' //规定数据总数的字段名称，默认：count
+                , dataName: 'data' //规定数据列表的字段名称，默认：data
+            }
+            ,limits: [10, 20, 50 , 100 , 1000 ,10000 ,1000000]
+            , cols: [[
+                { field: 'QuestionID', title: 'ID', width: 0, hide: true }//style: 'display:none;'
+                , { field: 'QuestionTitle', title: '题目名称' }
+                , { field: 'QuestionNumber', title: '序号' }
+                , { field: 'QuestionnaireName', title: '问卷名称' }
+                , { field: 'QuestionTypeName', title: '题目分类' }
+                , { field: 'OptionTypeName', title: '选项类型' }
+                , { field: 'IsAnswer', title: '是否必答' }
+                , { field: 'QuestionState', title: '是否启用' }
+                , { fixed: 'right', width: 178, align: 'center', title: '操作', toolbar: '#barDemo' }
+            ]]
+            , page: true
+        });
+    }
+
+    function Add() {
+        location.href = '/Question/QuestionDetail';
+    }
+
+    function Del(id) {
+        $.ajax({
+            dataType: 'JSON',
+            type: "post",
+            url: "/Question/Del?id="+id,
+            success: function (data) {
+                layer.msg(data.msg);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+            }
+        })
+    }
+</script>

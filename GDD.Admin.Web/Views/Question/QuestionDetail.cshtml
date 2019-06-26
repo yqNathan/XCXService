@@ -1,0 +1,465 @@
+﻿@using GDD.Admin.VO
+@{
+    Layout = "";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" type="text/css" id="theme" href="~/Content/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="~/LayUI/layui.css" />
+    <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+    <style>
+        /*无方框风格*/
+        .layui-breadcrumb {
+            visibility: visible;
+        }
+
+        .layui-form-label {
+            width: 120px;
+        }
+
+        .layui-input-block {
+            margin-left: 120px;
+        }
+
+        /*方框风格*/
+        label {
+            margin-bottom: 0px;
+        }
+
+        .layui-form-pane .layui-form-label {
+            width: 140px;
+        }
+
+        .layui-form-pane .layui-input-block {
+            margin-left: 140px;
+        }
+
+        .layui-form-pane {
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    @{
+        var obj = ViewData["QuestionData"] as QuestionVO;
+
+        <div class="layui-breadcrumb" lay-separator="-">
+            <a href="#" onclick='backPage();'>返回列表</a>
+        </div>
+        <form class="layui-form layui-form-pane" action="" id="form">
+            <input type="hidden" name="OptionCount" id="OptionCount" value="@obj.Options.Count">
+            <input type="hidden" name="QuestionID" value="@obj.QuestionID">
+            <input type="hidden" name="QuestionnaireName" id="QuestionnaireName" value="@obj.QuestionnaireName">
+            <input type="hidden" name="QuestionTypeName" id="QuestionTypeName" value="@obj.QuestionTypeName">
+            <input type="hidden" name="OptionTypeName" id="OptionTypeName" value="@obj.OptionTypeName">
+            <input type="hidden" name="QuestionnaireTypeName" id="QuestionnaireTypeName" value="@obj.QuestionnaireTypeName">
+            <div class="layui-form-item">
+                <label class="layui-form-label">问卷类型</label>
+                <div class="layui-input-inline">
+                    <select name="QuestionnaireTypeID" id="selectQuestionnaireType" lay-filter="selectQuestionnaireType" lay-search=""></select>
+                </div>
+                <label class="layui-form-label">问卷</label>
+                <div class="layui-input-inline">
+                    <select name="QuestionnaireID" id="selectQuestionnaire" lay-filter="selectQuestionnaire" lay-search=""></select>
+                </div>
+                <label class="layui-form-label">题目类型</label>
+                <div class="layui-input-inline">
+                    <select name="QuestionTypeID" id="selectQuestionType" lay-filter="selectQuestionType" lay-search=""></select>
+                </div>
+                <label class="layui-form-label">选项类型</label>
+                <div class="layui-input-inline">
+                    <select name="OptionTypeID" id="selectOptionType" lay-filter="selectOptionType"></select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">题目</label>
+                <div class="layui-input-block">
+                    <input type="text" name="QuestionTitle" lay-verify="required" autocomplete="off" placeholder="请输入题目" class="layui-input" value="@obj.QuestionTitle">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">序号</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="QuestionNumber" lay-verify="required" placeholder="请输入序号" autocomplete="off" class="layui-input" value="@obj.QuestionNumber">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">多选数量</label>
+                    <div class="layui-input-inline" style="width: 100px;">
+                        <input type="text" name="MinOptionNumber" placeholder="最小数量" autocomplete="off" class="layui-input" value="@obj.MinOptionNumber">
+                    </div>
+                    <div class="layui-form-mid">-</div>
+                    <div class="layui-input-inline" style="width: 100px;">
+                        <input type="text" name="MaxOptionNumber" placeholder="最大数量" autocomplete="off" class="layui-input" value="@obj.MinOptionNumber">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">是否必答</label>
+                <div class="layui-input-block">
+                    @if ((obj.IsAnswer == "否" ? true : false))
+                    {
+                        <input type="checkbox" name="IsAnswer" lay-skin="switch" lay-filter="switchIsAnswer" lay-text="是|否">
+                    }
+                    else
+                    {
+                        <input type="checkbox" checked="" name="IsAnswer" lay-skin="switch" lay-filter="switchIsAnswer" lay-text="是|否">
+                    }
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">是否启用</label>
+                <div class="layui-input-block">
+                    @if ((obj.QuestionState == "禁用" ? true : false))
+                    {
+                        <input type="checkbox" name="QuestionState" lay-skin="switch" lay-filter="switchQuestionState" lay-text="是|否">
+                    }
+                    else
+                    {
+                        <input type="checkbox" checked="" name="QuestionState" lay-skin="switch" lay-filter="switchQuestionState" lay-text="是|否">
+                    }
+                </div>
+            </div>
+            @for (var i = 0; i < obj.Options.Count; i++)
+            {
+                <input type='hidden' name='@("optionId"+i)' id='@("optionId"+i)' value='@obj.Options[i].OptionID'>
+                <input type="hidden" name='@("optionNameHidden"+i)' id='@("optionNameHidden"+i)' value="@obj.Options[i].OptionName">
+                <div class='layui-form-item'>
+                    <div class='layui-inline'>
+                        <label class='layui-form-label'>序号</label>
+                        <div class='layui-input-inline'>
+                            <input type='text' name='@("optionNumber"+i)' id='@("optionNumber"+i)' placeholder='请输入序号' autocomplete='off' class='layui-input' value='@obj.Options[i].OptionNumber' readonly='true'>
+                        </div>
+                    </div><div class='layui-inline'>
+                        <label class='layui-form-label'>选项</label>
+                        <div class='layui-input-inline' style='width:300px;'>
+                            <select name='@("optionName"+i)' id='@("optionName"+i)' lay-filter='optionSelect' lay-search=''></select>
+                        </div>
+                    </div>
+                    <div class='layui-inline'>
+                        <label class='layui-form-label'>分值</label>
+                        <div class='layui-input-inline'>
+                            <input type='text' readonly='true' name='@("optionScore"+i)' id='@("optionScore"+i)' placeholder='请输入分值' autocomplete='off' class='layui-input' value='@obj.Options[i].OptionScore'>
+                        </div>
+                    </div>
+                    <div class='layui-inline'>
+                        <button class='layui-btn' type='button' onclick='delOption(this, @i)'><i class='layui-icon'></i> 删除</button>
+                    </div>
+                </div>
+            }
+           
+            
+            <div class="layui-form-item" id="AddOption">
+                <div class="layui-input-inline">
+                    <button class="layui-btn" type="button" id="Addbtn"><i class="layui-icon layui-icon-add-1"></i>新增选项</button>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <input class="layui-btn" lay-submit="" lay-filter="form" value="立即提交" />
+                    <input type="reset" class="layui-btn layui-btn-primary" value="重置" />
+                </div>
+            </div>
+        </form>
+    }
+    <script type="text/javascript" src="~/Scripts/jquery-3.3.1.js"></script>
+    <script type='text/javascript' src='~/Scripts/bootstrap.js'></script>
+    <script type='text/javascript' src='~/Scripts/respond.js'></script>
+    <script type='text/javascript' src='~/LayUI/layui.js'></script>
+    <script>
+        var optionHtml = "";
+        var opIndex = $("#OptionCount").val();
+        var optionArray = [];
+        var options;
+
+        for (var i = 0; i < opIndex; i++) {
+            optionArray[optionArray.length] = i;
+        }
+        layui.use(['form', 'layedit', 'laydate'], function () {
+            var form = layui.form
+            , layer = layui.layer
+            , layedit = layui.layedit
+            , laydate = layui.laydate;
+               
+            var tempGuid = '00000000-0000-0000-0000-000000000000';
+            $.ajax({
+                dataType: 'JSON',
+                type: "Get",
+                url: "/QuestionnaireType/List?name=&pageSize=10000000&pageIndex=1",
+                success: function (data) {
+                    var select = false;
+                    $('#selectQuestionnaireType').append(new Option("请选择", "00000000-0000-0000-0000-000000000000"))
+                    console.log(data)
+                    $.each(data.data, function (index, item) {
+                        console.log($("#QuestionnaireTypeName").val())
+                        if ($("#QuestionnaireTypeName").val() == item.QuestionnaireTypeName) {
+                            console.log(item.QuestionnaireTypeName)
+                            select = true;
+                        }
+                        else {
+                            select = false;
+                        }
+                        $('#selectQuestionnaireType').append(new Option(item.QuestionnaireTypeName, item.QuestionnaireTypeID, select, select));//往下拉菜单里添加元素
+                    })
+                    form.render('select');
+                    BindQuestionnaire();
+                    BindQuestionType();
+                }
+            });
+
+
+            $(document).on('click', '#Addbtn', function () {
+                var optionId = "optionId" + opIndex;
+                var optionName = "optionName" + opIndex;
+                var optionNumber = "optionNumber" + opIndex;
+                var optionScore = "optionScore" + opIndex
+                $("#AddOption").before("<input type='hidden' name='" + optionId + "' id='" + optionId + "' value=''><div class='layui-form-item'><div class='layui-inline'><label class='layui-form-label'>序号</label><div class='layui-input-inline'><input type='text' name='" + optionNumber + "' id='" + optionNumber + "' placeholder='请输入序号' autocomplete='off' class='layui-input' value=''  readonly='true'></div></div><div class='layui-inline'><label class='layui-form-label'>选项</label><div class='layui-input-inline' style='width:300px;' ><select name='" + optionName + "' id='" + optionName + "' lay-filter='optionSelect' lay-search=''></select></div></div><div class='layui-inline'><label class='layui-form-label'>分值</label><div class='layui-input-inline'><input type='text'  readonly='true' name='" + optionScore + "' id='" + optionScore + "' placeholder='请输入分值' autocomplete='off' class='layui-input' value=''></div></div><div class='layui-inline'><button class='layui-btn' type='button' onclick='delOption(this," + opIndex + ")'><i class='layui-icon'></i> 删除</button></div></div>");
+                var select = false;
+                $('#' + optionName).append(new Option("请选择", "00000000-0000-0000-0000-000000000000"))
+                $.each(options, function (index, item) {
+                    $('#' + optionName).append(new Option(item.OptionName, item.OptionID, select, select));//往下拉菜单里添加元素
+                })
+                optionArray[optionArray.length] = opIndex;
+                opIndex++;
+                form.render('select');
+            });
+
+            //初始化选项下拉框
+            $.ajax({
+                dataType: 'JSON',
+                type: "Get",
+                url: "/Option/List?name=&pageSize=10000000&pageIndex=1",
+                success: function (data) {
+                    var select = false;
+                    for (var i = 0; i < opIndex; i++) {
+                        $('#optionName' + i).append(new Option("请选择", "00000000-0000-0000-0000-000000000000"))
+                        $.each(data.data, function (index, item) {
+                            if ($('#optionNameHidden' + i).val() == item.OptionName) {
+                                select = true;
+                            }
+                            else {
+                                select = false;
+                            }
+                            $('#optionName' + i).append(new Option(item.OptionName, item.OptionID, select, select));//往下拉菜单里添加元素
+                        })
+                    }
+                    form.render('select');
+                }
+            });
+
+            form.on('select(optionSelect)', function (data) {
+                var selectIndex = data.elem.name.substr(10);
+                $.each(options, function (index, item) {
+                    if (item.OptionID == data.value) {
+                        $('#optionId' + selectIndex).val(item.OptionID);
+                        $('#optionNumber' + selectIndex).val(item.OptionNumber);
+                        //$('#optionName' + selectIndex).text(item.OptionName);
+                        $('#optionScore' + selectIndex).val(item.OptionScore);
+                    }
+                })
+            });
+
+            form.on('select(selectQuestionnaireType)', function (data) {
+                if (data.value == 0) {
+                    $("#selectQuestionnaireType").empty();
+                    $('#selectQuestionnaireType').append(new Option('请选择', 0));//往下拉菜单里添加元素
+                    form.render('select');
+                    return;
+                }
+                BindQuestionnaire();
+                BindQuestionType();
+            });
+
+            $.ajax({
+                dataType: 'JSON',
+                type: "Get",
+                url: "/Option/List?name=&pageSize=10000000&pageIndex=1",
+                success: function (data) {
+                    options = data.data;
+                    optionHtml += "<div class='layui-input-inline'><select name='modules' lay-verify='required' lay-search=''><option value=''>直接选择或搜索选择</option>";
+                    var ddHtml = "<div class='layui-form-select'><div class='layui-select-title'><input type='text' placeholder='直接选择或搜索选择' value='' class='layui-input'><i class='layui-edge'></i></div><dl class='layui-anim layui-anim-upbit' style=''><dd lay-value='' class='layui-select-tips layui-this'>直接选择或搜索选择</dd>";
+                    $.each(data.data, function (index, item) {
+                        optionHtml += "<option value='" + item.OptionID + "'>序号：" + item.OptionNumber + " 选项：" + item.OptionName + " 分值：" + item.OptionScore + "</option>";
+                        ddHtml += "<dd lay-value='" + item.OptionID + "' class=''>序号：" + item.OptionNumber + " 选项：" + item.OptionName + " 分值：" + item.OptionScore + "</dd>"
+                    })
+                    ddHtml += "</dl></div>"
+                    optionHtml += "</select>" + ddHtml + "</div>";
+                    form.render('select');
+                }
+            });
+
+
+            $.ajax({
+                dataType: 'JSON',
+                type: "Get",
+                url: "/Option/TypeList?name=&pageSize=100000&pageIndex=1",
+                success: function (data) {
+                    var select = false;
+                    $('#selectOptionType').append(new Option("请选择", "00000000-0000-0000-0000-000000000000"))
+                    $.each(data.data, function (index, item) {
+                        if ($("#OptionTypeName").val() == item.OptionTypeName) {
+                            select = true;
+                        }
+                        else {
+                            select = false;
+                        }
+                        $('#selectOptionType').append(new Option(item.OptionTypeName, item.OptionTypeID, select, select));//往下拉菜单里添加元素
+                    })
+                    form.render('select');
+                }
+            });
+
+
+            function BindQuestionnaire() {
+                $.ajax({
+                    dataType: 'JSON',
+                    type: "Get",
+                    url: "/QuestionnaireMGT/AllList?name=&typeId=" + $("#selectQuestionnaireType").val(),
+                    success: function (data) {
+                        
+                        var select = false;
+                        $("#selectQuestionnaire").empty();
+                        $('#selectQuestionnaire').append(new Option('请选择', "00000000-0000-0000-0000-000000000000"));
+                        $.each(data.data, function (index, item) {
+                            if ($("#QuestionnaireTypeName").val() == item.QuestionnaireTypeName) {
+                                select = true;
+                            }
+                            else {
+                                select = false;
+                            }
+                            $('#selectQuestionnaire').append(new Option(item.QuestionnaireName, item.QuestionnaireID, select, select));
+                        })
+                        form.render('select');
+                    }
+                });
+
+               
+            }
+
+            function BindQuestionType() {
+                $.ajax({
+                    dataType: 'JSON',
+                    type: "Get",
+                    url: "/QuestionType/ALLList?typeName=&questionnaireTypeId=" + $("#selectQuestionnaireType").val(),
+                    success: function (result) {
+                        var select = false;
+                        $("#selectQuestionType").empty();
+                        $('#selectQuestionType').append(new Option('请选择', "00000000-0000-0000-0000-000000000000"));
+                        $.each(result.data, function (index, item) {
+                            if ($("#QuestionTypeName").val() == item.QuestionTypeName) {
+                                select = true;
+                            }
+                            else {
+                                select = false;
+                            }
+                            $('#selectQuestionType').append(new Option(item.QuestionTypeName, item.QuestionTypeID, select, select));
+                        })
+                        form.render('select');
+                        //刷新表单select选择框渲染
+                    }
+                });
+            }
+
+            //监听指定开关
+            form.on('switch(switchIsAnswer)', function (data) {
+                if (this.checked) {
+                    layer.tips('温馨提示：当前设置为必答题', data.othis)
+                }
+                else {
+                    layer.tips('温馨提示：当前设置为非必答题', data.othis)
+                }
+            });
+
+            form.on('switch(switchQuestionState)', function (data) {
+                if (this.checked) {
+                    layer.tips('温馨提示：当前题目已启用', data.othis)
+                }
+                else {
+                    layer.tips('温馨提示：当前题目已禁用', data.othis)
+                }
+            });
+
+            //监听提交
+            form.on('submit(form)', function (data) {
+                data.field.IsAnswer = data.field.IsAnswer == "on" ? 1 : 0;
+                data.field.QuestionState = data.field.QuestionState == "on" ? 1 : 0;
+                var optionArr = [];
+                for (var i = 0; i < optionArray.length; i++) {
+                    optionArr.push({ OptionID: $('#optionId' + optionArray[i]).val(), OptionName: $('#optionNameHidden' + optionArray[i]).val(), OptionNumber: $('#optionNumber' + optionArray[i]).val(), OptionScore: $('#optionScore' + optionArray[i]).val() })
+                }
+                var obj = {
+                    QuestionID: data.field.QuestionID,
+                    QuestionTitle: data.field.QuestionTitle,
+                    QuestionNumber: data.field.QuestionNumber,
+                    QuestionnaireID: data.field.QuestionnaireID,
+                    QuestionTypeID: data.field.QuestionTypeID,
+                    OptionTypeID: data.field.OptionTypeID,
+                    QuestionnaireTypeID: data.field.QuestionnaireTypeID,
+                    MaxOptionNumber: data.field.MaxOptionNumber,
+                    MinOptionNumber: data.field.MinOptionNumber,
+                    IsAnswer: data.field.IsAnswer,
+                    QuestionState: data.field.QuestionState,
+                    Options: optionArr
+                }
+                //QuestionID为空，新增操作
+                if (data.field.QuestionID == "" || data.field.QuestionID == null) {
+                    $.ajax({
+                        dataType: 'JSON',
+                        type: "post",
+                        url: "/Question/Add",
+                        data: obj,
+                        success: function (data) {
+                            layer.alert(data.msg, {
+                                title: '新增数据提示'
+                            })
+                            $('form')[0].reset();
+                            layui.form.render();
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+                        }
+                    })
+                    return;
+                }
+                //QuestionID不为空，修改操作
+                $.ajax({
+                    dataType: 'JSON',
+                    type: "post",
+                    url: "/Question/Edit",
+                    data: obj,
+                    success: function (data) {
+                        layer.alert(data.msg, {
+                            title: '编辑数据提示'
+                        })
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+                    }
+                })
+            });
+        });
+
+        function backPage() {
+            history.back();
+        }
+
+
+        function delOption(element, val) {
+            var index = optionArray.indexOf(val);
+            if (index > -1) {
+                optionArray.splice(index, 1);
+            }
+            element.parentNode.parentNode.remove();
+        }
+    </script>
+
+</body>
+</html>

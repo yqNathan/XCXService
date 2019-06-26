@@ -1,0 +1,756 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GDDSVSPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Degree">
+          <Key>
+            <PropertyRef Name="DegreeID" />
+          </Key>
+          <Property Name="DegreeID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DegreeName" Type="varchar" MaxLength="40" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="Creator" Type="varchar" MaxLength="20" />
+          <Property Name="ModifiedTime" Type="datetime" />
+          <Property Name="Modifier" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="DepartmentID" />
+          </Key>
+          <Property Name="DepartmentID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DepartmentName" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="Creator" Type="varchar" MaxLength="20" />
+          <Property Name="ModifiedTime" Type="datetime" />
+          <Property Name="Modifier" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Dormitory">
+          <Key>
+            <PropertyRef Name="DormitoryID" />
+          </Key>
+          <Property Name="DormitoryID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DormitoryName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="EmployeeName" Type="nvarchar" MaxLength="20" />
+          <Property Name="Sex" Type="int" />
+          <Property Name="EmployeeNumber" Type="varchar" MaxLength="20" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+          <Property Name="DepartmentID" Type="uniqueidentifier" />
+          <Property Name="FunctionalgroupID" Type="uniqueidentifier" />
+          <Property Name="JobTypeID" Type="uniqueidentifier" />
+          <Property Name="RoleID" Type="uniqueidentifier" />
+          <Property Name="DegreeID" Type="uniqueidentifier" />
+          <Property Name="Position" Type="nvarchar" MaxLength="20" />
+          <Property Name="Status" Type="int" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="HireTime" Type="datetime" />
+          <Property Name="LoginTime" Type="datetime" />
+          <Property Name="Password" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="FunctionalGroup">
+          <Key>
+            <PropertyRef Name="FunctionalGroupID" />
+          </Key>
+          <Property Name="FunctionalGroupID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FunctionalGroupName" Type="varchar" MaxLength="30" />
+          <Property Name="DepartmentID" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="JobType">
+          <Key>
+            <PropertyRef Name="JobTypeID" />
+          </Key>
+          <Property Name="JobTypeID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="JobTypeName" Type="varchar" MaxLength="29" />
+        </EntityType>
+        <EntityType Name="Manager">
+          <Key>
+            <PropertyRef Name="ManagerID" />
+          </Key>
+          <Property Name="ManagerID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ManagerName" Type="varchar" MaxLength="20" />
+          <Property Name="RoleID" Type="uniqueidentifier" />
+          <Property Name="LoginTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="MenuID" />
+          </Key>
+          <Property Name="MenuID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MenuName" Type="varchar" MaxLength="20" />
+          <Property Name="MenuCode" Type="varchar" MaxLength="20" />
+          <Property Name="MenuUrl" Type="varchar" MaxLength="200" />
+          <Property Name="MenuParentID" Type="uniqueidentifier" />
+          <Property Name="OrderBy" Type="int" />
+        </EntityType>
+        <EntityType Name="Option">
+          <Key>
+            <PropertyRef Name="OptionID" />
+          </Key>
+          <Property Name="OptionID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="OptionName" Type="nvarchar" MaxLength="50" />
+          <Property Name="OptionNumber" Type="int" />
+          <Property Name="OptionScore" Type="int" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="Creator" Type="varchar" MaxLength="20" />
+          <Property Name="ModifiedTime" Type="datetime" />
+          <Property Name="Modifier" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="OptionType">
+          <Key>
+            <PropertyRef Name="OptionTypeID" />
+          </Key>
+          <Property Name="OptionTypeID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="OptionTypeName" Type="nvarchar" MaxLength="20" />
+          <Property Name="OptionTypeCode" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="QuestionID" />
+          </Key>
+          <Property Name="QuestionID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="QuestionTitle" Type="varchar" MaxLength="200" />
+          <Property Name="QuestionNumber" Type="int" />
+          <Property Name="QuestionnaireID" Type="uniqueidentifier" />
+          <Property Name="QuestionTypeID" Type="uniqueidentifier" />
+          <Property Name="OptionTypeID" Type="uniqueidentifier" />
+          <Property Name="MaxOptionNumber" Type="int" />
+          <Property Name="MinOptionNumber" Type="int" />
+          <Property Name="IsAnswer" Type="int" />
+          <Property Name="QuestionState" Type="int" />
+          <Property Name="QuestionnaireTypeID" Type="uniqueidentifier" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="Creator" Type="varchar" MaxLength="20" />
+          <Property Name="ModifiedTime" Type="datetime" />
+          <Property Name="Modifier" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="QuestionAnswerMapping">
+          <Key>
+            <PropertyRef Name="QuestionAnswerID" />
+          </Key>
+          <Property Name="QuestionAnswerID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="QuestionID" Type="uniqueidentifier" />
+          <Property Name="OptionID" Type="uniqueidentifier" />
+          <Property Name="OptionReason" Type="nvarchar" MaxLength="200" />
+          <Property Name="IsDel" Type="int" />
+          <Property Name="EmployeeID" Type="uniqueidentifier" />
+          <Property Name="DepartmentID" Type="uniqueidentifier" />
+          <Property Name="FunctionalGroupID" Type="uniqueidentifier" />
+          <Property Name="QuestionnaireID" Type="uniqueidentifier" />
+          <Property Name="CreateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Questionnaire">
+          <Key>
+            <PropertyRef Name="QuestionnaireID" />
+          </Key>
+          <Property Name="QuestionnaireID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="QuestionnaireName" Type="varchar" MaxLength="30" />
+          <Property Name="Version" Type="varchar" MaxLength="20" />
+          <Property Name="Describe" Type="varchar" MaxLength="50" />
+          <Property Name="LowestScore" Type="int" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="StartTime" Type="datetime" />
+          <Property Name="EndTime" Type="datetime" />
+          <Property Name="IsRelation" Type="int" />
+          <Property Name="State" Type="int" />
+          <Property Name="QuestionnaireTypeID" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="QuestionnaireSubmission">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="QuestionnaireID" Type="uniqueidentifier" />
+          <Property Name="EmployeeID" Type="uniqueidentifier" />
+          <Property Name="IsSubmit" Type="int" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="IsDel" Type="int" />
+        </EntityType>
+        <EntityType Name="QuestionnaireType">
+          <Key>
+            <PropertyRef Name="QuestionnaireTypeID" />
+          </Key>
+          <Property Name="QuestionnaireTypeID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="QuestionnaireTypeName" Type="varchar" MaxLength="200" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="Creator" Type="varchar" MaxLength="20" />
+          <Property Name="ModifiedTime" Type="datetime" />
+          <Property Name="Modifier" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="QuestionOptionMapping">
+          <Key>
+            <PropertyRef Name="QuestionOptionID" />
+          </Key>
+          <Property Name="QuestionOptionID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="QuestionID" Type="uniqueidentifier" />
+          <Property Name="OptionID" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="QuestionType">
+          <Key>
+            <PropertyRef Name="QuestionTypeID" />
+          </Key>
+          <Property Name="QuestionTypeID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="QuestionTypeName" Type="varchar" MaxLength="40" />
+          <Property Name="QuestionnaireTypeID" Type="uniqueidentifier" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="Creator" Type="varchar" MaxLength="20" />
+          <Property Name="ModifiedTime" Type="datetime" />
+          <Property Name="Modifier" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleCode" Type="varchar" MaxLength="20" />
+          <Property Name="Description" Type="varchar" MaxLength="30" />
+          <Property Name="RoleName" Type="varchar" MaxLength="20" />
+          <Property Name="Type" Type="int" />
+        </EntityType>
+        <EntityType Name="RoleMenuMapping">
+          <Key>
+            <PropertyRef Name="RoleMenuID" />
+          </Key>
+          <Property Name="RoleMenuID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleID" Type="uniqueidentifier" />
+          <Property Name="MenuID" Type="uniqueidentifier" />
+          <Property Name="RoleMenuState" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityContainer Name="GDDSVSPModelStoreContainer">
+          <EntitySet Name="Degree" EntityType="Self.Degree" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dormitory" EntityType="Self.Dormitory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FunctionalGroup" EntityType="Self.FunctionalGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JobType" EntityType="Self.JobType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Manager" EntityType="Self.Manager" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Option" EntityType="Self.Option" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OptionType" EntityType="Self.OptionType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuestionAnswerMapping" EntityType="Self.QuestionAnswerMapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Questionnaire" EntityType="Self.Questionnaire" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuestionnaireSubmission" EntityType="Self.QuestionnaireSubmission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuestionnaireType" EntityType="Self.QuestionnaireType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuestionOptionMapping" EntityType="Self.QuestionOptionMapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuestionType" EntityType="Self.QuestionType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoleMenuMapping" EntityType="Self.RoleMenuMapping" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GDDSVSPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="GDDSVSPEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Degree" EntityType="GDDSVSPModel.Degree" />
+          <EntitySet Name="Department" EntityType="GDDSVSPModel.Department" />
+          <EntitySet Name="Dormitory" EntityType="GDDSVSPModel.Dormitory" />
+          <EntitySet Name="Employee" EntityType="GDDSVSPModel.Employee" />
+          <EntitySet Name="FunctionalGroup" EntityType="GDDSVSPModel.FunctionalGroup" />
+          <EntitySet Name="JobType" EntityType="GDDSVSPModel.JobType" />
+          <EntitySet Name="Manager" EntityType="GDDSVSPModel.Manager" />
+          <EntitySet Name="Menu" EntityType="GDDSVSPModel.Menu" />
+          <EntitySet Name="Option" EntityType="GDDSVSPModel.Option" />
+          <EntitySet Name="OptionType" EntityType="GDDSVSPModel.OptionType" />
+          <EntitySet Name="Question" EntityType="GDDSVSPModel.Question" />
+          <EntitySet Name="Questionnaire" EntityType="GDDSVSPModel.Questionnaire" />
+          <EntitySet Name="QuestionnaireSubmission" EntityType="GDDSVSPModel.QuestionnaireSubmission" />
+          <EntitySet Name="QuestionOptionMapping" EntityType="GDDSVSPModel.QuestionOptionMapping" />
+          <EntitySet Name="QuestionType" EntityType="GDDSVSPModel.QuestionType" />
+          <EntitySet Name="Role" EntityType="GDDSVSPModel.Role" />
+          <EntitySet Name="RoleMenuMapping" EntityType="GDDSVSPModel.RoleMenuMapping" />
+          <EntitySet Name="QuestionnaireType" EntityType="GDDSVSPModel.QuestionnaireType" />
+          <EntitySet Name="QuestionAnswerMapping" EntityType="GDDSVSPModel.QuestionAnswerMapping" />
+        </EntityContainer>
+        <EntityType Name="Degree">
+          <Key>
+            <PropertyRef Name="DegreeID" />
+          </Key>
+          <Property Name="DegreeID" Type="Guid" Nullable="false" />
+          <Property Name="DegreeName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="Creator" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedTime" Type="DateTime" Precision="3" />
+          <Property Name="Modifier" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="DepartmentID" />
+          </Key>
+          <Property Name="DepartmentID" Type="Guid" Nullable="false" />
+          <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="Creator" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedTime" Type="DateTime" Precision="3" />
+          <Property Name="Modifier" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Dormitory">
+          <Key>
+            <PropertyRef Name="DormitoryID" />
+          </Key>
+          <Property Name="DormitoryID" Type="Guid" Nullable="false" />
+          <Property Name="DormitoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="Guid" Nullable="false" />
+          <Property Name="EmployeeName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Sex" Type="Int32" />
+          <Property Name="EmployeeNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DepartmentID" Type="Guid" />
+          <Property Name="FunctionalgroupID" Type="Guid" />
+          <Property Name="JobTypeID" Type="Guid" />
+          <Property Name="RoleID" Type="Guid" />
+          <Property Name="DegreeID" Type="Guid" />
+          <Property Name="Position" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="HireTime" Type="DateTime" Precision="3" />
+          <Property Name="LoginTime" Type="DateTime" Precision="3" />
+          <Property Name="Password" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="FunctionalGroup">
+          <Key>
+            <PropertyRef Name="FunctionalGroupID" />
+          </Key>
+          <Property Name="FunctionalGroupID" Type="Guid" Nullable="false" />
+          <Property Name="FunctionalGroupName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="DepartmentID" Type="Guid" />
+        </EntityType>
+        <EntityType Name="JobType">
+          <Key>
+            <PropertyRef Name="JobTypeID" />
+          </Key>
+          <Property Name="JobTypeID" Type="Guid" Nullable="false" />
+          <Property Name="JobTypeName" Type="String" MaxLength="29" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Manager">
+          <Key>
+            <PropertyRef Name="ManagerID" />
+          </Key>
+          <Property Name="ManagerID" Type="Guid" Nullable="false" />
+          <Property Name="ManagerName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="RoleID" Type="Guid" />
+          <Property Name="LoginTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="MenuID" />
+          </Key>
+          <Property Name="MenuID" Type="Guid" Nullable="false" />
+          <Property Name="MenuName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MenuCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MenuUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="MenuParentID" Type="Guid" />
+          <Property Name="OrderBy" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Option">
+          <Key>
+            <PropertyRef Name="OptionID" />
+          </Key>
+          <Property Name="OptionID" Type="Guid" Nullable="false" />
+          <Property Name="OptionName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OptionNumber" Type="Int32" />
+          <Property Name="OptionScore" Type="Int32" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="Creator" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedTime" Type="DateTime" Precision="3" />
+          <Property Name="Modifier" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="OptionType">
+          <Key>
+            <PropertyRef Name="OptionTypeID" />
+          </Key>
+          <Property Name="OptionTypeID" Type="Guid" Nullable="false" />
+          <Property Name="OptionTypeName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="OptionTypeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="QuestionID" />
+          </Key>
+          <Property Name="QuestionID" Type="Guid" Nullable="false" />
+          <Property Name="QuestionTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="QuestionNumber" Type="Int32" />
+          <Property Name="QuestionnaireID" Type="Guid" />
+          <Property Name="QuestionTypeID" Type="Guid" />
+          <Property Name="OptionTypeID" Type="Guid" />
+          <Property Name="MaxOptionNumber" Type="Int32" />
+          <Property Name="MinOptionNumber" Type="Int32" />
+          <Property Name="IsAnswer" Type="Int32" />
+          <Property Name="QuestionState" Type="Int32" />
+          <Property Name="QuestionnaireTypeID" Type="Guid" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="Creator" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedTime" Type="DateTime" Precision="3" />
+          <Property Name="Modifier" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Questionnaire">
+          <Key>
+            <PropertyRef Name="QuestionnaireID" />
+          </Key>
+          <Property Name="QuestionnaireID" Type="Guid" Nullable="false" />
+          <Property Name="QuestionnaireName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Version" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Describe" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LowestScore" Type="Int32" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="StartTime" Type="DateTime" Precision="3" />
+          <Property Name="EndTime" Type="DateTime" Precision="3" />
+          <Property Name="IsRelation" Type="Int32" />
+          <Property Name="State" Type="Int32" />
+          <Property Name="QuestionnaireTypeID" Type="Guid" />
+        </EntityType>
+        <EntityType Name="QuestionnaireSubmission">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="QuestionnaireID" Type="Guid" />
+          <Property Name="EmployeeID" Type="Guid" />
+          <Property Name="IsSubmit" Type="Int32" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="IsDel" Type="Int32" />
+        </EntityType>
+        <EntityType Name="QuestionOptionMapping">
+          <Key>
+            <PropertyRef Name="QuestionOptionID" />
+          </Key>
+          <Property Name="QuestionOptionID" Type="Guid" Nullable="false" />
+          <Property Name="QuestionID" Type="Guid" />
+          <Property Name="OptionID" Type="Guid" />
+        </EntityType>
+        <EntityType Name="QuestionType">
+          <Key>
+            <PropertyRef Name="QuestionTypeID" />
+          </Key>
+          <Property Name="QuestionTypeID" Type="Guid" Nullable="false" />
+          <Property Name="QuestionTypeName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="QuestionnaireTypeID" Type="Guid" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="Creator" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedTime" Type="DateTime" Precision="3" />
+          <Property Name="Modifier" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Guid" Nullable="false" />
+          <Property Name="RoleCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="RoleName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Type" Type="Int32" />
+        </EntityType>
+        <EntityType Name="RoleMenuMapping">
+          <Key>
+            <PropertyRef Name="RoleMenuID" />
+          </Key>
+          <Property Name="RoleMenuID" Type="Guid" Nullable="false" />
+          <Property Name="RoleID" Type="Guid" />
+          <Property Name="MenuID" Type="Guid" />
+          <Property Name="RoleMenuState" Type="Guid" />
+        </EntityType>
+        <EntityType Name="QuestionnaireType">
+          <Key>
+            <PropertyRef Name="QuestionnaireTypeID" />
+          </Key>
+          <Property Name="QuestionnaireTypeID" Type="Guid" Nullable="false" />
+          <Property Name="QuestionnaireTypeName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="Creator" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedTime" Type="DateTime" Precision="3" />
+          <Property Name="Modifier" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="QuestionAnswerMapping">
+          <Key>
+            <PropertyRef Name="QuestionAnswerID" />
+          </Key>
+          <Property Name="QuestionAnswerID" Type="Guid" Nullable="false" />
+          <Property Name="QuestionID" Type="Guid" />
+          <Property Name="OptionID" Type="Guid" />
+          <Property Name="OptionReason" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IsDel" Type="Int32" />
+          <Property Name="EmployeeID" Type="Guid" />
+          <Property Name="DepartmentID" Type="Guid" />
+          <Property Name="FunctionalGroupID" Type="Guid" />
+          <Property Name="QuestionnaireID" Type="Guid" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GDDSVSPModelStoreContainer" CdmEntityContainer="GDDSVSPEntities">
+          <EntitySetMapping Name="Degree">
+            <EntityTypeMapping TypeName="GDDSVSPModel.Degree">
+              <MappingFragment StoreEntitySet="Degree">
+                <ScalarProperty Name="Modifier" ColumnName="Modifier" />
+                <ScalarProperty Name="ModifiedTime" ColumnName="ModifiedTime" />
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="DegreeName" ColumnName="DegreeName" />
+                <ScalarProperty Name="DegreeID" ColumnName="DegreeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Department">
+            <EntityTypeMapping TypeName="GDDSVSPModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="Modifier" ColumnName="Modifier" />
+                <ScalarProperty Name="ModifiedTime" ColumnName="ModifiedTime" />
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dormitory">
+            <EntityTypeMapping TypeName="GDDSVSPModel.Dormitory">
+              <MappingFragment StoreEntitySet="Dormitory">
+                <ScalarProperty Name="DormitoryName" ColumnName="DormitoryName" />
+                <ScalarProperty Name="DormitoryID" ColumnName="DormitoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employee">
+            <EntityTypeMapping TypeName="GDDSVSPModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="LoginTime" ColumnName="LoginTime" />
+                <ScalarProperty Name="HireTime" ColumnName="HireTime" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="DegreeID" ColumnName="DegreeID" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="JobTypeID" ColumnName="JobTypeID" />
+                <ScalarProperty Name="FunctionalgroupID" ColumnName="FunctionalgroupID" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="EmployeeNumber" ColumnName="EmployeeNumber" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FunctionalGroup">
+            <EntityTypeMapping TypeName="GDDSVSPModel.FunctionalGroup">
+              <MappingFragment StoreEntitySet="FunctionalGroup">
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="FunctionalGroupName" ColumnName="FunctionalGroupName" />
+                <ScalarProperty Name="FunctionalGroupID" ColumnName="FunctionalGroupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobType">
+            <EntityTypeMapping TypeName="GDDSVSPModel.JobType">
+              <MappingFragment StoreEntitySet="JobType">
+                <ScalarProperty Name="JobTypeName" ColumnName="JobTypeName" />
+                <ScalarProperty Name="JobTypeID" ColumnName="JobTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Manager">
+            <EntityTypeMapping TypeName="GDDSVSPModel.Manager">
+              <MappingFragment StoreEntitySet="Manager">
+                <ScalarProperty Name="LoginTime" ColumnName="LoginTime" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="ManagerName" ColumnName="ManagerName" />
+                <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Menu">
+            <EntityTypeMapping TypeName="GDDSVSPModel.Menu">
+              <MappingFragment StoreEntitySet="Menu">
+                <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+                <ScalarProperty Name="MenuParentID" ColumnName="MenuParentID" />
+                <ScalarProperty Name="MenuUrl" ColumnName="MenuUrl" />
+                <ScalarProperty Name="MenuCode" ColumnName="MenuCode" />
+                <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Option">
+            <EntityTypeMapping TypeName="GDDSVSPModel.Option">
+              <MappingFragment StoreEntitySet="Option">
+                <ScalarProperty Name="Modifier" ColumnName="Modifier" />
+                <ScalarProperty Name="ModifiedTime" ColumnName="ModifiedTime" />
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="OptionScore" ColumnName="OptionScore" />
+                <ScalarProperty Name="OptionNumber" ColumnName="OptionNumber" />
+                <ScalarProperty Name="OptionName" ColumnName="OptionName" />
+                <ScalarProperty Name="OptionID" ColumnName="OptionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OptionType">
+            <EntityTypeMapping TypeName="GDDSVSPModel.OptionType">
+              <MappingFragment StoreEntitySet="OptionType">
+                <ScalarProperty Name="OptionTypeCode" ColumnName="OptionTypeCode" />
+                <ScalarProperty Name="OptionTypeName" ColumnName="OptionTypeName" />
+                <ScalarProperty Name="OptionTypeID" ColumnName="OptionTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Question">
+            <EntityTypeMapping TypeName="GDDSVSPModel.Question">
+              <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="Modifier" ColumnName="Modifier" />
+                <ScalarProperty Name="ModifiedTime" ColumnName="ModifiedTime" />
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="QuestionnaireTypeID" ColumnName="QuestionnaireTypeID" />
+                <ScalarProperty Name="QuestionState" ColumnName="QuestionState" />
+                <ScalarProperty Name="IsAnswer" ColumnName="IsAnswer" />
+                <ScalarProperty Name="MinOptionNumber" ColumnName="MinOptionNumber" />
+                <ScalarProperty Name="MaxOptionNumber" ColumnName="MaxOptionNumber" />
+                <ScalarProperty Name="OptionTypeID" ColumnName="OptionTypeID" />
+                <ScalarProperty Name="QuestionTypeID" ColumnName="QuestionTypeID" />
+                <ScalarProperty Name="QuestionnaireID" ColumnName="QuestionnaireID" />
+                <ScalarProperty Name="QuestionNumber" ColumnName="QuestionNumber" />
+                <ScalarProperty Name="QuestionTitle" ColumnName="QuestionTitle" />
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questionnaire">
+            <EntityTypeMapping TypeName="GDDSVSPModel.Questionnaire">
+              <MappingFragment StoreEntitySet="Questionnaire">
+                <ScalarProperty Name="QuestionnaireTypeID" ColumnName="QuestionnaireTypeID" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="IsRelation" ColumnName="IsRelation" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="LowestScore" ColumnName="LowestScore" />
+                <ScalarProperty Name="Describe" ColumnName="Describe" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="QuestionnaireName" ColumnName="QuestionnaireName" />
+                <ScalarProperty Name="QuestionnaireID" ColumnName="QuestionnaireID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionnaireSubmission">
+            <EntityTypeMapping TypeName="GDDSVSPModel.QuestionnaireSubmission">
+              <MappingFragment StoreEntitySet="QuestionnaireSubmission">
+                <ScalarProperty Name="IsDel" ColumnName="IsDel" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="IsSubmit" ColumnName="IsSubmit" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="QuestionnaireID" ColumnName="QuestionnaireID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionOptionMapping">
+            <EntityTypeMapping TypeName="GDDSVSPModel.QuestionOptionMapping">
+              <MappingFragment StoreEntitySet="QuestionOptionMapping">
+                <ScalarProperty Name="OptionID" ColumnName="OptionID" />
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+                <ScalarProperty Name="QuestionOptionID" ColumnName="QuestionOptionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionType">
+            <EntityTypeMapping TypeName="GDDSVSPModel.QuestionType">
+              <MappingFragment StoreEntitySet="QuestionType">
+                <ScalarProperty Name="Modifier" ColumnName="Modifier" />
+                <ScalarProperty Name="ModifiedTime" ColumnName="ModifiedTime" />
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="QuestionnaireTypeID" ColumnName="QuestionnaireTypeID" />
+                <ScalarProperty Name="QuestionTypeName" ColumnName="QuestionTypeName" />
+                <ScalarProperty Name="QuestionTypeID" ColumnName="QuestionTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="GDDSVSPModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="RoleCode" ColumnName="RoleCode" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoleMenuMapping">
+            <EntityTypeMapping TypeName="GDDSVSPModel.RoleMenuMapping">
+              <MappingFragment StoreEntitySet="RoleMenuMapping">
+                <ScalarProperty Name="RoleMenuState" ColumnName="RoleMenuState" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="RoleMenuID" ColumnName="RoleMenuID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionnaireType">
+            <EntityTypeMapping TypeName="GDDSVSPModel.QuestionnaireType">
+              <MappingFragment StoreEntitySet="QuestionnaireType">
+                <ScalarProperty Name="Modifier" ColumnName="Modifier" />
+                <ScalarProperty Name="ModifiedTime" ColumnName="ModifiedTime" />
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="QuestionnaireTypeName" ColumnName="QuestionnaireTypeName" />
+                <ScalarProperty Name="QuestionnaireTypeID" ColumnName="QuestionnaireTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionAnswerMapping">
+            <EntityTypeMapping TypeName="GDDSVSPModel.QuestionAnswerMapping">
+              <MappingFragment StoreEntitySet="QuestionAnswerMapping">
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="QuestionnaireID" ColumnName="QuestionnaireID" />
+                <ScalarProperty Name="FunctionalGroupID" ColumnName="FunctionalGroupID" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="IsDel" ColumnName="IsDel" />
+                <ScalarProperty Name="OptionReason" ColumnName="OptionReason" />
+                <ScalarProperty Name="OptionID" ColumnName="OptionID" />
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+                <ScalarProperty Name="QuestionAnswerID" ColumnName="QuestionAnswerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

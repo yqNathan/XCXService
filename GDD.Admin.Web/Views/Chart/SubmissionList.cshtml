@@ -1,0 +1,280 @@
+﻿@{
+    Layout = null;
+}
+<link rel="stylesheet" type="text/css" id="theme" href="~/Content/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="~/LayUI/layui.css" />
+<style>
+    ._chart {
+        margin: 0 auto;
+    }
+
+     .layui-form-label {
+        width:80px;
+        margin-bottom:0px;
+        padding:9px 0;
+        vertical-align:central;
+        text-align:left;
+    }
+    .layui-input-block {
+        margin-left: 80px;
+    }
+    .layui-btn {
+        margin-left:10px;
+    }
+    .qtype {
+        margin-left:10px;
+    }
+</style>
+<form class="layui-form" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">问卷类型：</label>
+            <div class="layui-input-inline">
+                <select name="QuestionnaireTypeID" id="selectQuestionnaireType" lay-filter="selectQuestionnaireType" lay-search=""></select>
+            </div>
+            <label class="layui-form-label">问卷名称：</label>
+            <div class="layui-input-inline">
+                <select name="QuestionnaireID" id="selectQuestionnaire" lay-filter="selectQuestionnaire" lay-search=""></select>
+            </div>
+            <label class="layui-form-label">部门名称：</label>
+            <div class="layui-input-inline">
+                <select name="departmentId" id="selectDepartment" lay-filter="selectDepartment" lay-search=""></select>
+            </div>
+            <label class="layui-form-label">姓名：</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" name="employeeName" id="employeeName" autocomplete="off" placeholder="请输入姓名">
+            </div>
+            <label class="layui-form-label">状态：</label>
+            <div class="layui-input-inline">
+                <select name="isSubmit" id="isSubmit" lay-filter="isSubmit" lay-search=""></select>
+            </div>
+            <div>
+                <button class="layui-btn" type="button" data-type="reload" onclick="search();">查看</button>
+            </div>
+        </div>
+</form>
+<table class="layui-hide" id="table" lay-filter="table"></table>
+<div class="_chart" id="main" style="width: 600px;height:400px;"></div>
+<script type="text/javascript" src="~/Scripts/jquery-3.3.1.js"></script>
+<script type='text/javascript' src='~/Scripts/bootstrap.js'></script>
+<script type='text/javascript' src='~/Scripts/respond.js'></script>
+<script type='text/javascript' src='~/LayUI/layui.js'></script>
+<script type='text/javascript' src='~/Scripts/echarts.min.js'></script>
+<script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+    </div>
+</script>
+<script>
+    var pageIndex = 1;
+    var pageSize = 10;
+    var count = 0;
+    layui.use(['table', 'form'], function () {
+        var form = layui.form
+
+        $.ajax({
+            dataType: 'JSON',
+            type: "Get",
+            url: "/QuestionnaireType/List?name=&pageSize=10000000&pageIndex=1",
+            success: function (data) {
+                var select = false;
+                $('#selectQuestionnaireType').append(new Option("请选择", "00000000-0000-0000-0000-000000000000", true, true))
+                $.each(data.data, function (index, item) {
+                    $('#selectQuestionnaireType').append(new Option(item.QuestionnaireTypeName, item.QuestionnaireTypeID, select, select));//往下拉菜单里添加元素
+                })
+                BindQuestionnaire();
+            }
+        });
+
+        $.ajax({
+            dataType: 'JSON',
+            type: "Get",
+            url: "/Department/List",
+            success: function (data) {
+                var select = false;
+                $('#selectDepartment').append(new Option("请选择", "00000000-0000-0000-0000-000000000000", true, true))
+                $.each(data.data, function (index, item) {
+                    $('#selectDepartment').append(new Option(item.DepartmentName, item.DepartmentID, select, select));//往下拉菜单里添加元素
+                })
+                form.render('select');
+            }
+        });
+
+        $.ajax({
+            dataType: 'JSON',
+            type: "Get",
+            url: "/QuestionnaireType/List?name=&pageSize=10000000&pageIndex=1",
+            success: function (data) {
+                var select = false;
+                $('#isSubmit').append(new Option("请选择", -1, true, true))
+                $('#isSubmit').append(new Option("已提交", 1, select, select));//往下拉菜单里添加元素
+                $('#isSubmit').append(new Option("未提交", 0, select, select));//往下拉菜单里添加元素
+            }
+        });
+
+
+        form.on('select(selectQuestionnaireType)', function (data) {
+            if (data.value == 0) {
+                $("#selectQuestionnaireType").empty();
+                $('#selectQuestionnaireType').append(new Option('请选择', 0));//往下拉菜单里添加元素
+                form.render('select');
+                return;
+            }
+            BindQuestionnaire();
+        });
+
+        function BindQuestionnaire() {
+            $.ajax({
+                dataType: 'JSON',
+                type: "Get",
+                url: "/QuestionnaireMGT/AllList?name=&typeId=" + $("#selectQuestionnaireType").val(),
+                success: function (data) {
+                    var select = false;
+                    $("#selectQuestionnaire").empty();
+                    $('#selectQuestionnaire').append(new Option('请选择', "00000000-0000-0000-0000-000000000000"));
+                    $.each(data.data, function (index, item) {
+                        if ($("#QuestionnaireTypeName").val() == item.QuestionnaireTypeName) {
+                            select = true;
+                        }
+                        else {
+                            select = false;
+                        }
+                        $('#selectQuestionnaire').append(new Option(item.QuestionnaireName, item.QuestionnaireID, select, select));
+                    })
+                    form.render('select');
+                }
+            });
+        }
+    });
+
+
+    function search() {
+        getList();
+    }
+
+    function getList() {
+        var questionnaireId = $("#selectQuestionnaire").val();
+        if (questionnaireId == "00000000-0000-0000-0000-000000000000") {
+            layer.msg('请选择一种问卷');
+            return;
+        }
+        var table = layui.table;
+        var name = $("#employeeName").val();
+        var isSubmit = $("#isSubmit").val();
+        var departmentId = $("#selectDepartment").val();
+        var questionnaireStr = $("#selectQuestionnaire")[0][$("#selectQuestionnaire")[0].selectedIndex].innerHTML;
+        var departmentStr = $("#selectDepartment")[0][$("#selectDepartment")[0].selectedIndex].innerHTML;
+        var titleText = (questionnaireStr == "请选择" ? "" : (questionnaireStr + "-")) + (departmentStr == "请选择" ? "" : (departmentStr + "-"));
+        table.render({
+            elem: '#table'
+            , url: '/Employee/SubmittedList?name=' + name + '&departmentId=' + departmentId + '&questionnaireId=' + questionnaireId + '&isSubmit=' + isSubmit
+            , method: 'get'
+            , toolbar: '#toolbarDemo'
+            , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            , loading: true
+            , page: true
+            , request: {
+                pageName: 'pageIndex' //页码的参数名称，默认：page
+             , limitName: 'pageSize' //每页数据量的参数名，默认：limit
+            }, response: {
+                statusName: 'code' //规定数据状态的字段名称，默认：code
+                , statusCode: 0 //规定成功的状态码，默认：0
+                , msgName: 'msg' //规定状态信息的字段名称，默认：msg
+                , countName: 'count' //规定数据总数的字段名称，默认：count
+                , dataName: 'data' //规定数据列表的字段名称，默认：data
+            }
+            , limits: [10, 20, 50, 100, 1000, 10000, 1000000]
+            , cols: [[
+                { field: 'EmployeeID', title: 'ID', width: 0, hide: true }//style: 'display:none;'
+                , { field: 'EmployeeName', width: 180, title: '姓名', sort: true }
+                , { field: 'Sex', width: 100, title: '性别', sort: true }
+                , { field: 'EmployeeNumber', width: 120, title: '编号', sort: true }
+                , { field: 'Phone', title: '手机号', width: 140 }
+                , { field: 'DepartmentName', title: '部门' }
+                , { field: 'FunctionalgroupName', title: '功能组' }
+                , { field: 'HireTime', width: '10%', minWidth: 100, title: '入职时间', sort: true, hide: true }
+                , { field: 'SubmitTime', width: '10%', minWidth: 100, title: '提交时间', sort: true }
+                , { field: 'IsSubmit', width: '20%', minWidth: 100, title: '提交状态', sort: true }
+            ]]
+        });
+       
+        var myChart = echarts.init(document.getElementById('main'));
+        var optionData = {
+            legendData: ['已提交', '未提交'],
+            seriesData: [],
+            selected: { '已提交': true, '未提交': true }
+        };
+        $.ajax({
+            dataType: 'JSON',
+            type: "Get",
+            url: '/Chart/SubmittedCount?name=' + name + '&departmentId=' + departmentId + '&questionnaireId=' + questionnaireId + '&isSubmit=' + isSubmit,
+            success: function (data) {
+                console.log(data);
+                optionData.seriesData.push({ name: optionData.legendData[0], value: data.submittedCount });
+                optionData.seriesData.push({ name: optionData.legendData[1], value: (data.employeeCount - data.submittedCount) });
+                var option = {
+                    title: {
+                        text: titleText + '提交人数统计',
+                        subtext: '全部',
+                        x: 'center'
+                    },
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: "{a} <br/>{b} : {c} ({d}%)"
+                    },
+                    legend: {
+                        type: 'scroll',
+                        orient: 'vertical',
+                        right: 10,
+                        top: 20,
+                        bottom: 20,
+                        data: optionData.legendData,
+                        selected: optionData.selected
+                    },
+                    series: [
+                        {
+                            name: '人数',
+                            type: 'pie',
+                            radius: '55%',
+                            center: ['40%', '50%'],
+                            data: optionData.seriesData,
+                            itemStyle: {
+                                emphasis: {
+                                    shadowBlur: 10,
+                                    shadowOffsetX: 0,
+                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                }
+                            }
+                        }
+                    ]
+                };
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+            }
+        })
+
+        myChart.on('legendselectchanged', function (obj) {
+            var selected = obj.selected;
+            var legend = obj.name;
+            if (selected["未提交"] == true && selected["已提交"] == true) {
+                myChart._model.option.title[0].subtext = "全部";
+            }
+            else if (selected["未提交"] == true && selected["已提交"] == false) {
+                myChart._model.option.title[0].subtext = "未提交";
+            }
+            else if (selected["未提交"] == false && selected["已提交"] == true) {
+                myChart._model.option.title[0].subtext = "已提交";
+            }
+            else {
+                console.log("无")
+                myChart._model.option.title[0].subtext = "无"
+            }
+            myChart.setOption(myChart.getOption());
+
+        });
+
+    }
+   
+   
+</script>
