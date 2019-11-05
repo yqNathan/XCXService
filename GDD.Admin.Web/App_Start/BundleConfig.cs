@@ -35,7 +35,19 @@ namespace GDD.Admin.Web
                         "~/LayUI/layui.js"));
 
             bundles.Add(new StyleBundle("~/LayUI/layuicss").Include(
-                      "~/LayUI/layui.css"));
+                      "~/LayUI/css/layui.css",
+                      "~/LayUI/formSelects-v4.css",
+                      "~/LayUI/treetable-lay/treetable.css"));
+
+
+            bundles.Add(new ScriptBundle("~/all/js").Include(
+                     "~/Scripts/jquery-3.3.1.js",
+                     "~/Scripts/modernizr-*",
+                     "~/Scripts/bootstrap.js",
+                     "~/Scripts/respond.js",
+                     "~/LayUI/layui.js",
+                     "~/Scripts/echarts.min.js",
+                     "~/Scripts/formSelects-v4.min.js"));
 
             BundleTable.EnableOptimizations = false;
 

@@ -209,6 +209,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AuthorityController.cs" />
+    <Compile Include="Controllers\ButtonController.cs" />
     <Compile Include="Controllers\ChartController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
@@ -219,10 +221,12 @@
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\OptionController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
-    <Compile Include="Controllers\QuestionnaireMGTController.cs" />
+    <Compile Include="Controllers\QuestionnaireController.cs" />
     <Compile Include="Controllers\QuestionnaireTypeController.cs" />
     <Compile Include="Controllers\QuestionTypeController.cs" />
+    <Compile Include="Controllers\QuestionWarehouseController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Extensions\BaseController.cs" />
     <Compile Include="Filter\CheckFilterAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -1240,7 +1244,10 @@
     <Content Include="LayUI\css\modules\layer\default\loading-0.gif" />
     <Content Include="LayUI\css\modules\layer\default\loading-1.gif" />
     <Content Include="LayUI\css\modules\layer\default\loading-2.gif" />
+    <Content Include="LayUI\extend\dltable.js" />
+    <Content Include="LayUI\extend\treeGrid.js" />
     <Content Include="LayUI\font\iconfont.svg" />
+    <Content Include="LayUI\formSelects-v4.css" />
     <Content Include="LayUI\images\face\0.gif" />
     <Content Include="LayUI\images\face\1.gif" />
     <Content Include="LayUI\images\face\10.gif" />
@@ -1313,7 +1320,9 @@
     <Content Include="LayUI\images\face\71.gif" />
     <Content Include="LayUI\images\face\8.gif" />
     <Content Include="LayUI\images\face\9.gif" />
+    <Content Include="LayUI\layui.all.js" />
     <Content Include="LayUI\layui.css" />
+    <Content Include="LayUI\layui.mobile.css" />
     <Content Include="LayUI\layui2.css" />
     <Content Include="LayUI\layui.js" />
     <Content Include="LayUI\lay\modules\carousel.js" />
@@ -1335,6 +1344,8 @@
     <Content Include="LayUI\lay\modules\tree.js" />
     <Content Include="LayUI\lay\modules\upload.js" />
     <Content Include="LayUI\lay\modules\util.js" />
+    <Content Include="LayUI\treetable-lay\treetable.css" />
+    <Content Include="LayUI\treetable-lay\treetable.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Atlant\assets\ajax_fullcalendar.php" />
@@ -1385,9 +1396,14 @@
     <Content Include="LayUI\font\iconfont.woff" />
     <Content Include="File\员工信息Demo.xlsx" />
     <Content Include="File\选项信息Demo.xlsx" />
+    <Content Include="File\题目类型信息Demo.xlsx" />
     <None Include="Properties\PublishProfiles\GDDRelease.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\echarts.min.js" />
+    <Content Include="Scripts\formSelects-v3.js" />
+    <Content Include="Scripts\formSelects-v4.js" />
+    <Content Include="Scripts\formSelects-v4.min.js" />
+    <Content Include="Scripts\formSelects.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -1402,6 +1418,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\v3_formSelects-v3.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -1412,7 +1429,9 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -1441,8 +1460,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
     <Content Include="Views\Shared\_GDDLayout.cshtml" />
-    <Content Include="Views\QuestionnaireMGT\Index.cshtml" />
-    <Content Include="Views\QuestionnaireMGT\QuestionnaireDetail.cshtml" />
+    <Content Include="Views\Questionnaire\Index.cshtml" />
+    <Content Include="Views\Questionnaire\QuestionnaireDetail.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
@@ -1458,6 +1477,12 @@
     <Content Include="Views\Option\OptionDetail.cshtml" />
     <Content Include="Views\Chart\SubmissionList.cshtml" />
     <Content Include="Views\Chart\ScoreChart.cshtml" />
+    <Content Include="Views\QuestionWarehouse\QuestionWarehouseDetail.cshtml" />
+    <Content Include="Views\QuestionWarehouse\Index.cshtml" />
+    <Content Include="Views\Authority\MenuList.cshtml" />
+    <Content Include="Views\Authority\BtnList.cshtml" />
+    <Content Include="Views\Authority\RoleList.cshtml" />
+    <Content Include="Views\User\UserList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1474,6 +1499,7 @@
     <Folder Include="Atlant\assets\uploads\" />
     <Folder Include="Atlant\css\LaoHuangli\" />
     <Folder Include="Atlant\js\plugins\fileinput\fileinput\" />
+    <Folder Include="Views\Button\" />
     <Folder Include="Views\Department\" />
     <Folder Include="Views\Functional\" />
     <Folder Include="Views\Menu\" />

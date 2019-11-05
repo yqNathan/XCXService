@@ -54,7 +54,7 @@
             <label class="layui-form-label"><i class="layui-icon layui-icon-username"></i></label>
 
             <div class="layui-input-block">
-                <input type="text" lay-verify="required" name="EmployeeNumber" autocomplete="off" placeholder="请输入工号......" class="layui-input">
+                <input type="text" lay-verify="required" name="Account" autocomplete="off" placeholder="请输入工号......" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
@@ -64,12 +64,19 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <button class="layui-btn" lay-submit="" lay-filter="form">登入</button>
+            <button class="layui-btn" lay-submit="" lay-filter="form" id="login">登入</button>
         </div>
     </form>
 </div>
 <script>
     
+    document.onkeydown = function (e) { // 回车提交表单
+        var theEvent = window.event || e;
+        var code = theEvent.keyCode || theEvent.which;
+        if (code == 13) {
+            $("#login").click(); // #chk_match 是你 提交按钮的ID
+        }
+    }
 
     layui.use(['form', 'layedit', 'laydate'], function () {
         var form = layui.form
@@ -90,9 +97,9 @@
             $.ajax({
                 dataType: 'JSON',
                 type: "get",
-                url: "/Employee/Get",
+                url: "/User/Get",
                 data: {
-                    employeeNumber: data.field.EmployeeNumber,
+                    account: data.field.Account,
                     password: data.field.Password
                 },
                 success: function (result) {
@@ -104,16 +111,7 @@
                         return;
                     }
                     var returnUrl = getQueryString("returnUrl")
-                    //if (returnUrl != null) {
-                    //    location.href = "/" + returnUrl;
-                    //}
-                    //else {
-                        location.href = "/Home/Index";
-                    //}
-                    
-                    //layer.alert(data.msg, {
-                    //    title: '温馨提示'
-                    //})
+                    location.href = "/Home/Index";
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
 

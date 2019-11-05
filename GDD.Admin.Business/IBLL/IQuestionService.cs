@@ -13,18 +13,20 @@ namespace GDD.Admin.Business.IBLL
         /// <summary>
         /// 获取题目集合
         /// </summary>
+        /// <param name="questionWarehouseId">题库ID</param>
         /// <param name="title">题目名称</param>
         /// <param name="pageIndex">当前页</param>
         /// <param name="pageSize">分页大小</param>
         /// <returns></returns>
-        List<Question> GetQuestionList(string title, int pageIndex, int pageSize);
+        List<Question> GetQuestionList(Guid? typeId, Guid? questionWarehouseId, Guid? optionTypeId, Guid? questionTypeId, string title, int pageIndex, int pageSize);
 
         /// <summary>
         /// 获取题目总数
         /// </summary>
+        /// <param name="questionWarehouseId">题库ID</param>
         /// <param name="name">题目名称</param>
         /// <returns></returns>
-        int GetQuestionCount(Guid? questionnaireId ,string title);
+        int GetQuestionCount(Guid? typeId, Guid? questionWarehouseId, Guid? optionTypeId, Guid? questionTypeId, string title);
 
         /// <summary>
         /// 添加题目

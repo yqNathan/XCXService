@@ -15,10 +15,11 @@ namespace GDD.Common
         {
 
         }
-        public ResultEntity(ResultStatus Status, string Message)
+        public ResultEntity(ResultStatus Status, string Message, object Data)
         {
             this.Status = Status;
             this.Message = Message;
+            this.Data = Data;
         }
         public ResultStatus Status { get; set; }
         public string Message { get; set; }

@@ -1,0 +1,403 @@
+﻿@using GDD.Common
+@{
+    Layout = null;
+}
+@Styles.Render("~/bootstrap/css")
+@Styles.Render("~/LayUI/layuicss")
+<style>
+    .w-auto {
+        width: auto;
+    }
+
+    .w-fixed {
+        width: 100px;
+    }
+
+    .layui-layer-shade {
+        opacity: 0.1 !important;
+    }
+
+    ._margin {
+        /*margin-left:20px;*/
+        margin-top: 18px;
+    }
+
+    a {
+        color: #01AAED;
+    }
+
+    .demo-tree-more {
+        margin: 20px;
+    }
+
+    .layui-icon-file{
+      display: none;
+    }
+</style>
+
+<form class="layui-form" action="">
+    <div class="layui-form-item">
+        <div class="layui-row">
+            <div class="layui-inline">
+                <label class="layui-form-label  w-auto">角色名称：</label>
+                <div class="layui-input-inline">
+                    <input class="layui-input" name="id" id="RoleName" autocomplete="off" placeholder="请输入角色名称">
+                </div>
+            </div>
+            @Html.Action("CreateButtonHtml", "Button", new { menu = "RoleList", type = Convert.ToInt32(BtnType.表格外) })
+        </div>
+    </div>
+</form>
+
+<div id="detail-main" style="display: none;">
+    <form class="layui-form _margin" action="" id="form">
+        <input type="hidden" name="RoleID" value="">
+        <input type="hidden" name="Type" value="0">
+        <div class="layui-form-item">
+            <label class="layui-form-label w-fixed">角色名称</label>
+            <div class="layui-input-inline">
+                <input type="text" name="RoleName" lay-verify="required" autocomplete="off" placeholder="请输入角色名称" class="layui-input" value="" />
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label w-fixed">角色代码</label>
+            <div class="layui-input-inline">
+                <input type="text" name="RoleCode" id="RoleCode" lay-verify="required" autocomplete="off" placeholder="请输入角色代码" class="layui-input" value="" />
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label w-fixed">角色描述</label>
+            <div class="layui-input-inline">
+                <textarea name="Description" placeholder="请输入角色描述" class="layui-textarea"></textarea>
+                @*<input type="text" name="Description" lay-verify="required" autocomplete="off" placeholder="请输入角色描述" class="layui-input" value="" />*@
+            </div>
+        </div>
+    </form>
+</div>
+
+<div id="detail-power" style="display: none;">
+    <div id="Edit_Power" class="demo-tree-more"></div>
+</div>
+<table class="layui-hide" id="table" lay-filter="table"></table>
+@Scripts.Render("~/all/js")
+<script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="refresh" id="btn-refresh" title="刷新表格"><i class="layui-icon layui-icon-refresh"></i></button>
+    </div>
+</script>
+<script type="text/html" id="barDemo">
+    @Html.Action("CreateButtonHtml", "Button", new { menu = "RoleList", type = Convert.ToInt32(BtnType.表格操作列) })
+</script>
+<script>
+    layui.use(['table', 'form', 'tree'], getList);
+
+    function Query() {
+        getList();
+    }
+
+    function getList() {
+        var table = layui.table;
+        var tree = layui.tree;
+        var form = layui.form;
+        var name = $("#RoleName").val();
+        var pageIndex = 1;
+        var pageSize = 10;
+        //监听工具条
+        table.on('tool(table)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'btnPower') {
+                $.ajax({
+                    dataType: 'JSON',
+                    type: "get",
+                    url: "/Role/RoleMenu",
+                    data: { roleCode: data.RoleCode },
+                    success: function (result) {
+                        console.log(result);
+                        tree.render({
+                            elem: '#Edit_Power'
+                           , data: result.data
+                           , showCheckbox: true  //是否显示复选框
+                           , id: 'treeId'
+                           , accordion: true
+                           , isJump: true //是否允许点击节点时弹出新窗口跳转
+                            , oncheck: function (obj) {
+                                //var object = obj.data;
+                                //SetChecked(object, obj.checked);
+                            }
+                           , click: function (obj) {
+                               //var data = obj.data;  //获取当前点击的节点数据
+                               //layer.msg('状态：' + obj.state + '<br>节点数据：' + JSON.stringify(data));
+                           }
+                        });
+
+                        //批量勾选 id 为 2、3 的节点
+                        
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    }
+                })
+
+                var openIndex = layer.open({
+                    type: 1,
+                    title: "权限编辑",
+                    shift: 2,
+                    offset: 't',
+                    area: ['500px', '400px'],
+                    shadeClose: true,//点击阴影出关闭
+                    btn: ['保存', '取消'],
+                    // RoleAlign: 'c',
+                    shade: 0.8,
+                    id: 'EditPower', //设定一个id，防止重复弹出
+                    btnAlign: 'c',
+                    moveType: 1,//拖拽模式，0或者1
+                    content: $("#detail-power"),
+                    success: function (layero, index) { },
+                    yes: function () {
+                        var checkedData = tree.getChecked('treeId'); //获取选中节点的数据
+                        $.ajax({
+                            dataType: 'JSON',
+                            type: "post",
+                            url: "/Role/EditRolePower",
+                            data: { roleCode: data.RoleCode, powers: checkedData },
+                            success: function (data) {
+                                console.log(data);
+                                layer.msg(data.msg, { time: 2000 }, function () {
+                                    layer.close(openIndex);
+                                    getList();
+                                });
+                            },
+                            error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+                            }
+                        })
+                        return;
+                    }
+                });
+            } else if (obj.event === 'btnDel') {
+                layer.confirm('真的删除行么', function (index) {
+                    Del(data.RoleID);
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if (obj.event === 'btnEdit') {
+                initForm(data);
+                $("#RoleCode").attr("readonly", true);
+                //页面层-自定义
+                var openIndex = layer.open({
+                    type: 1,
+                    title: "编辑角色",
+                    shift: 2,
+                    offset: 't',
+                    area: ['330px', '350px'],
+                    shadeClose: true,//点击阴影出关闭
+                    btn: ['保存', '取消'],
+                    // RoleAlign: 'c',
+                    shade: 0.8,
+                    id: 'EditRole', //设定一个id，防止重复弹出
+                    btnAlign: 'c',
+                    moveType: 1,//拖拽模式，0或者1
+                    content: $("#detail-main"),
+                    success: function (layero, index) { },
+                    yes: function () {
+                        var RoleObj = $("#form").serializeObject();
+                        $.ajax({
+                            dataType: 'JSON',
+                            type: "post",
+                            url: "/Role/Edit",
+                            data: RoleObj,
+                            success: function (data) {
+                                layer.msg(data.msg, { time: 2000 }, function () {
+                                    layer.close(openIndex);
+                                    getList();
+                                });
+                            },
+                            error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+                            }
+                        })
+                        return;
+                    }
+                });
+            }
+            form.render('select');
+        });
+
+        var renderTable = function () {
+            layer.load(2);
+            table.render({
+                elem: '#table'
+                , url: '/Role/List?name=' + name
+                , toolbar: '#toolbarDemo'
+                , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                , loading: true
+                , page: true
+                , request: {
+                    pageName: 'pageIndex' //页码的参数名称，默认：page
+                 , limitName: 'pageSize' //每页数据量的参数名，默认：limit
+                },
+                limits: [10, 20, 50, 100, 1000, 10000, 1000000],
+                response: {
+                    statusName: 'code' //规定数据状态的字段名称，默认：code
+                    , statusCode: 0 //规定成功的状态码，默认：0
+                    , msgName: 'msg' //规定状态信息的字段名称，默认：msg
+                    , countName: 'count' //规定数据总数的字段名称，默认：count
+                    , dataName: 'data' //规定数据列表的字段名称，默认：data
+                }
+                , cols: [[
+                   { field: 'RoleID', title: 'ID', width: 0, hide: true }//style: 'display:none;'
+                   , { field: 'RoleName', title: '名称' }
+                    , { field: 'RoleCode', title: '代码' }
+                    , { field: 'Description', title: '描述' }
+                    , { field: 'CreateTime', title: '创建时间' }
+                    , { fixed: 'right', width: 240, align: 'center', title: '操作', toolbar: '#barDemo' }
+                ]]
+                , done: function () {
+                    layer.closeAll('loading');
+                }
+            });
+        }
+        renderTable();
+        table.on('toolbar(table)', function (obj) {
+            var data = obj.data;
+            switch (obj.event) {
+                case 'refresh':
+                    renderTable();
+                    break;
+            };
+        });
+    }
+
+    function initForm(options) {
+        //默认参数
+        var defaults = {
+            jsonValue: options,
+            isDebug: true   //是否需要调试，这个用于开发阶段，发布阶段请将设置为false，默认为false,true将会把name value打印出来
+        }
+        //设置参数
+        var setting = defaults;
+        var form = $("#form");
+        jsonValue = setting.jsonValue;
+        //如果传入的json字符串，将转为json对象
+        if ($.type(setting.jsonValue) === "string") {
+            jsonValue = $.parseJSON(jsonValue);
+        }
+        //如果传入的json对象为空，则不做任何操作
+        if (!$.isEmptyObject(jsonValue)) {
+            var debugInfo = "";
+            $.each(jsonValue, function (key, value) {
+                //是否开启调试，开启将会把name value打印出来
+                if (setting.isDebug) {
+                    console.log("name:" + key + "; value:" + value);
+                    debugInfo += "name:" + key + "; value:" + value + " || ";
+                }
+                var formField = form.find("[name='" + key + "']");
+                if ($.type(formField[0]) === "undefined") {
+                    if (setting.isDebug) {
+                        console.log("can not find name:[" + key + "] in form!!!");    //没找到指定name的表单
+                    }
+                } else {
+                    var fieldTagName = formField[0].tagName.toLowerCase();
+                    if (fieldTagName == "input") {
+                        if (formField.attr("type") == "radio") {
+                            $("input:radio[name='" + key + "'][value='" + value + "']").attr("checked", "checked");
+                        } else {
+                            formField.val(value);
+                            if (key == "RoleIcon") {
+                                $("#icon-IconCode").attr("class", "layui-icon " + value);
+                            }
+                        }
+                    } else if (fieldTagName == "select") {
+                        //do something special
+                        formField.val(value);
+                        //formField.find("option[value='" + value + "']").attr("selected", "selected");
+                    } else if (fieldTagName == "textarea") {
+                        //do something special
+                        formField.val(value);
+                    } else {
+                        formField.val(value);
+                    }
+
+                }
+            })
+            if (setting.isDebug) {
+                console.log(debugInfo);
+            }
+        }
+        return form;    //返回对象，提供链式操作
+    }
+
+    function btnAdd() {
+        $('#form')[0].reset();
+        layui.form.render();
+        $("#RoleCode").attr("readonly", false);
+        var openIndex = layer.open({
+            type: 1,
+            title: "新增角色",
+            shift: 2,
+            offset: 't',
+            area: ['330px', '350px'],
+            shadeClose: true,//点击阴影出关闭
+            btn: ['保存', '取消'],
+            // RoleAlign: 'c',
+            shade: 0.8,
+            id: 'AddRole', //设定一个id，防止重复弹出
+            btnAlign: 'c',
+            moveType: 1,//拖拽模式，0或者1
+            content: $("#detail-main"),
+            success: function (layero, index) { },
+            yes: function () {
+                var RoleObj = $("#form").serializeObject();
+                $.ajax({
+                    dataType: 'JSON',
+                    type: "post",
+                    url: "/Role/Add",
+                    data: RoleObj,
+                    success: function (data) {
+                        layer.msg(data.msg, { time: 2000 }, function () {
+                            layer.close(openIndex);
+                            getList();
+                        });
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+                    }
+                })
+                return;
+            }
+        });
+    }
+
+    function Del(id) {
+        $.ajax({
+            dataType: 'JSON',
+            type: "post",
+            url: "/Role/Del?id=" + id,
+            success: function (data) {
+                layer.msg(data.msg);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+            }
+        })
+    }
+
+    function iconChange() {
+        $("#icon-IconCode").attr("class", "layui-icon " + $("#IconCode").val());
+    }
+
+    $.fn.serializeObject = function () {
+        var o = {};
+        var a = this.serializeArray();
+        $.each(a, function () {
+            if (o[this.name] !== undefined) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+        return o;
+    };
+</script>

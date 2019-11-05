@@ -1,14 +1,35 @@
-﻿@{
+﻿@using GDD.Common
+@{
     Layout = null;
 }
-<link rel="stylesheet" type="text/css" id="theme" href="~/Content/bootstrap.css" />
-<link rel="stylesheet" type="text/css" href="~/LayUI/layui.css" />
+@Styles.Render("~/bootstrap/css")
+@Styles.Render("~/LayUI/layuicss")
 <style>
-    ._chart {
+     ._chart {
         margin: 0 auto;
     }
 
-     .layui-form-label {
+    .layui-form-label {
+        width: 80px;
+        margin-bottom: 0px;
+        padding: 9px 0;
+        vertical-align: central;
+        text-align: left;
+    }
+
+    .layui-input-block {
+        margin-left: 80px;
+    }
+
+    .layui-btn {
+        margin-left: 10px;
+    }
+
+    .qtype {
+        margin-left: 10px;
+    }
+
+     /*.layui-form-label {
         width:80px;
         margin-bottom:0px;
         padding:9px 0;
@@ -23,42 +44,62 @@
     }
     .qtype {
         margin-left:10px;
-    }
+    }*/
 </style>
 <form class="layui-form" action="">
-        <div class="layui-form-item">
-            <label class="layui-form-label">问卷类型：</label>
-            <div class="layui-input-inline">
-                <select name="QuestionnaireTypeID" id="selectQuestionnaireType" lay-filter="selectQuestionnaireType" lay-search=""></select>
+    <div class="layui-form-item">
+        <div class="layui-row">
+            <div class="layui-inline">
+                <label class="layui-form-label">问卷类型：</label>
+                <div class="layui-input-inline">
+                    <select name="QuestionnaireTypeID" id="selectQuestionnaireType" lay-filter="selectQuestionnaireType" lay-search=""></select>
+                </div>
             </div>
-            <label class="layui-form-label">问卷名称：</label>
-            <div class="layui-input-inline">
-                <select name="QuestionnaireID" id="selectQuestionnaire" lay-filter="selectQuestionnaire" lay-search=""></select>
+            <div class="layui-inline">
+                <label class="layui-form-label">问卷名称：</label>
+                <div class="layui-input-inline">
+                    <select name="QuestionnaireID" id="selectQuestionnaire" lay-filter="selectQuestionnaire" lay-search=""></select>
+                </div>
             </div>
-            <label class="layui-form-label">部门名称：</label>
-            <div class="layui-input-inline">
-                <select name="departmentId" id="selectDepartment" lay-filter="selectDepartment" lay-search=""></select>
+            <div class="layui-inline">
+                <label class="layui-form-label">部门名称：</label>
+                <div class="layui-input-inline">
+                    <select name="departmentId" id="selectDepartment" lay-filter="selectDepartment" lay-search=""></select>
+                </div>
             </div>
-            <label class="layui-form-label">姓名：</label>
-            <div class="layui-input-inline">
-                <input class="layui-input" name="employeeName" id="employeeName" autocomplete="off" placeholder="请输入姓名">
+            <div class="layui-inline">
+                <label class="layui-form-label">组名称：</label>
+                <div class="layui-input-inline">
+                    <select name="functionalGroupId" id="selectFunctionalGroup" lay-filter="selectFunctionalGroup" lay-search=""></select>
+                </div>
             </div>
-            <label class="layui-form-label">状态：</label>
-            <div class="layui-input-inline">
-                <select name="isSubmit" id="isSubmit" lay-filter="isSubmit" lay-search=""></select>
-            </div>
-            <div>
-                <button class="layui-btn" type="button" data-type="reload" onclick="search();">查看</button>
+            <div class="layui-inline">
+                <label class="layui-form-label">姓名：</label>
+                <div class="layui-input-inline">
+                    <input class="layui-input" name="employeeName" id="employeeName" autocomplete="off" placeholder="请输入姓名">
+                </div>
             </div>
         </div>
+        <div class="layui-row">
+            
+            <div class="layui-inline">
+                <label class="layui-form-label">状态：</label>
+                <div class="layui-input-inline">
+                    <select name="isSubmit" id="isSubmit" lay-filter="isSubmit" lay-search=""></select>
+                </div>
+            </div>
+            @Html.Action("CreateButtonHtml", "Button", new { menu = "ScoreChart", type = Convert.ToInt32(BtnType.表格外) })
+        </div>
+    </div>
 </form>
 <table class="layui-hide" id="table" lay-filter="table"></table>
 <div class="_chart" id="main" style="width: 600px;height:400px;"></div>
-<script type="text/javascript" src="~/Scripts/jquery-3.3.1.js"></script>
+@*<script type="text/javascript" src="~/Scripts/jquery-3.3.1.js"></script>
 <script type='text/javascript' src='~/Scripts/bootstrap.js'></script>
 <script type='text/javascript' src='~/Scripts/respond.js'></script>
 <script type='text/javascript' src='~/LayUI/layui.js'></script>
-<script type='text/javascript' src='~/Scripts/echarts.min.js'></script>
+<script type='text/javascript' src='~/Scripts/echarts.min.js'></script>*@
+@Scripts.Render("~/all/js")
 <script type="text/html" id="toolbarDemo">
     <div class="layui-btn-container">
     </div>
@@ -94,6 +135,7 @@
                 $.each(data.data, function (index, item) {
                     $('#selectDepartment').append(new Option(item.DepartmentName, item.DepartmentID, select, select));//往下拉菜单里添加元素
                 })
+                BindFunctionalGroup();
                 form.render('select');
             }
         });
@@ -125,7 +167,7 @@
             $.ajax({
                 dataType: 'JSON',
                 type: "Get",
-                url: "/QuestionnaireMGT/AllList?name=&typeId=" + $("#selectQuestionnaireType").val(),
+                url: "/Questionnaire/AllList?name=&typeId=" + $("#selectQuestionnaireType").val(),
                 success: function (data) {
                     var select = false;
                     $("#selectQuestionnaire").empty();
@@ -143,10 +185,38 @@
                 }
             });
         }
+
+        form.on('select(selectDepartment)', function (data) {
+            if (data.value == 0) {
+                $("#selectFunctionalGroup").empty();
+                $('#selectFunctionalGroup').append(new Option('请选择', "00000000-0000-0000-0000-000000000000"));//往下拉菜单里添加元素
+                form.render('select');
+                return;
+            }
+            BindFunctionalGroup();
+        });
+
+        function BindFunctionalGroup() {
+            $.ajax({
+                dataType: 'JSON',
+                type: "Get",
+                url: "/FunctionalGroup/List",
+                data: { DepartmentId: $("#selectDepartment").val() },
+                success: function (result) {
+                    var select = false;
+                    $("#selectFunctionalGroup").empty();
+                    $('#selectFunctionalGroup').append(new Option('请选择', "00000000-0000-0000-0000-000000000000", true, true));
+                    $.each(result.data, function (index, item) {
+                        $('#selectFunctionalGroup').append(new Option(item.FunctionalGroupName, item.FunctionalGroupID, select, select));
+                    })
+                    form.render('select');
+                }
+            });
+        }
     });
 
 
-    function search() {
+    function Query() {
         getList();
     }
 
@@ -160,12 +230,15 @@
         var name = $("#employeeName").val();
         var isSubmit = $("#isSubmit").val();
         var departmentId = $("#selectDepartment").val();
+        var functionalGroupId = $("#selectFunctionalGroup").val();
+        var questionnaireTypeStr = $("#selectQuestionnaireType")[0][$("#selectQuestionnaireType")[0].selectedIndex].innerHTML;
         var questionnaireStr = $("#selectQuestionnaire")[0][$("#selectQuestionnaire")[0].selectedIndex].innerHTML;
         var departmentStr = $("#selectDepartment")[0][$("#selectDepartment")[0].selectedIndex].innerHTML;
-        var titleText = (questionnaireStr == "请选择" ? "" : (questionnaireStr + "-")) + (departmentStr == "请选择" ? "" : (departmentStr + "-"));
+
+        var titleText = (questionnaireTypeStr == "请选择" ? "" : (questionnaireTypeStr + "-")) + (questionnaireStr == "请选择" ? "" : (questionnaireStr + "-")) + (departmentStr == "请选择" ? "" : (departmentStr + "-"));
         table.render({
             elem: '#table'
-            , url: '/Employee/SubmittedList?name=' + name + '&departmentId=' + departmentId + '&questionnaireId=' + questionnaireId + '&isSubmit=' + isSubmit
+            , url: '/Employee/SubmittedList?name=' + name + '&departmentId=' + departmentId + '&functionalGroupId=' + functionalGroupId + '&questionnaireId=' + questionnaireId + '&isSubmit=' + isSubmit
             , method: 'get'
             , toolbar: '#toolbarDemo'
             , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
@@ -207,7 +280,6 @@
             type: "Get",
             url: '/Chart/SubmittedCount?name=' + name + '&departmentId=' + departmentId + '&questionnaireId=' + questionnaireId + '&isSubmit=' + isSubmit,
             success: function (data) {
-                console.log(data);
                 optionData.seriesData.push({ name: optionData.legendData[0], value: data.submittedCount });
                 optionData.seriesData.push({ name: optionData.legendData[1], value: (data.employeeCount - data.submittedCount) });
                 var option = {
@@ -218,7 +290,31 @@
                     },
                     tooltip: {
                         trigger: 'item',
-                        formatter: "{a} <br/>{b} : {c} ({d}%)"
+                        formatter: "{a} <br/>{b} : {c} ({d}%)",
+                    },
+                    toolbox: {
+                        show: true,
+                        itemSize: 20,
+                        borderColor: '#000',
+                        borderWidth: 1,
+                        borderType: 'dotted',
+                        orient: 'vertical',
+                        left: 1,
+                        top: 100,
+                        iconStyle: {
+                            emphasis: {
+                                //color: 'white',
+                                textPosition: 'right'
+                            }
+
+                        },
+                        feature: {
+                            dataView: { readOnly: true },   //  缩放
+                            magicType: { type: ['line', 'bar'] },   ///　　折线  直方图切换
+                            restore: {}, // 重置
+                            saveAsImage: {} // 导出图片
+
+                        }
                     },
                     legend: {
                         type: 'scroll',
@@ -248,6 +344,7 @@
                 };
                 // 使用刚指定的配置项和数据显示图表。
                 myChart.setOption(option);
+                myChart.setOption(option, window.onresize = myChart.resize);
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
 
@@ -271,7 +368,7 @@
                 myChart._model.option.title[0].subtext = "无"
             }
             myChart.setOption(myChart.getOption());
-
+            myChart.setOption(option, window.onresize = myChart.resize);
         });
 
     }

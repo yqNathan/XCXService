@@ -2,6 +2,7 @@
 using GDD.Admin.Business.BLL;
 using GDD.Admin.Business.IBLL;
 using GDD.Admin.VO;
+using GDD.Common;
 using GDD.Models;
 using log4net;
 using Newtonsoft.Json;
@@ -18,10 +19,12 @@ namespace GDD.Admin.Web.Controllers
     public class QuestionTypeController : Controller
     {
         IQuestionTypeService questionTypeService;
+        IButtonService buttonService;
         private static readonly ILog log = LogManager.GetLogger(typeof(QuestionTypeController));
         public QuestionTypeController()
         {
             questionTypeService = new QuestionTypeServer();
+            buttonService = new ButtonServer();
         }
 
         public ActionResult Index()
@@ -105,9 +108,9 @@ namespace GDD.Admin.Web.Controllers
             JsonResult result = new JsonResult();
             try
             {
-                questionType.QuestionnaireTypeID = Guid.NewGuid();
+                questionType.QuestionTypeID = Guid.NewGuid();
                 questionType.CreateTime = DateTime.Now;
-                questionType.Creator = (Session["user"] as Employee)?.EmployeeName;
+                questionType.Creator = (Session["user"] as SYS_User)?.UserName;
                 bool isSuccess = questionTypeService.InsertQuestionType(questionType);
                 log.Info("添加成功");
             }
@@ -131,7 +134,7 @@ namespace GDD.Admin.Web.Controllers
             try
             {
                 questionType.ModifiedTime = DateTime.Now;
-                questionType.Modifier = (Session["user"] as Employee)?.EmployeeName;
+                questionType.Modifier = (Session["user"] as SYS_User)?.UserName;
                 bool isSuccess = questionTypeService.UpdateQuestionType(questionType);
                 if (isSuccess)
                 {

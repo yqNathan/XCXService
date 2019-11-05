@@ -1,0 +1,170 @@
+﻿@using GDD.Common
+@{
+    Layout = null;
+}
+@Styles.Render("~/bootstrap/css")
+@Styles.Render("~/LayUI/layuicss")
+<style>
+    .layui-form-label {
+        width: 80px;
+        margin-bottom: 0px;
+        padding: 9px 0;
+        vertical-align: central;
+        text-align: left;
+    }
+
+    .layui-input-block {
+        margin-left: 80px;
+    }
+
+    .typeLabel {
+        width: 70px;
+        margin-left: 10px;
+    }
+
+    .layui-btn {
+        margin-left: 10px;
+    }
+</style>
+
+<form class="layui-form" action="">
+    <div class="layui-form-item">
+        <div class="layui-row">
+            <div class="layui-inline">
+                <label class="layui-form-label typeLabel">问卷类型：</label>
+                <div class="layui-input-block">
+                    <select name="QuestionnaireTypeID" id="selectQuestionnaireType" lay-filter="selectQuestionnaireType" lay-search="">
+                        @*<option value="">请选择</option>*@
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">题库名称：</label>
+                <div class="layui-input-block">
+                    <input class="layui-input" name="id" id="QuestionWarehouseName" autocomplete="off" placeholder="请输入题库名称">
+                </div>
+            </div>
+            @Html.Action("CreateButtonHtml", "Button", new { menu = "QuestionWarehouse", type = Convert.ToInt32(BtnType.表格外) })
+        </div>
+    </div>
+</form>
+<table class="layui-hide" id="table" lay-filter="table"></table>
+@Scripts.Render("~/all/js")
+<script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="refresh" id="btn-refresh" title="刷新表格"><i class="layui-icon layui-icon-refresh"></i></button>
+    </div>
+</script>
+<script type="text/html" id="barDemo">
+    @Html.Action("CreateButtonHtml", "Button", new { menu = "QuestionWarehouse", type = Convert.ToInt32(BtnType.表格操作列) })
+</script>
+<script>
+
+
+    var tempGuid = '00000000-0000-0000-0000-000000000000';
+    $.ajax({
+        dataType: 'JSON',
+        type: "Get",
+        url: "/QuestionnaireType/List?name=&pageSize=10000000&pageIndex=1",
+        success: function (data) {
+            var select = false;
+            $('#selectQuestionnaireType').append(new Option("请选择", "00000000-0000-0000-0000-000000000000", true, true))
+            $.each(data.data, function (index, item) {
+                $('#selectQuestionnaireType').append(new Option(item.QuestionnaireTypeName, item.QuestionnaireTypeID, select, select));//往下拉菜单里添加元素
+            })
+        }
+    });
+
+    layui.use(['table', 'form'], getList);
+
+    function Query() {
+        getList();
+    }
+
+    function getList() {
+        var table = layui.table;
+        var form = layui.form
+        var name = $("#QuestionWarehouseName").val();
+        var typeId = $("#selectQuestionnaireType").val() == null ? "00000000-0000-0000-0000-000000000000" : $("#selectQuestionnaireType").val();
+        var pageIndex = 1;
+        var pageSize = 10;
+        
+        var renderTable = function () {
+            layer.load(2);
+            table.render({
+                elem: '#table'
+                , url: '/QuestionWarehouse/List?name=' + name + '&questionnaireTypeId=' + typeId
+                , toolbar: '#toolbarDemo'
+                , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                , loading: true
+                , page: true
+                , request: {
+                    pageName: 'pageIndex' //页码的参数名称，默认：page
+                 , limitName: 'pageSize' //每页数据量的参数名，默认：limit
+                }, response: {
+                    statusName: 'code' //规定数据状态的字段名称，默认：code
+                    , statusCode: 0 //规定成功的状态码，默认：0
+                    , msgName: 'msg' //规定状态信息的字段名称，默认：msg
+                    , countName: 'count' //规定数据总数的字段名称，默认：count
+                    , dataName: 'data' //规定数据列表的字段名称，默认：data
+                }
+                , limits: [10, 20, 50, 100, 1000, 10000, 1000000]
+                , cols: [[
+                   { field: 'QuestionWarehouseID', title: 'ID', width: 0, hide: true }//style: 'display:none;'
+                   , { field: 'QuestionnaireTypeName', title: '问卷类型' }
+                    , { field: 'QWName', title: '题库名称' }
+                    , { field: 'Version', title: '版本号' }
+                    , { fixed: 'right', width: 200, align: 'center', title: '操作', toolbar: '#barDemo' }
+                ]]
+                , page: true
+                , done: function () {
+                    layer.closeAll('loading');
+                }
+            });
+        }
+        renderTable();
+        table.on('toolbar(table)', function (obj) {
+            var data = obj.data;
+            switch (obj.event) {
+                case 'refresh':
+                    renderTable();
+                    break;
+            };
+        });
+        //监听工具条
+        table.on('tool(table)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'detail') {
+                layer.msg('ID：' + data.QuestionWarehouseID + ' 的查看操作');
+            } else if (obj.event === 'btnDel') {
+                layer.confirm('真的删除行么', function (index) {
+                    Del(data.QuestionWarehouseID);
+                    obj.del();
+                    layer.close(index);
+
+                });
+            } else if (obj.event === 'btnEdit') {
+                console.log(JSON.stringify(data));
+                location.href = '/QuestionWarehouse/QuestionWarehouseDetail?obj=' + JSON.stringify(data);
+            }
+        });
+    }
+
+    function btnAdd() {
+        location.href = '/QuestionWarehouse/QuestionWarehouseDetail';
+    }
+
+    function Del(id) {
+        $.ajax({
+            dataType: 'JSON',
+            type: "post",
+            url: "/QuestionWarehouse/Del?id=" + id,
+            success: function (data) {
+                layer.msg(data.msg);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+            }
+        })
+    }
+</script>

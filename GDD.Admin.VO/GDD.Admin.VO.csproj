@@ -41,12 +41,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ButtonVO.cs" />
+    <Compile Include="CheckBoxButtonVO.cs" />
     <Compile Include="EmployeeVO.cs" />
+    <Compile Include="MenuVO.cs" />
+    <Compile Include="OptionVO.cs" />
+    <Compile Include="PowerTreeVO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuestionnaireVO.cs" />
     <Compile Include="QuestionTypeVO.cs" />
     <Compile Include="QuestionVO.cs" />
+    <Compile Include="QuestionWarehouseVO.cs" />
+    <Compile Include="RoleVO.cs" />
     <Compile Include="ScoreChartVO.cs" />
+    <Compile Include="UserVO.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GDD.Models\GDD.Models.csproj">

@@ -17,5 +17,6 @@ namespace GDD.Models
         public System.Guid QuestionOptionID { get; set; }
         public Nullable<System.Guid> QuestionID { get; set; }
         public Nullable<System.Guid> OptionID { get; set; }
+        public Nullable<System.Guid> QuestionWarehouseID { get; set; }
     }
 }

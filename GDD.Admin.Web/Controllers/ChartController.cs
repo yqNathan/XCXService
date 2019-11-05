@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace GDD.Admin.Web.Controllers
 {
@@ -18,7 +19,7 @@ namespace GDD.Admin.Web.Controllers
         IQuestionnaireService questionnaireService;
         IOptionService optionService;
         IQuestionService questionService;
-        private static readonly ILog log = LogManager.GetLogger(typeof(QuestionnaireMGTController));
+        private static readonly ILog log = LogManager.GetLogger(typeof(QuestionnaireController));
 
         public ChartController()
         {
@@ -54,7 +55,7 @@ namespace GDD.Admin.Web.Controllers
                 submittedCount = questionnaireService.GetSubmittedCountByQuestionnaireId(name, questionnaireId, departmentId, isSubmit);
                 if (isSubmit == -1)
                 {
-                    employeeCount = employeeService.GetEmployeeCount(name, departmentId);
+                    employeeCount = employeeService.GetEmployeeCount(name, departmentId,Guid.Empty);
                 }
                 else if (isSubmit == 1)
                 {
@@ -87,10 +88,10 @@ namespace GDD.Admin.Web.Controllers
         /// <param name="questionnaireId"></param>
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
-        /// <returns></returns>
+        /// <returns></returns> 
         [HttpGet]
         [Route("ScoreChartList")]
-        public JsonResult GetScoreChartList(string questionName, Guid? departmentId, Guid? functionalGroupID, Guid? questionnaireId, int pageIndex, int pageSize)
+        public JsonResult GetScoreChartList(string questionName, Guid? departmentId, Guid? functionalGroupID, Guid? questionnaireId, Guid? optionTypeId,Guid? questionTypeId , string questionIds, int pageIndex, int pageSize)
         {
             ScoreCharResult scoreCharResult = new ScoreCharResult();
             List<ScoreChart> list = null;
@@ -98,14 +99,18 @@ namespace GDD.Admin.Web.Controllers
             List<QuestionChart> qlist = null;
             List<string> olist = null;
             JsonResult result = new JsonResult();
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            object[] qids = (object[])js.DeserializeObject(questionIds);
             int count = 0;
+            int maxqLength = 0;
             try
             {
-                scoreCharResult = optionService.GetScoreChartList(questionName, departmentId, functionalGroupID, questionnaireId, pageIndex, pageSize);
+                scoreCharResult = optionService.GetScoreChartList(questionName, departmentId, functionalGroupID, questionnaireId, optionTypeId, questionTypeId, qids , pageIndex, pageSize);
                 list = scoreCharResult.ScoreChartList;
                 olist = scoreCharResult.OptionNumberList;
                 qlist = scoreCharResult.QuestionChartList;
-                count = optionService.GetScoreChartCount(questionName, departmentId, functionalGroupID, questionnaireId);
+                maxqLength = qlist.Max(p => p.QuestionName.Length);
+                count = optionService.GetScoreChartCount(questionName, departmentId, functionalGroupID, questionnaireId,optionTypeId, questionTypeId, qids);
                 listvo = Mapper.Map<List<ScoreChartVO>>(list);
                 log.Info("查询成功");
             }
@@ -115,10 +120,9 @@ namespace GDD.Admin.Web.Controllers
             }
             finally
             {
-                result = Json(new { code = 0, msg = "查询成功", count = count, data = listvo, qlist = qlist ,olist = olist }, JsonRequestBehavior.AllowGet);
+                result = Json(new { code = 0, msg = "查询成功", count = count, data = listvo, qlist = qlist ,olist = olist , maxqLength = maxqLength }, JsonRequestBehavior.AllowGet);
             }
             return result;
         }
-
     }
 }

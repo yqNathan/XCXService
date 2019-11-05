@@ -17,7 +17,6 @@ namespace GDD.Models
         public System.Guid QuestionID { get; set; }
         public string QuestionTitle { get; set; }
         public Nullable<int> QuestionNumber { get; set; }
-        public Nullable<System.Guid> QuestionnaireID { get; set; }
         public Nullable<System.Guid> QuestionTypeID { get; set; }
         public Nullable<System.Guid> OptionTypeID { get; set; }
         public Nullable<int> MaxOptionNumber { get; set; }
@@ -29,5 +28,6 @@ namespace GDD.Models
         public string Creator { get; set; }
         public Nullable<System.DateTime> ModifiedTime { get; set; }
         public string Modifier { get; set; }
+        public Nullable<System.Guid> QuestionWarehouseID { get; set; }
     }
 }

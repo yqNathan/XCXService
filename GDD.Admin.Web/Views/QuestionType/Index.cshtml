@@ -1,28 +1,30 @@
-﻿@{
+﻿@using GDD.Models
+@using GDD.Common
+@{
     Layout = null;
 }
-<link rel="stylesheet" type="text/css" id="theme" href="~/Content/bootstrap.css" />
-<link rel="stylesheet" type="text/css" href="~/LayUI/layui.css" />
+@Styles.Render("~/bootstrap/css")
+@Styles.Render("~/LayUI/layuicss")
 <style>
     .layui-form-label {
-        width: 100px;
+        width: 80px;
         margin-bottom: 0px;
         padding: 9px 0;
         vertical-align: central;
-        text-align:left;
+        text-align: left;
     }
 
     .layui-input-block {
-        margin-left: 100px;
+        margin-left: 80px;
     }
 
     .typeLabel {
         width: 70px;
-        margin-left:10px;
+        margin-left: 10px;
     }
 
     .typeSelect {
-         margin-left: 80px;
+        margin-left: 80px;
     }
 
     .layui-btn {
@@ -31,39 +33,38 @@
 </style>
 
 <form class="layui-form" action="">
-    <div class="demoTable">
-        <div class="layui-inline">
-            <label class="layui-form-label">搜索题目类型：</label>
-            <div class="layui-input-block">
-                <input class="layui-input" name="id" id="QuestionTypeName" autocomplete="off" placeholder="请输入题目类型名称">
+    <div class="layui-form-item">
+        <div class="layui-row">
+            <div class="layui-inline">
+                <label class="layui-form-label typeLabel">问卷类型：</label>
+                <div class="layui-input-block typeSelect">
+                    <select name="QuestionnaireTypeID" id="selectQuestionnaireType" lay-filter="selectQuestionnaireType" lay-search="">
+                        @*<option value="">请选择</option>*@
+                    </select>
+                </div>
             </div>
-        </div>
-        <div class="layui-inline">
-            <label class="layui-form-label typeLabel">问卷类型：</label>
-            <div class="layui-input-block typeSelect">
-                <select name="QuestionnaireTypeID" id="selectQuestionnaireType" lay-filter="selectQuestionnaireType" lay-search="">
-                    @*<option value="">请选择</option>*@
-                </select>
+            <div class="layui-inline">
+                <label class="layui-form-label">类型名称：</label>
+                <div class="layui-input-block">
+                    <input class="layui-input" name="id" id="QuestionTypeName" autocomplete="off" placeholder="请输入题目类型名称">
+                </div>
             </div>
+            @Html.Action("CreateButtonHtml", "Button", new { menu = "QuestionType", type = Convert.ToInt32(BtnType.表格外) })
+            @*<div class="layui-inline">
+                <button type="button" class="layui-btn" id="import"><i class="layui-icon"></i>批量导入</button>
+            </div>*@
         </div>
-        <button class="layui-btn" type="button" data-type="reload" onclick="search();">搜索</button>
-        <button class="layui-btn " type="button" onclick="Add();"><i class="layui-icon layui-icon-add-1"></i></button>
-        <button data-method="setTop"  type="button" class="layui-btn" id="import"><i class="layui-icon"></i>批量导入</button>
     </div>
 </form>
 <table class="layui-hide" id="table" lay-filter="table"></table>
-<script type="text/javascript" src="~/Scripts/jquery-3.3.1.js"></script>
-<script type='text/javascript' src='~/Scripts/bootstrap.js'></script>
-<script type='text/javascript' src='~/Scripts/respond.js'></script>
-<script type='text/javascript' src='~/LayUI/layui.js'></script>
+@Scripts.Render("~/all/js")
 <script type="text/html" id="toolbarDemo">
     <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="refresh" id="btn-refresh" title="刷新表格"><i class="layui-icon layui-icon-refresh"></i></button>
     </div>
 </script>
 <script type="text/html" id="barDemo">
-    @*<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>*@
-    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    @Html.Action("CreateButtonHtml", "Button", new { menu = "QuestionType", type = Convert.ToInt32(BtnType.表格操作列) })
 </script>
 <script>
 
@@ -82,9 +83,9 @@
         }
     });
 
-    layui.use(['table','form'], getList);
-    
-    $("#import").on("click", function () {
+    layui.use(['table', 'form'], getList);
+
+    function btnBatchImport() {
         var that = this;
         //多窗口模式，层叠置顶
         layer.open({
@@ -102,9 +103,9 @@
 
           }
         });
-    })
+    }
 
-    function search() {
+    function Query() {
         getList();
     }
 
@@ -115,56 +116,68 @@
         var typeId = $("#selectQuestionnaireType").val() == null ? "00000000-0000-0000-0000-000000000000" : $("#selectQuestionnaireType").val();
         var pageIndex = 1;
         var pageSize = 10;
+        
+        var renderTable = function () {
+            layer.load(2);
+            table.render({
+                elem: '#table'
+                , url: '/QuestionType/List?typeName=' + name + '&questionnaireTypeID=' + typeId
+                , toolbar: '#toolbarDemo'
+                , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                , loading: true
+                , page: true
+                , request: {
+                    pageName: 'pageIndex' //页码的参数名称，默认：page
+                 , limitName: 'pageSize' //每页数据量的参数名，默认：limit
+                }, response: {
+                    statusName: 'code' //规定数据状态的字段名称，默认：code
+                    , statusCode: 0 //规定成功的状态码，默认：0
+                    , msgName: 'msg' //规定状态信息的字段名称，默认：msg
+                    , countName: 'count' //规定数据总数的字段名称，默认：count
+                    , dataName: 'data' //规定数据列表的字段名称，默认：data
+                }
+                , limits: [10, 20, 50, 100, 1000, 10000, 1000000]
+                , cols: [[
+                   { field: 'QuestionTypeID', title: 'ID', width: 0, hide: true }//style: 'display:none;'
+                   , { field: 'QuestionTypeNumber', title: '序号', sort: true }
+                    , { field: 'QuestionnaireTypeName', title: '问卷类型名称' }
+                    , { field: 'QuestionTypeName', title: '类型名称' }
+                    , { fixed: 'right', width: 200, align: 'center', title: '操作', toolbar: '#barDemo' }
+                ]]
+                , page: true
+                , done: function () {
+                    layer.closeAll('loading');
+                }
+            });
+        }
+        renderTable();
+        table.on('toolbar(table)', function (obj) {
+            var data = obj.data;
+            switch (obj.event) {
+                case 'refresh':
+                    renderTable();
+                    break;
+            };
+        });
         //监听工具条
         table.on('tool(table)', function (obj) {
             var data = obj.data;
             if (obj.event === 'detail') {
                 layer.msg('ID：' + data.QuestionTypeID + ' 的查看操作');
-            } else if (obj.event === 'del') {
+            } else if (obj.event === 'btnDel') {
                 layer.confirm('真的删除行么', function (index) {
                     Del(data.QuestionTypeID);
                     obj.del();
                     layer.close(index);
 
                 });
-            } else if (obj.event === 'edit') {
-                console.log(JSON.stringify(data));
+            } else if (obj.event === 'btnEdit') {
                 location.href = '/QuestionType/QuestionTypeDetail?obj=' + JSON.stringify(data);
-                //var param = "1";
-                //RedirectToRoute(new { controller: "QuestionType", action: "QuestionDetail", id: 123 });
-                //layer.alert('编辑行：<br>' + JSON.stringify(data))
             }
-        });
-
-        table.render({
-            elem: '#table'
-            , url: '/QuestionType/List?typeName=' + name + '&questionnaireTypeID=' + typeId
-            , toolbar: '#toolbarDemo'
-            , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
-            , loading: true
-            , page: true
-            , request: {
-                pageName: 'pageIndex' //页码的参数名称，默认：page
-             , limitName: 'pageSize' //每页数据量的参数名，默认：limit
-            }, response: {
-                statusName: 'code' //规定数据状态的字段名称，默认：code
-                , statusCode: 0 //规定成功的状态码，默认：0
-                , msgName: 'msg' //规定状态信息的字段名称，默认：msg
-                , countName: 'count' //规定数据总数的字段名称，默认：count
-                , dataName: 'data' //规定数据列表的字段名称，默认：data
-            }
-            , limits: [10, 20, 50, 100, 1000, 10000, 1000000]
-            , cols: [[
-               { field: 'QuestionTypeID', title: 'ID', width: 0, hide: true }//style: 'display:none;'
-                , { field: 'QuestionnaireTypeName', title: '问卷类型名称' }
-                , { field: 'QuestionTypeName', title: '类型名称' }
-                , { fixed: 'right', width: 178, align: 'center', title: '操作', toolbar: '#barDemo' }
-            ]]
-            , page: true
         });
     }
 
-    function Add() {
+    function btnAdd() {
         location.href = '/QuestionType/QuestionTypeDetail';
     }
 
@@ -172,7 +185,7 @@
         $.ajax({
             dataType: 'JSON',
             type: "post",
-            url: "/QuestionType/Del?id="+id,
+            url: "/QuestionType/Del?id=" + id,
             success: function (data) {
                 layer.msg(data.msg);
             },

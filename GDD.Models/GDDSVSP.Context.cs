@@ -25,14 +25,12 @@ namespace GDD.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Degree> Degree { get; set; }
         public virtual DbSet<Department> Department { get; set; }
         public virtual DbSet<Dormitory> Dormitory { get; set; }
         public virtual DbSet<Employee> Employee { get; set; }
         public virtual DbSet<FunctionalGroup> FunctionalGroup { get; set; }
         public virtual DbSet<JobType> JobType { get; set; }
         public virtual DbSet<Manager> Manager { get; set; }
-        public virtual DbSet<Menu> Menu { get; set; }
         public virtual DbSet<Option> Option { get; set; }
         public virtual DbSet<OptionType> OptionType { get; set; }
         public virtual DbSet<Question> Question { get; set; }
@@ -40,9 +38,15 @@ namespace GDD.Models
         public virtual DbSet<QuestionnaireSubmission> QuestionnaireSubmission { get; set; }
         public virtual DbSet<QuestionOptionMapping> QuestionOptionMapping { get; set; }
         public virtual DbSet<QuestionType> QuestionType { get; set; }
-        public virtual DbSet<Role> Role { get; set; }
-        public virtual DbSet<RoleMenuMapping> RoleMenuMapping { get; set; }
         public virtual DbSet<QuestionnaireType> QuestionnaireType { get; set; }
         public virtual DbSet<QuestionAnswerMapping> QuestionAnswerMapping { get; set; }
+        public virtual DbSet<QuestionWarehouse> QuestionWarehouse { get; set; }
+        public virtual DbSet<SYS_Menu> SYS_Menu { get; set; }
+        public virtual DbSet<SYS_REL_MenuButton> SYS_REL_MenuButton { get; set; }
+        public virtual DbSet<SYS_REL_RoleMenuButton> SYS_REL_RoleMenuButton { get; set; }
+        public virtual DbSet<SYS_Role> SYS_Role { get; set; }
+        public virtual DbSet<UserRoleRelation> UserRoleRelation { get; set; }
+        public virtual DbSet<SYS_Button> SYS_Button { get; set; }
+        public virtual DbSet<SYS_User> SYS_User { get; set; }
     }
 }

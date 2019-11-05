@@ -1,8 +1,9 @@
-﻿@{
+﻿@using GDD.Common
+@{
     Layout = null;
 }
-<link rel="stylesheet" type="text/css" id="theme" href="~/Content/bootstrap.css" />
-<link rel="stylesheet" type="text/css" href="~/LayUI/layui.css" />
+@Styles.Render("~/bootstrap/css")
+@Styles.Render("~/LayUI/layuicss")
 <style>
     ._chart {
         margin: 0 auto;
@@ -30,40 +31,71 @@
 </style>
 <form class="layui-form" action="">
     <div class="layui-form-item">
-        <label class="layui-form-label">问卷类型：</label>
-        <div class="layui-input-inline">
-            <select name="QuestionnaireTypeID" id="selectQuestionnaireType" lay-filter="selectQuestionnaireType" lay-search=""></select>
+        <input type="hidden" name="QuestionWarehouseID" id="questionWarehouseID" value="">
+        <div class="layui-row">
+            <div class="layui-inline">
+                <label class="layui-form-label">问卷类型：</label>
+                <div class="layui-input-inline">
+                    <select name="QuestionnaireTypeID" id="selectQuestionnaireType" lay-filter="selectQuestionnaireType" lay-search=""></select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">问卷名称：</label>
+                <div class="layui-input-inline">
+                    <select name="QuestionnaireID" id="selectQuestionnaire" lay-filter="selectQuestionnaire" lay-search=""></select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">题目类型：</label>
+                <div class="layui-input-inline">
+                    <select name="QuestionTypeID" id="selectQuestionType" lay-filter="selectQuestionType" lay-search=""></select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">部门名称：</label>
+                <div class="layui-input-inline">
+                    <select name="departmentId" id="selectDepartment" lay-filter="selectDepartment" lay-search=""></select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">组名称：</label>
+                <div class="layui-input-inline">
+                    <select name="functionalGroupId" id="selectFunctionalGroup" lay-filter="selectFunctionalGroup" lay-search=""></select>
+                </div>
+            </div>
         </div>
-        <label class="layui-form-label">问卷名称：</label>
-        <div class="layui-input-inline">
-            <select name="QuestionnaireID" id="selectQuestionnaire" lay-filter="selectQuestionnaire" lay-search=""></select>
+        <div class="layui-row">
+            <div class="layui-inline">
+                <label class="layui-form-label">选项类型：</label>
+                <div class="layui-input-inline">
+                    <select name="OptionTypeID" id="selectOptionType" lay-filter="selectOptionType" lay-search=""></select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">题目名称：</label>
+                <div class="layui-input-inline">
+                    <input class="layui-input" name="questionName" id="questionName" autocomplete="off" placeholder="请输入题目名称">
+                </div>
+            </div>
+            @Html.Action("CreateButtonHtml", "Button", new { menu = "ScoreChart", type = Convert.ToInt32(BtnType.表格外) })
         </div>
-        <label class="layui-form-label">部门名称：</label>
-        <div class="layui-input-inline">
-            <select name="departmentId" id="selectDepartment" lay-filter="selectDepartment" lay-search=""></select>
-        </div>
-        <label class="layui-form-label">组名称：</label>
-        <div class="layui-input-inline">
-            <select name="functionalGroupId" id="selectFunctionalGroup" lay-filter="selectFunctionalGroup" lay-search=""></select>
-        </div>
-        
-        <label class="layui-form-label">题目名称：</label>
-        <div class="layui-input-inline">
-            <input class="layui-input" name="questionName" id="questionName" autocomplete="off" placeholder="请输入题目名称">
-        </div>
-        <div>
-            <button class="layui-btn" type="button" data-type="reload" onclick="search();">查看</button>
+        <div class="layui-row">
+                <label class="layui-form-label">选择题目：</label>
+                <div class="layui-input-block">
+                    <select name="QuestionID" id="selectQuestion" lay-filter="selectQuestion" xm-select="questionFormSelect" xm-select-search="" xm-select-search-type="dl"></select>
+                </div>
         </div>
     </div>
 </form>
 <table class="layui-hide" id="table" lay-filter="table"></table>
-<div class="_chart" id="main"  style="width:1400px;height:600px"></div>
+<div class="_chart" id="main" style="width:600px;height:400px"></div>
 @*<div id="main" style="{width:'650px'}" class="chart-css" ref="main"></div>*@
-<script type="text/javascript" src="~/Scripts/jquery-3.3.1.js"></script>
+@*<script type="text/javascript" src="~/Scripts/jquery-3.3.1.js"></script>
 <script type='text/javascript' src='~/Scripts/bootstrap.js'></script>
 <script type='text/javascript' src='~/Scripts/respond.js'></script>
 <script type='text/javascript' src='~/LayUI/layui.js'></script>
-<script type='text/javascript' src='~/Scripts/echarts.min.js'></script>
+<script type='text/javascript' src='~/Scripts/echarts.min.js'></script>*@
+@Scripts.Render("~/all/js")
 <script type="text/html" id="toolbarDemo">
     <div class="layui-btn-container">
     </div>
@@ -72,8 +104,30 @@
     var pageIndex = 1;
     var pageSize = 10;
     var count = 0;
-    layui.use(['table', 'form'], function () {
-        var form = layui.form
+    var selectQuestionArr = [];
+    var that = this;
+    //全局定义一次, 加载formSelects
+    layui.config({
+        base: '../Scripts/' //此处路径请自行处理, 可以使用绝对路径
+    }).extend({
+        formSelects: 'questionFormSelect'
+    });
+    //加载模块
+    layui.use(['table', 'form', 'formSelects'], function () {
+        var form = layui.form;
+        var formSelects = layui.formSelects;
+       
+        formSelects.on('questionFormSelect', function (id, vals, val, isAdd, isDisabled) {
+            //id:           点击select的id
+            //vals:         当前select已选中的值
+            //val:          当前select点击的值
+            //isAdd:        当前操作选中or取消
+            //isDisabled:   当前选项是否是disabled
+            //alert("当前选择了: " + JSON.stringify(vals));
+            selectQuestionArr = formSelects.value('questionFormSelect', 'val');
+            //that.Query();
+        }, true);
+
         $.ajax({
             dataType: 'JSON',
             type: "Get",
@@ -91,6 +145,20 @@
         $.ajax({
             dataType: 'JSON',
             type: "Get",
+            url: "/Option/TypeList",
+            success: function (data) {
+                var select = false;
+                $('#selectOptionType').append(new Option("请选择", "00000000-0000-0000-0000-000000000000", true, true))
+                $.each(data.data, function (index, item) {
+                    $('#selectOptionType').append(new Option(item.OptionTypeName, item.OptionTypeID, select, select));//往下拉菜单里添加元素
+                })
+                BindQuestionnaire();
+            }
+        });
+
+        $.ajax({
+            dataType: 'JSON',
+            type: "Get",
             url: "/Department/List",
             success: function (data) {
                 var select = false;
@@ -99,7 +167,36 @@
                     $('#selectDepartment').append(new Option(item.DepartmentName, item.DepartmentID, select, select));//往下拉菜单里添加元素
                 })
                 BindFunctionalGroup();
+                form.render('select');
             }
+        });
+
+        form.on('select(selectQuestionType)', function (data) {
+            BindQuestion();
+        });
+
+        form.on('select(selectOptionType)', function (data) {
+            BindQuestion();
+        });
+
+        form.on('select(selectQuestionnaire)', function (data) {
+            
+            if (data.value == 0) {
+                $("#selectQuestionnaire").empty();
+                $('#selectQuestionnaire').append(new Option('请选择', "00000000-0000-0000-0000-000000000000"));//往下拉菜单里添加元素
+                form.render('select');
+                return;
+            }
+            $.ajax({
+                dataType: 'JSON',
+                type: "Get",
+                url: "/QuestionWarehouse/GetQuestionWarehouseID?questionnaireId=" + data.value,
+                success: function (data) {
+                    console.log(data);
+                    $("#questionWarehouseID").val(data.data);
+                    BindQuestion();
+                }
+            });            
         });
 
         form.on('select(selectQuestionnaireType)', function (data) {
@@ -110,6 +207,7 @@
                 return;
             }
             BindQuestionnaire();
+            BindQuestionType();
         });
 
         form.on('select(selectDepartment)', function (data) {
@@ -122,11 +220,55 @@
             BindFunctionalGroup();
         });
 
+       
+
+        function BindQuestion() {
+            var typeid = $("#selectQuestionnaireType").val();
+            var questionWarehouseID = $("#questionWarehouseID").val();
+            var optionTypeId = $("#selectOptionType").val();
+            var questionTypeId = $("#selectQuestionType").val();
+            var name = $("#questionName").val();
+            $.ajax({
+                dataType: 'JSON',
+                type: "Get",         
+                url: '/Question/List?typeId=' + typeid + '&questionWarehouseId=' + questionWarehouseID + '&optionTypeId=' + optionTypeId + '&questionTypeId=' + questionTypeId + '&title=' + name + '&pageSize=10000000&pageIndex=1',
+                success: function (result) {
+                    var select = false;
+                    var array = [];
+                    $.each(result.data, function (index, item) {
+                        array.push({ "name": item.QuestionNumber + ". " + item.QuestionTitle, "value": item.QuestionID });
+                    })
+                    formSelects.data('questionFormSelect', 'local', {
+                        arr: array
+                    });
+                    form.render('select');
+                }
+            });
+        }
+
+        function BindQuestionType() {
+            $.ajax({
+                dataType: 'JSON',
+                type: "Get",
+                url: "/QuestionType/ALLList?typeName=&questionnaireTypeID=" + $("#selectQuestionnaireType").val(),
+                success: function (result) {
+                    var select = false;
+                    $("#selectQuestionType").empty();
+                    $('#selectQuestionType').append(new Option('请选择', "00000000-0000-0000-0000-000000000000"));
+                    $.each(result.data, function (index, item) {
+                        $('#selectQuestionType').append(new Option(item.QuestionTypeName, item.QuestionTypeID, select, select));
+                    })
+                    form.render('select');
+                    //刷新表单select选择框渲染
+                }
+            });
+        }
+
         function BindQuestionnaire() {
             $.ajax({
                 dataType: 'JSON',
                 type: "Get",
-                url: "/QuestionnaireMGT/AllList?name=&typeId=" + $("#selectQuestionnaireType").val(),
+                url: "/Questionnaire/AllList?name=&typeId=" + $("#selectQuestionnaireType").val(),
                 success: function (data) {
                     var select = false;
                     $("#selectQuestionnaire").empty();
@@ -159,11 +301,12 @@
     });
 
 
-    function search() {
+    function Query() {
         getList();
     }
 
     function getList() {
+        
         var questionnaireId = $("#selectQuestionnaire").val();
         if (questionnaireId == "00000000-0000-0000-0000-000000000000") {
             layer.msg('请选择一种问卷');
@@ -173,15 +316,32 @@
         var questionName = $("#questionName").val();
         var departmentId = $("#selectDepartment").val();
         var functionalGroupId = $("#selectFunctionalGroup").val();
+        var optionTypeId = $("#selectOptionType").val();
         var myChart = echarts.init(document.getElementById('main'));
+        console.log(selectQuestionArr);
+
+        var questionnaireTypeStr = $("#selectQuestionnaireType")[0][$("#selectQuestionnaireType")[0].selectedIndex].innerHTML;
+        var questionnaireStr = $("#selectQuestionnaire")[0][$("#selectQuestionnaire")[0].selectedIndex].innerHTML;
+        var departmentStr = $("#selectDepartment")[0][$("#selectDepartment")[0].selectedIndex].innerHTML;
+
+        var titleText = (questionnaireTypeStr == "请选择" ? "" : (questionnaireTypeStr + "-")) + (questionnaireStr == "请选择" ? "" : (questionnaireStr + "-")) + (departmentStr == "请选择" ? "" : (departmentStr + "-"));
         table.render({
             elem: '#table'
-            , url: '/Chart/ScoreChartList?questionName=' + questionName + '&departmentId=' + departmentId + '&functionalGroupID=' + functionalGroupId + '&questionnaireId=' + questionnaireId
+            , url: '/Chart/ScoreChartList'
+            ,dataType: 'json'
             , method: 'get'
             , toolbar: '#toolbarDemo'
             , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             , loading: true
             , page: true
+            , where: {
+                questionName: questionName
+             , departmentId: departmentId
+             , functionalGroupID: functionalGroupId
+             , questionnaireId: questionnaireId
+             , optionTypeId: optionTypeId
+             , questionIds: JSON.stringify(selectQuestionArr)
+            }
             , request: {
                 pageName: 'pageIndex' //页码的参数名称，默认：page
              , limitName: 'pageSize' //每页数据量的参数名，默认：limit
@@ -200,7 +360,8 @@
                 , { field: 'QuestionTypeName', width: 120, title: '题目类型', sort: true }
                 , { field: 'QuestionNumber', title: '题目序号', width: 140, hide: true }
                 , { field: 'QuestionName', title: '题目', width: 240 }
-                , { field: 'OptionNumber', title: '选项序号' ,hide:true}
+                , { field: 'OptionNumber', title: '选项序号', hide: true }
+                , { field: 'OptionTypeName', title: '选项类型', hide: true }
                 , { field: 'OptionName', title: '选项' }
                 , { field: 'OptionScore', title: '分值' }
                 , { field: 'OptionReason', title: '原因' }
@@ -210,21 +371,22 @@
                 myChart.clear();
                 var olength = res.olist.length;
                 var qlength = res.qlist.length;
+                var maxqLength = res.maxqLength + 2;
                 var optionData = {
                     legendData: [],
                     yAxisData: [],
-                    seriesData:[]
+                    seriesData: []
                 };
                 var autoCount = 0;
                 var optionSelectArray = [];
-                
+
                 for (var i = 0; i < olength; i++) {
-                    optionData.legendData.push("选项" +  res.olist[i]);//选项集合
+                    optionData.legendData.push("选项" + res.olist[i]);//选项集合
                     var optionSelectCountArray = [];
-                    for (var j = qlength - 1; j >=0 ; j--) {
+                    for (var j = qlength - 1; j >= 0 ; j--) {
                         var flag = true;
                         var optionChartList = res.qlist[j].OptionChartList;//题目下的选项集合
-                        for (var k = optionChartList.length -1; k >= 0 ; k--) {
+                        for (var k = optionChartList.length - 1; k >= 0 ; k--) {
                             if (res.olist[i] == optionChartList[k].OptionNumber) {
                                 optionSelectCountArray.push(optionChartList[k].OptionCount);
                                 autoCount++;
@@ -241,22 +403,55 @@
                 }
                 for (var i = 0; i < optionSelectArray.length; i++) {
                     optionData.seriesData.push({
-                        name: "选项" + (i+1),
+                        name: "选项" + (i + 1),
                         type: 'bar',
+                        stack: '总量',
+                        legendHoverLink:true,
+                        label: {
+                            normal: {
+                                show: true,
+                                position: 'insideRight',
+                                formatter: function (num) {
+                                    if (num.value > 0) {
+                                        return num.value;
+                                    }
+                                    else {
+                                        return '';
+                                    }
+                                }
+                            }
+                        },
+                        //itemStyle:{
+                        //    normal:{
+                        //        color:'#4ad2ff'
+                        //    }
+                        //},//bar 颜色
                         data: optionSelectArray[i]
                     })
                 }
-                
+
                 for (var j = qlength - 1; j >= 0; j--) {
                     optionData.yAxisData.push(res.qlist[j].QuestionNumber + "、" + res.qlist[j].QuestionName);//题目集合
                 }
-                
-                //var max = getMaximin(allScoreList, "max")
-                //var min = getMaximin(allScoreList, "min")
+
+                var tlength = 12;
+                var marginlength = 150;
+                if (maxqLength <= tlength) {
+                    marginlength = maxqLength * 12.6;
+                    if (maxqLength < tlength) {
+                        marginlength = marginlength + 20
+                    }
+                }
                 var option = {
+                    color: ['#3fb1e3', '#6be6c1', '#626c91', '#a0a7e6', '#c4ebad', '#96dee8', '#d7a6f0', '#f0a4ae', '#f0eb82', '#91e8be', '#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3']
+                    ,
                     title: {
-                        text: '问卷题目选项数量',
-                        subtext: '副标题'
+                        text: titleText + '问卷题目选项数量',
+                        //subtext: '副标题',
+                        textAlign: 'center',
+                        
+                        x:'center',
+                        y:'top',
                     },
                     tooltip: {
                         trigger: 'axis',
@@ -264,33 +459,104 @@
                             type: 'shadow'
                         }
                     },
+                    toolbox: {
+                        show: true,
+                        itemSize: 20,
+                        borderColor: '#000',
+                        borderWidth: 1,
+                        borderType: 'dotted',
+                        orient: 'vertical',
+                        left: 1,
+                        top: 100,
+                        iconStyle: {
+                            emphasis: {
+                                //color: 'white',
+                                textPosition: 'right'
+                            }
+
+                        },
+                        feature: {
+                            dataView: { readOnly: true },   //  缩放
+                            magicType: { type: ['line', 'bar'] },   ///　　折线  直方图切换
+                            restore: {}, // 重置
+                            saveAsImage: {} // 导出图片
+
+                        }
+                    },
                     legend: {
+                        top:"6%",
                         data: optionData.legendData,
                     },
                     grid: {
-                        left: '3%',
-                        right: '4%',
-                        bottom: '3%',
-                        containLabel: true
+                        left: 0,
+                        right: 70,
+                        bottom: 50,
+                        top: 100,
+                        //top: 50,
+                        margin: 100,
+                        containLabel: true,
+
                     },
                     xAxis: {
                         type: 'value',
+                        name: '人数',
                         boundaryGap: [0, 0]
                     },
                     yAxis: {
                         type: 'category',
+                        name: '题目',
+                        axisLabel: {
+                            interval: 0,
+                            margin: marginlength,
+                            textStyle: {
+                                align: 'left',
+                                baseline: 'middle',
+                            },
+                            formatter: function (value) {
+                                var texts = value;
+                                var vlength = texts.length;
+                                if (vlength > tlength) {
+                                    var ilength = parseInt(vlength / tlength);
+                                    var length = vlength / tlength;
+                                    var sublength = vlength % tlength;
+                                    var str = '';
+                                    for (var i = 0; i < ilength; i++) {
+                                        str += texts.substr(i * tlength, tlength)
+                                        if ((i + 1) * tlength != vlength) {
+                                            str += '\n';
+                                        }
+                                    }
+                                    str += texts.substr(ilength * tlength, sublength);
+                                    return str
+                                }
+                                else {
+                                    return texts;
+                                }
+                                //var texts=value;
+                                //if(texts.length > 7){ // 具体多少字就看自己了
+                                //    texts=texts.substr(0,7)+'...';
+                                //}
+                                //return texts;
+                            }
+                        },
                         data: optionData.yAxisData
                     },
                     series: optionData.seriesData
                 };
-                var autoHeight = autoCount * 25 + 50; // counst.length为柱状图的条数，即数据长度。
-                myChart._dom.style.height = autoHeight + "px";
-                myChart._dom.style.width = "1400px";
+                //var autoHeight = autoCount * 25 + 50; // counst.length为柱状图的条数，即数据长度。
+                var rheight = maxqLength / tlength;
+                var qCount = Math.ceil(rheight);
+                var autoHeight = qlength * (40 + (qCount * 8)); // counst.length为柱状图的条数，即数据长度。
+                if (qlength <= 3) {
+                    autoHeight = autoHeight + 100;
+                }
+                myChart._dom.style.height = autoHeight + 100 + "px";
+                myChart._dom.style.width = "1200px";
                 myChart.setOption(option);
                 window.onresize = myChart.resize;// 使用刚指定的配置项和数据显示图表。
-               
+                myChart.setOption(option, window.onresize = myChart.resize);
             }
-        }); 
+        });
 
         function getMaximin(arr, maximin) {
             if (maximin == "max") {

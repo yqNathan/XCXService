@@ -1,35 +1,74 @@
-﻿@{
+﻿@using GDD.Common
+@{
     Layout = null;
 }
 @Styles.Render("~/bootstrap/css")
 @Styles.Render("~/LayUI/layuicss")
 <style>
-    .layui-btn {
+    /*.layui-btn {
         margin-left:10px;
     }
+
+      .layui-form-label {
+        width: 80px;
+        margin-bottom: 0px;
+        padding: 9px 0;
+        vertical-align: central;
+        text-align: left;
+    }
+
+    .layui-input-block {
+        margin-left: 80px;
+    }*/
+
+    .layui-form-label {
+        width: 80px;
+        margin-bottom: 0px;
+        padding: 9px 0;
+    }
+
+    .layui-input-block {
+        margin-left: 80px;
+    }
+    .layui-btn {
+        margin-left: 10px;
+    }
 </style>
-<div class="demoTable">
-    搜索名称：
-    <div class="layui-inline">
-        <input class="layui-input" name="id" id="employeeName" autocomplete="off">
+
+<form class="layui-form" action="">
+    <div class="layui-form-item">
+        <div class="layui-row">
+            <div class="layui-inline">
+                <label class="layui-form-label">部门名称：</label>
+                <div class="layui-input-inline">
+                    <select name="departmentId" id="selectDepartment" lay-filter="selectDepartment" lay-search=""></select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">组名称：</label>
+                <div class="layui-input-inline">
+                    <select name="functionalGroupId" id="selectFunctionalGroup" lay-filter="selectFunctionalGroup" lay-search=""></select>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">姓名：</label>
+                <div class="layui-input-block">
+                    <input class="layui-input" name="id" id="employeeName" autocomplete="off" placeholder="请输入姓名">
+                </div>
+            </div>
+            @Html.Action("CreateButtonHtml", "Button", new { menu = "EmployeeList", type = Convert.ToInt32(BtnType.表格外) })
+         </div>
     </div>
-    <button class="layui-btn" data-type="reload" id="search" onclick="search();">搜索</button>
-    <button class="layui-btn " onclick="Add();"><i class="layui-icon layui-icon-add-1"></i></button>
-    <button data-method="setTop" class="layui-btn" id="import"><i class="layui-icon"></i>批量导入</button>
-</div>
+</form>
 <table class="layui-hide" id="table" lay-filter="table"></table>
-<script type="text/javascript" src="~/Scripts/jquery-3.3.1.js"></script>
-<script type='text/javascript' src='~/Scripts/bootstrap.js'></script>
-<script type='text/javascript' src='~/Scripts/respond.js'></script>
-<script type='text/javascript' src='~/LayUI/layui.js'></script>
+@Scripts.Render("~/all/js")
 <script type="text/html" id="toolbarDemo">
     <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="refresh" id="btn-refresh" title="刷新表格"><i class="layui-icon layui-icon-refresh"></i></button>
     </div>
 </script>
 <script type="text/html" id="barDemo">
-    @*<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>*@
-    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    @Html.Action("CreateButtonHtml", "Button", new { menu = "EmployeeList", type = Convert.ToInt32(BtnType.表格操作列) })
 </script>
 <script>
     var pageIndex = 1;
@@ -37,44 +76,61 @@
     var count = 0;
     layui.use('table', getList);
 
-    function search() {
+    function Query() {
         getList();
     }
 
     function getList() {
         var table = layui.table;
         var name = document.getElementById("employeeName").value;
+        var departmentId = $("#selectDepartment").val();
+        var functionalGroupId = $("#selectFunctionalGroup").val();
         // + '&pageIndex=' + pageIndex + '&pageSize=' + pageSize + '&pageIndex=' + pageIndex + '&pageSize=' + pageSize
-        table.render({
-            elem: '#table'
-            , url: '/Employee/List?name=' + name
-            , method: 'get'
-            , toolbar: '#toolbarDemo'
-            , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
-            , loading: true
-            , page: true
-            , request: {
-                pageName: 'pageIndex' //页码的参数名称，默认：page
-             , limitName: 'pageSize' //每页数据量的参数名，默认：limit
-            }, response: {
-                statusName: 'code' //规定数据状态的字段名称，默认：code
-                , statusCode: 0 //规定成功的状态码，默认：0
-                , msgName: 'msg' //规定状态信息的字段名称，默认：msg
-                , countName: 'count' //规定数据总数的字段名称，默认：count
-                , dataName: 'data' //规定数据列表的字段名称，默认：data
-            }
-            , limits: [10, 20, 50, 100, 1000, 10000, 1000000]
-            , cols: [[
-                { field: 'EmployeeID', title: 'ID', width: 0, hide: true }//style: 'display:none;'
-                , { field: 'EmployeeName', width: 180, title: '姓名', sort: true }
-                , { field: 'Sex', width: 100, title: '性别', sort: true }
-                , { field: 'EmployeeNumber', width: 120, title: '编号', sort: true }
-                , { field: 'Phone', title: '手机号', width: 140 }
-                , { field: 'DepartmentName', title: '部门' }
-                , { field: 'FunctionalgroupName', title: '功能组' }
-                , { field: 'HireTime', width: '20%', minWidth: 100, title: '入职时间', sort: true }
-                , { fixed: 'right', width: 178, align: 'center', title: '操作', toolbar: '#barDemo' }
-            ]]
+        var renderTable = function () {
+            layer.load(2);
+            table.render({
+                elem: '#table'
+                , url: '/Employee/List?name=' + name + '&departmentId=' + departmentId + '&functionalGroupId=' + functionalGroupId
+                , method: 'get'
+                , toolbar: '#toolbarDemo'
+                , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                , loading: true
+                , page: true
+                , request: {
+                    pageName: 'pageIndex' //页码的参数名称，默认：page
+                 , limitName: 'pageSize' //每页数据量的参数名，默认：limit
+                }, response: {
+                    statusName: 'code' //规定数据状态的字段名称，默认：code
+                    , statusCode: 0 //规定成功的状态码，默认：0
+                    , msgName: 'msg' //规定状态信息的字段名称，默认：msg
+                    , countName: 'count' //规定数据总数的字段名称，默认：count
+                    , dataName: 'data' //规定数据列表的字段名称，默认：data
+                }
+                , limits: [10, 20, 50, 100, 1000, 10000, 1000000]
+                , cols: [[
+                    { field: 'EmployeeID', title: 'ID', width: 0, hide: true }//style: 'display:none;'
+                    , { field: 'EmployeeName', width: 180, title: '姓名', sort: true }
+                    , { field: 'Sex', width: 100, title: '性别', sort: true }
+                    , { field: 'EmployeeNumber', width: 120, title: '编号', sort: true }
+                    , { field: 'Phone', title: '手机号', width: 140 }
+                    , { field: 'DepartmentName', title: '部门' }
+                    , { field: 'FunctionalgroupName', title: '功能组' }
+                    , { field: 'HireTime', width: '20%', title: '入职时间', sort: true }
+                    , { fixed: 'right', minWidth: 200, width: 200, align: 'center', title: '操作', toolbar: '#barDemo' }
+                ]]
+                , done: function () {
+                    layer.closeAll('loading');
+                }
+            });
+        }
+        renderTable();
+        table.on('toolbar(table)', function (obj) {
+            var data = obj.data;
+            switch (obj.event) {
+                case 'refresh':
+                    renderTable();
+                    break;
+            };
         });
 
         //监听工具条
@@ -82,17 +138,17 @@
             var data = obj.data;
             if (obj.event === 'detail') {
                 layer.msg('ID：' + data.EmployeeID + ' 的查看操作');
-            } else if (obj.event === 'del') {
+            } else if (obj.event === 'btnDel') {
                 layer.confirm('确定删除吗？', function (index) {
                     Del(data.EmployeeID);
                     obj.del();
                     layer.close(index);
                 });
-            } else if (obj.event === 'edit') {
+            } else if (obj.event === 'btnEdit') {
                 console.log(JSON.stringify(data));
                 location.href = '/Employee/EmployeeDetail?obj=' + JSON.stringify(data);
                 //var param = "1";
-                //RedirectToRoute(new { controller: "QuestionnaireMGT", action: "QuestionnaireDetail", id: 123 });
+                //RedirectToRoute(new { controller: "Questionnaire", action: "QuestionnaireDetail", id: 123 });
                 //layer.alert('编辑行：<br>' + JSON.stringify(data))
             }
         });
@@ -105,31 +161,74 @@
         , layedit = layui.layedit
         , laydate = layui.laydate;
 
-        $("#import").on("click", function () {
-            var that = this;
-            //多窗口模式，层叠置顶
-            layer.open({
-                type: 2 //此处以iframe举例
-              , title: '批量导入'
-              , area: ['258px', '258px']
-              , shade: 0
-              , offset: 't'
-              , content: '/Import/Index?name=Employee'
-              , yes: function () {
-                  $(that).click();
-              }
-              , zIndex: layer.zIndex //重点1
-              , success: function (layero) {
-                  
-              }
-            });
-        })
+        
 
+        $.ajax({
+            dataType: 'JSON',
+            type: "Get",
+            url: "/Department/List",
+            success: function (data) {
+                var select = false;
+                $('#selectDepartment').append(new Option("请选择", "00000000-0000-0000-0000-000000000000", true, true))
+                $.each(data.data, function (index, item) {
+                    $('#selectDepartment').append(new Option(item.DepartmentName, item.DepartmentID, select, select));//往下拉菜单里添加元素
+                })
+                BindFunctionalGroup();
+            }
+        });
+        form.on('select(selectDepartment)', function (data) {
+            if (data.value == 0) {
+                $("#selectFunctionalGroup").empty();
+                $('#selectFunctionalGroup').append(new Option('请选择', "00000000-0000-0000-0000-000000000000"));//往下拉菜单里添加元素
+                form.render('select');
+                return;
+            }
+            BindFunctionalGroup();
+        });
+
+
+        function BindFunctionalGroup() {
+            $.ajax({
+                dataType: 'JSON',
+                type: "Get",
+                url: "/FunctionalGroup/List",
+                data: { DepartmentId: $("#selectDepartment").val() },
+                success: function (result) {
+                    var select = false;
+                    $("#selectFunctionalGroup").empty();
+                    $('#selectFunctionalGroup').append(new Option('请选择', "00000000-0000-0000-0000-000000000000", true, true));
+                    $.each(result.data, function (index, item) {
+                        $('#selectFunctionalGroup').append(new Option(item.FunctionalGroupName, item.FunctionalGroupID, select, select));
+                    })
+                    form.render('select');
+                }
+            });
+        }
     })
 
+
+    function btnBatchImport() {
+        var that = this;
+        //多窗口模式，层叠置顶
+        layer.open({
+            type: 2 //此处以iframe举例
+          , title: '批量导入'
+          , area: ['258px', '258px']
+          , shade: 0
+          , offset: 't'
+          , content: '/Import/Index?name=Employee'
+          , yes: function () {
+              $(that).click();
+          }
+          , zIndex: layer.zIndex //重点1
+          , success: function (layero) {
+
+          }
+        });
+    }
   
 
-    function Add() {
+    function btnAdd() {
         location.href = '/Employee/EmployeeDetail';
     }
 

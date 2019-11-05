@@ -20,6 +20,12 @@ namespace GDD.Admin.Business
                 cfg.AddProfile<QuestionTypeProfile>();
                 cfg.AddProfile<SubmittedEmployeeProfile>();
                 cfg.AddProfile<ScoreChartProfile>();
+                cfg.AddProfile<QuestionWarehouseProfile>();
+                cfg.AddProfile<MenuProfile>();
+                cfg.AddProfile<UserProfile>();
+                cfg.AddProfile<ButtonProfile>();
+                cfg.AddProfile<RoleProfile>();
+                cfg.AddProfile<OptionProfile>();
             });
         }
     }

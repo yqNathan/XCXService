@@ -17,7 +17,7 @@ namespace GDD.Admin.Business.IBLL
         /// <param name="pageIndex">当前页</param>
         /// <param name="pageSize">分页大小</param>
         /// <returns></returns>
-        List<Option> GetOptionList(string name, int pageIndex, int pageSize);
+        List<Option> GetOptionList(string name, Guid? QuestionnaireTypeID, int pageIndex, int pageSize);
 
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace GDD.Admin.Business.IBLL
         /// </summary>
         /// <param name="name">选项名称</param>
         /// <returns></returns>
-        int GetOptionCount(string name);
+        int GetOptionCount(string name, Guid? QuestionnaireTypeID);
 
         /// <summary>
         /// 获取选项类型集合
@@ -72,7 +72,7 @@ namespace GDD.Admin.Business.IBLL
         /// <param name="pageIndex">当前页</param>
         /// <param name="pageSize">分页大小</param>
         /// <returns></returns>
-        ScoreCharResult GetScoreChartList(string name, Guid? departmentId, Guid? functionalGroupID, Guid? questionnaireId, int pageIndex, int pageSize);
+        ScoreCharResult GetScoreChartList(string name, Guid? departmentId, Guid? functionalGroupID, Guid? questionnaireId, Guid? optionTypeId , Guid? questionTypeID, object[] qIds , int pageIndex, int pageSize);
 
         /// <summary>
         /// 获取分数图表数量
@@ -81,6 +81,6 @@ namespace GDD.Admin.Business.IBLL
         /// <param name="departmentId">部门ID</param>
         /// <param name="questionnaireId">问卷ID</param>
         /// <returns></returns>
-        int GetScoreChartCount(string name, Guid? departmentId, Guid? functionalGroupID, Guid? questionnaireId);
+        int GetScoreChartCount(string name, Guid? departmentId, Guid? functionalGroupID, Guid? questionnaireId, Guid? optionTypeId, Guid? questionTypeID, object[] qIds);
     }
 }

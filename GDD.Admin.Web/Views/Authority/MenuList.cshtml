@@ -1,0 +1,1385 @@
+﻿@using GDD.Common
+@{
+    Layout = null;
+}
+@Styles.Render("~/bootstrap/css")
+@Styles.Render("~/LayUI/layuicss")
+<style>
+    .w-auto {
+        width: auto;
+    }
+
+    .w-fixed {
+        width: 100px;
+    }
+
+    .layui-layer-shade {
+        opacity: 0.1 !important;
+    }
+
+
+    ._margin {
+        /*margin-left:20px;*/
+        margin-top: 18px;
+    }
+
+    a {
+        color: #01AAED;
+    }
+
+    .layui-form-checkbox i {
+        height:30px;
+        width:30px;
+    }
+
+    .MediumTurquoise {
+        background-color: #48D1CC !important;
+    }
+    
+    .layui-badge {
+        margin:5px auto;
+    }
+
+      .Gainsboro {
+        background-color: Gainsboro !important;
+        color:black !important;
+    }
+</style>
+
+<form class="layui-form" action="">
+    <div class="layui-form-item">
+        <div class="layui-row">
+            <div class="layui-inline">
+                <label class="layui-form-label w-auto">菜单名称：</label>
+                <div class="layui-input-inline">
+                    <input class="layui-input" name="id" id="menuName" autocomplete="off" placeholder="请输入菜单名称">
+                </div>
+            </div>
+            @Html.Action("CreateButtonHtml", "Button", new { menu = "MenuList", type = Convert.ToInt32(BtnType.表格外) })
+        </div>
+    </div>
+</form>
+<table class="layui-hide" id="permissionTable" lay-filter="permissionTable"></table>
+<div id="detailFrame" style="display: none;">
+    <form class="layui-form _margin" action="" id="form">
+        <input type="hidden" name="MenuID" value="">
+        <input type="hidden" name="MenuParentName" id="MenuParentName" value="">
+        <div class="layui-form-item">
+            <label class="layui-form-label w-fixed">父级菜单</label>
+            <div class="layui-input-inline">
+                <select name="MenuParentID" id="selectMenuParent" lay-filter="selectMenuParent"></select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label w-fixed">菜单名称</label>
+            <div class="layui-input-inline">
+                <input type="text" name="MenuName" lay-verify="required" autocomplete="off" placeholder="请输入菜单名称" class="layui-input" value="" />
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label w-fixed">菜单代码</label>
+            <div class="layui-input-inline">
+                <input type="text" name="MenuCode" id="MenuCode" lay-verify="required" autocomplete="off" placeholder="请输入菜单代码" class="layui-input" value="" />
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label w-fixed">菜单路径</label>
+            <div class="layui-input-inline">
+                <input type="text" name="MenuUrl" lay-verify="required" autocomplete="off" placeholder="请输入菜单路径" class="layui-input" value="" />
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label w-fixed">排序号</label>
+            <div class="layui-input-inline">
+                <input type="text" name="OrderBy" lay-verify="required" autocomplete="off" placeholder="请输入排序号" class="layui-input" value="" />
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label w-fixed">图标</label>
+            <div class="layui-input-inline">
+                <input type="text" name="IconCode" lay-verify="required" id="IconCode" autocomplete="off" placeholder="请输入图标编号" class="layui-input" value="" oninput="iconChange()" />
+            </div>
+            <div class="layui-form-mid layui-word-aux"><i id="icon-IconCode" class="layui-icon "></i></div>
+            <div class="layui-input-inline">
+                <a href="https://www.layui.com/doc/element/icon.html" target="_blank">图标编号链接</a>
+            </div>
+        </div>
+        
+    </form>
+</div>
+
+<div id="btnManageFrame" style="display: none;">
+    <form class="layui-form _margin" action="" id="btnManageForm">
+        <div class="layui-form-item">
+            <label class='layui-form-label  w-fixed'>功能按钮</label>
+            <div class='layui-input-block' id="btnCheckbox">
+            </div>
+        </div>
+    </form>
+</div>
+<ul class="site-doc-icon hidden">
+    <li>
+        <i class="layui-icon layui-icon-rate-half"></i>
+        <div class="doc-icon-name">半星</div>
+        <div class="doc-icon-code">&amp;#xe6c9;</div>
+        <div class="doc-icon-fontclass">layui-icon-rate-half</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-rate"></i>
+        <div class="doc-icon-name">星星-空心</div>
+        <div class="doc-icon-code">&amp;#xe67b;</div>
+        <div class="doc-icon-fontclass">layui-icon-rate</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-rate-solid"></i>
+        <div class="doc-icon-name">星星-实心</div>
+        <div class="doc-icon-code">&amp;#xe67a;</div>
+        <div class="doc-icon-fontclass">layui-icon-rate-solid</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-cellphone"></i>
+        <div class="doc-icon-name">手机</div>
+        <div class="doc-icon-code">&amp;#xe678;</div>
+        <div class="doc-icon-fontclass">layui-icon-cellphone</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-vercode"></i>
+        <div class="doc-icon-name">验证码</div>
+        <div class="doc-icon-code">&amp;#xe679;</div>
+        <div class="doc-icon-fontclass">layui-icon-vercode</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-login-wechat"></i>
+        <div class="doc-icon-name">微信</div>
+        <div class="doc-icon-code">&amp;#xe677;</div>
+        <div class="doc-icon-fontclass">layui-icon-login-wechat</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-login-qq"></i>
+        <div class="doc-icon-name">QQ</div>
+        <div class="doc-icon-code">&amp;#xe676;</div>
+        <div class="doc-icon-fontclass">layui-icon-login-qq</div>
+    </li>
+
+    <li>
+        <i class="layui-icon layui-icon-login-weibo"></i>
+        <div class="doc-icon-name">微博</div>
+        <div class="doc-icon-code">&amp;#xe675;</div>
+        <div class="doc-icon-fontclass">layui-icon-login-weibo</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-password"></i>
+        <div class="doc-icon-name">密码</div>
+        <div class="doc-icon-code">&amp;#xe673;</div>
+        <div class="doc-icon-fontclass">layui-icon-password</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-username"></i>
+        <div class="doc-icon-name">用户名</div>
+        <div class="doc-icon-code">&amp;#xe66f;</div>
+        <div class="doc-icon-fontclass">layui-icon-username</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-refresh-3"></i>
+        <div class="doc-icon-name">刷新-粗</div>
+        <div class="doc-icon-code">&amp;#xe9aa;</div>
+        <div class="doc-icon-fontclass">layui-icon-refresh-3</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-auz"></i>
+        <div class="doc-icon-name">授权</div>
+        <div class="doc-icon-code">&amp;#xe672;</div>
+        <div class="doc-icon-fontclass">layui-icon-auz</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-spread-left"></i>
+        <div class="doc-icon-name">左向右伸缩菜单</div>
+        <div class="doc-icon-code">&amp;#xe66b;</div>
+        <div class="doc-icon-fontclass">layui-icon-spread-left</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-shrink-right"></i>
+        <div class="doc-icon-name">右向左伸缩菜单</div>
+        <div class="doc-icon-code">&amp;#xe668;</div>
+        <div class="doc-icon-fontclass">layui-icon-shrink-right</div>
+    </li>
+
+    <li>
+        <i class="layui-icon layui-icon-snowflake"></i>
+        <div class="doc-icon-name">雪花</div>
+        <div class="doc-icon-code">&amp;#xe6b1;</div>
+        <div class="doc-icon-fontclass">layui-icon-snowflake</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-tips"></i>
+        <div class="doc-icon-name">提示说明</div>
+        <div class="doc-icon-code">&amp;#xe702;</div>
+        <div class="doc-icon-fontclass">layui-icon-tips</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-note"></i>
+        <div class="doc-icon-name">便签</div>
+        <div class="doc-icon-code">&amp;#xe66e;</div>
+        <div class="doc-icon-fontclass">layui-icon-note</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-home"></i>
+        <div class="doc-icon-name">主页</div>
+        <div class="doc-icon-code">&amp;#xe68e;</div>
+        <div class="doc-icon-fontclass">layui-icon-home</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-senior"></i>
+        <div class="doc-icon-name">高级</div>
+        <div class="doc-icon-code">&amp;#xe674;</div>
+        <div class="doc-icon-fontclass">layui-icon-senior</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-refresh"></i>
+        <div class="doc-icon-name">刷新</div>
+        <div class="doc-icon-code">&amp;#xe669;</div>
+        <div class="doc-icon-fontclass">layui-icon-refresh</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-refresh-1"></i>
+        <div class="doc-icon-name">刷新</div>
+        <div class="doc-icon-code">&amp;#xe666;</div>
+        <div class="doc-icon-fontclass">layui-icon-refresh-1</div>
+    </li>
+
+    <li>
+        <i class="layui-icon layui-icon-flag"></i>
+        <div class="doc-icon-name">旗帜</div>
+        <div class="doc-icon-code">&amp;#xe66c;</div>
+        <div class="doc-icon-fontclass">layui-icon-flag</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-theme"></i>
+        <div class="doc-icon-name">主题</div>
+        <div class="doc-icon-code">&amp;#xe66a;</div>
+        <div class="doc-icon-fontclass">layui-icon-theme</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-notice"></i>
+        <div class="doc-icon-name">消息-通知</div>
+        <div class="doc-icon-code">&amp;#xe667;</div>
+        <div class="doc-icon-fontclass">layui-icon-notice</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-website"></i>
+        <div class="doc-icon-name">网站</div>
+        <div class="doc-icon-code">&amp;#xe7ae;</div>
+        <div class="doc-icon-fontclass">layui-icon-website</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-console"></i>
+        <div class="doc-icon-name">控制台</div>
+        <div class="doc-icon-code">&amp;#xe665;</div>
+        <div class="doc-icon-fontclass">layui-icon-console</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-face-surprised"></i>
+        <div class="doc-icon-name">表情-惊讶</div>
+        <div class="doc-icon-code">&amp;#xe664;</div>
+        <div class="doc-icon-fontclass">layui-icon-face-surprised</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-set"></i>
+        <div class="doc-icon-name">设置-空心</div>
+        <div class="doc-icon-code">&amp;#xe716;</div>
+        <div class="doc-icon-fontclass">layui-icon-set</div>
+    </li>
+
+    <li>
+        <i class="layui-icon layui-icon-template-1"></i>
+        <div class="doc-icon-name">模板</div>
+        <div class="doc-icon-code">&amp;#xe656;</div>
+        <div class="doc-icon-fontclass">layui-icon-template-1</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-app"></i>
+        <div class="doc-icon-name">应用</div>
+        <div class="doc-icon-code">&amp;#xe653;</div>
+        <div class="doc-icon-fontclass">layui-icon-app</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-template"></i>
+        <div class="doc-icon-name">模板</div>
+        <div class="doc-icon-code">&amp;#xe663;</div>
+        <div class="doc-icon-fontclass">layui-icon-template</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-praise"></i>
+        <div class="doc-icon-name">赞</div>
+        <div class="doc-icon-code">&amp;#xe6c6;</div>
+        <div class="doc-icon-fontclass">layui-icon-praise</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-tread"></i>
+        <div class="doc-icon-name">踩</div>
+        <div class="doc-icon-code">&amp;#xe6c5;</div>
+        <div class="doc-icon-fontclass">layui-icon-tread</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-male"></i>
+        <div class="doc-icon-name">男</div>
+        <div class="doc-icon-code">&amp;#xe662;</div>
+        <div class="doc-icon-fontclass">layui-icon-male</div>
+    </li>
+
+    <li>
+        <i class="layui-icon layui-icon-female"></i>
+        <div class="doc-icon-name">女</div>
+        <div class="doc-icon-code">&amp;#xe661;</div>
+        <div class="doc-icon-fontclass">layui-icon-female</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-camera"></i>
+        <div class="doc-icon-name">相机-空心</div>
+        <div class="doc-icon-code">&amp;#xe660;</div>
+        <div class="doc-icon-fontclass">layui-icon-camera</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-camera-fill"></i>
+        <div class="doc-icon-name">相机-实心</div>
+        <div class="doc-icon-code">&amp;#xe65d;</div>
+        <div class="doc-icon-fontclass">layui-icon-camera-fill</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-more"></i>
+        <div class="doc-icon-name">菜单-水平</div>
+        <div class="doc-icon-code">&amp;#xe65f;</div>
+        <div class="doc-icon-fontclass">layui-icon-more</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-more-vertical"></i>
+        <div class="doc-icon-name">菜单-垂直</div>
+        <div class="doc-icon-code">&amp;#xe671;</div>
+        <div class="doc-icon-fontclass">layui-icon-more-vertical</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-rmb"></i>
+        <div class="doc-icon-name">金额-人民币</div>
+        <div class="doc-icon-code">&amp;#xe65e;</div>
+        <div class="doc-icon-fontclass">layui-icon-rmb</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-dollar"></i>
+        <div class="doc-icon-name">金额-美元</div>
+        <div class="doc-icon-code">&amp;#xe659;</div>
+        <div class="doc-icon-fontclass">layui-icon-dollar</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-diamond"></i>
+        <div class="doc-icon-name">钻石-等级</div>
+        <div class="doc-icon-code">&amp;#xe735;</div>
+        <div class="doc-icon-fontclass">layui-icon-diamond</div>
+    </li>
+
+    <li>
+        <i class="layui-icon layui-icon-fire"></i>
+        <div class="doc-icon-name">火</div>
+        <div class="doc-icon-code">&amp;#xe756;</div>
+        <div class="doc-icon-fontclass">layui-icon-fire</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-return"></i>
+        <div class="doc-icon-name">返回</div>
+        <div class="doc-icon-code">&amp;#xe65c;</div>
+        <div class="doc-icon-fontclass">layui-icon-return</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-location"></i>
+        <div class="doc-icon-name">位置-地图</div>
+        <div class="doc-icon-code">&amp;#xe715;</div>
+        <div class="doc-icon-fontclass">layui-icon-location</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-read"></i>
+        <div class="doc-icon-name">办公-阅读</div>
+        <div class="doc-icon-code">&amp;#xe705;</div>
+        <div class="doc-icon-fontclass">layui-icon-read</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-survey"></i>
+        <div class="doc-icon-name">调查</div>
+        <div class="doc-icon-code">&amp;#xe6b2;</div>
+        <div class="doc-icon-fontclass">layui-icon-survey</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-face-smile"></i>
+        <div class="doc-icon-name">表情-微笑</div>
+        <div class="doc-icon-code">&amp;#xe6af;</div>
+        <div class="doc-icon-fontclass">layui-icon-face-smile</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-face-cry"></i>
+        <div class="doc-icon-name">表情-哭泣</div>
+        <div class="doc-icon-code">&amp;#xe69c;</div>
+        <div class="doc-icon-fontclass">layui-icon-face-cry</div>
+    </li>
+
+    <li>
+        <i class="layui-icon layui-icon-cart-simple"></i>
+        <div class="doc-icon-name">购物车</div>
+        <div class="doc-icon-code">&amp;#xe698;</div>
+        <div class="doc-icon-fontclass">layui-icon-cart-simple</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-cart"></i>
+        <div class="doc-icon-name">购物车</div>
+        <div class="doc-icon-code">&amp;#xe657;</div>
+        <div class="doc-icon-fontclass">layui-icon-cart</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-next"></i>
+        <div class="doc-icon-name">下一页</div>
+        <div class="doc-icon-code">&amp;#xe65b;</div>
+        <div class="doc-icon-fontclass">layui-icon-next</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-prev"></i>
+        <div class="doc-icon-name">上一页</div>
+        <div class="doc-icon-code">&amp;#xe65a;</div>
+        <div class="doc-icon-fontclass">layui-icon-prev</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-upload-drag"></i>
+        <div class="doc-icon-name">上传-空心-拖拽</div>
+        <div class="doc-icon-code">&amp;#xe681;</div>
+        <div class="doc-icon-fontclass">layui-icon-upload-drag</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-upload"></i>
+        <div class="doc-icon-name">上传-实心</div>
+        <div class="doc-icon-code">&amp;#xe67c;</div>
+        <div class="doc-icon-fontclass">layui-icon-upload</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-download-circle"></i>
+        <div class="doc-icon-name">下载-圆圈</div>
+        <div class="doc-icon-code">&amp;#xe601;</div>
+        <div class="doc-icon-fontclass">layui-icon-download-circle</div>
+    </li>
+
+    <li>
+        <i class="layui-icon layui-icon-component"></i>
+        <div class="doc-icon-name">组件</div>
+        <div class="doc-icon-code">&amp;#xe857;</div>
+        <div class="doc-icon-fontclass">layui-icon-component</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-file-b"></i>
+        <div class="doc-icon-name">文件-粗</div>
+        <div class="doc-icon-code">&amp;#xe655;</div>
+        <div class="doc-icon-fontclass">layui-icon-file-b</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-user"></i>
+        <div class="doc-icon-name">用户</div>
+        <div class="doc-icon-code">&amp;#xe770;</div>
+        <div class="doc-icon-fontclass">layui-icon-user</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-find-fill"></i>
+        <div class="doc-icon-name">发现-实心</div>
+        <div class="doc-icon-code">&amp;#xe670;</div>
+        <div class="doc-icon-fontclass">layui-icon-find-fill</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-loading layui-icon layui-anim layui-anim-rotate layui-anim-loop"></i>
+        <div class="doc-icon-name">loading</div>
+        <div class="doc-icon-code">&amp;#xe63d;</div>
+        <div class="doc-icon-fontclass">layui-icon-loading</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-loading-1 layui-icon layui-anim layui-anim-rotate layui-anim-loop"></i>
+        <div class="doc-icon-name">loading</div>
+        <div class="doc-icon-code">&amp;#xe63e;</div>
+        <div class="doc-icon-fontclass">layui-icon-loading-1</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-add-1"></i>
+        <div class="doc-icon-name">添加</div>
+        <div class="doc-icon-code">&amp;#xe654;</div>
+        <div class="doc-icon-fontclass">layui-icon-add-1</div>
+    </li>
+
+    <li>
+        <i class="layui-icon layui-icon-play"></i>
+        <div class="doc-icon-name">播放</div>
+        <div class="doc-icon-code">&amp;#xe652;</div>
+        <div class="doc-icon-fontclass">layui-icon-play</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-pause"></i>
+        <div class="doc-icon-name">暂停</div>
+        <div class="doc-icon-code">&amp;#xe651;</div>
+        <div class="doc-icon-fontclass">layui-icon-pause</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-headset"></i>
+        <div class="doc-icon-name">音频-耳机</div>
+        <div class="doc-icon-code">&amp;#xe6fc;</div>
+        <div class="doc-icon-fontclass">layui-icon-headset</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-video"></i>
+        <div class="doc-icon-name">视频</div>
+        <div class="doc-icon-code">&amp;#xe6ed;</div>
+        <div class="doc-icon-fontclass">layui-icon-video</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-voice"></i>
+        <div class="doc-icon-name">语音-声音</div>
+        <div class="doc-icon-code">&amp;#xe688;</div>
+        <div class="doc-icon-fontclass">layui-icon-voice</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-speaker"></i>
+        <div class="doc-icon-name">消息-通知-喇叭</div>
+        <div class="doc-icon-code">&amp;#xe645;</div>
+        <div class="doc-icon-fontclass">layui-icon-speaker</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-fonts-del"></i>
+        <div class="doc-icon-name">删除线</div>
+        <div class="doc-icon-code">&amp;#xe64f;</div>
+        <div class="doc-icon-fontclass">layui-icon-fonts-del</div>
+    </li>
+
+    <li>
+        <i class="layui-icon layui-icon-fonts-code"></i>
+        <div class="doc-icon-name">代码</div>
+        <div class="doc-icon-code">&amp;#xe64e;</div>
+        <div class="doc-icon-fontclass">layui-icon-fonts-code</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-fonts-html"></i>
+        <div class="doc-icon-name">HTML</div>
+        <div class="doc-icon-code">&amp;#xe64b;</div>
+        <div class="doc-icon-fontclass">layui-icon-fonts-html</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-fonts-strong"></i>
+        <div class="doc-icon-name">字体加粗</div>
+        <div class="doc-icon-code">&amp;#xe62b;</div>
+        <div class="doc-icon-fontclass">layui-icon-fonts-strong</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-unlink"></i>
+        <div class="doc-icon-name">删除链接</div>
+        <div class="doc-icon-code">&amp;#xe64d;</div>
+        <div class="doc-icon-fontclass">layui-icon-unlink</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-picture"></i>
+        <div class="doc-icon-name">图片</div>
+        <div class="doc-icon-code">&amp;#xe64a;</div>
+        <div class="doc-icon-fontclass">layui-icon-picture</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-link"></i>
+        <div class="doc-icon-name">链接</div>
+        <div class="doc-icon-code">&amp;#xe64c;</div>
+        <div class="doc-icon-fontclass">layui-icon-link</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-face-smile-b"></i>
+        <div class="doc-icon-name">表情-笑-粗</div>
+        <div class="doc-icon-code">&amp;#xe650;</div>
+        <div class="doc-icon-fontclass">layui-icon-face-smile-b</div>
+    </li>
+
+    <li>
+        <i class="layui-icon layui-icon-align-left"></i>
+        <div class="doc-icon-name">左对齐</div>
+        <div class="doc-icon-code">&amp;#xe649;</div>
+        <div class="doc-icon-fontclass">layui-icon-align-left</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-align-right"></i>
+        <div class="doc-icon-name">右对齐</div>
+        <div class="doc-icon-code">&amp;#xe648;</div>
+        <div class="doc-icon-fontclass">layui-icon-align-right</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-align-center"></i>
+        <div class="doc-icon-name">居中对齐</div>
+        <div class="doc-icon-code">&amp;#xe647;</div>
+        <div class="doc-icon-fontclass">layui-icon-align-center</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-fonts-u"></i>
+        <div class="doc-icon-name">字体-下划线</div>
+        <div class="doc-icon-code">&amp;#xe646;</div>
+        <div class="doc-icon-fontclass">layui-icon-fonts-u</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-fonts-i"></i>
+        <div class="doc-icon-name">字体-斜体</div>
+        <div class="doc-icon-code">&amp;#xe644;</div>
+        <div class="doc-icon-fontclass">layui-icon-fonts-i</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-tabs"></i>
+        <div class="doc-icon-name">Tabs 选项卡</div>
+        <div class="doc-icon-code">&amp;#xe62a;</div>
+        <div class="doc-icon-fontclass">layui-icon-tabs</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-radio"></i>
+        <div class="doc-icon-name">单选框-选中</div>
+        <div class="doc-icon-code">&amp;#xe643;</div>
+        <div class="doc-icon-fontclass">layui-icon-radio</div>
+    </li>
+
+    <li>
+        <i class="layui-icon layui-icon-circle"></i>
+        <div class="doc-icon-name">单选框-候选</div>
+        <div class="doc-icon-code">&amp;#xe63f;</div>
+        <div class="doc-icon-fontclass">layui-icon-circle</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-edit"></i>
+        <div class="doc-icon-name">编辑</div>
+        <div class="doc-icon-code">&amp;#xe642;</div>
+        <div class="doc-icon-fontclass">layui-icon-edit</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-share"></i>
+        <div class="doc-icon-name">分享</div>
+        <div class="doc-icon-code">&amp;#xe641;</div>
+        <div class="doc-icon-fontclass">layui-icon-share</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-delete"></i>
+        <div class="doc-icon-name">删除</div>
+        <div class="doc-icon-code">&amp;#xe640;</div>
+        <div class="doc-icon-fontclass">layui-icon-delete</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-form"></i>
+        <div class="doc-icon-name">表单</div>
+        <div class="doc-icon-code">&amp;#xe63c;</div>
+        <div class="doc-icon-fontclass">layui-icon-form</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-cellphone-fine"></i>
+        <div class="doc-icon-name">手机-细体</div>
+        <div class="doc-icon-code">&amp;#xe63b;</div>
+        <div class="doc-icon-fontclass">layui-icon-cellphone-fine</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-dialogue"></i>
+        <div class="doc-icon-name">聊天 对话 沟通</div>
+        <div class="doc-icon-code">&amp;#xe63a;</div>
+        <div class="doc-icon-fontclass">layui-icon-dialogue</div>
+    </li>
+
+    <li>
+        <i class="layui-icon layui-icon-fonts-clear"></i>
+        <div class="doc-icon-name">文字格式化</div>
+        <div class="doc-icon-code">&amp;#xe639;</div>
+        <div class="doc-icon-fontclass">layui-icon-fonts-clear</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-layer"></i>
+        <div class="doc-icon-name">窗口</div>
+        <div class="doc-icon-code">&amp;#xe638;</div>
+        <div class="doc-icon-fontclass">layui-icon-layer</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-date"></i>
+        <div class="doc-icon-name">日期</div>
+        <div class="doc-icon-code">&amp;#xe637;</div>
+        <div class="doc-icon-fontclass">layui-icon-date</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-water"></i>
+        <div class="doc-icon-name">水 下雨</div>
+        <div class="doc-icon-code">&amp;#xe636;</div>
+        <div class="doc-icon-fontclass">layui-icon-water</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-code-circle"></i>
+        <div class="doc-icon-name">代码-圆圈</div>
+        <div class="doc-icon-code">&amp;#xe635;</div>
+        <div class="doc-icon-fontclass">layui-icon-code-circle</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-carousel"></i>
+        <div class="doc-icon-name">轮播组图</div>
+        <div class="doc-icon-code">&amp;#xe634;</div>
+        <div class="doc-icon-fontclass">layui-icon-carousel</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-prev-circle"></i>
+        <div class="doc-icon-name">翻页</div>
+        <div class="doc-icon-code">&amp;#xe633;</div>
+        <div class="doc-icon-fontclass">layui-icon-prev-circle</div>
+    </li>
+
+    <li>
+        <i class="layui-icon layui-icon-layouts"></i>
+        <div class="doc-icon-name">布局</div>
+        <div class="doc-icon-code">&amp;#xe632;</div>
+        <div class="doc-icon-fontclass">layui-icon-layouts</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-util"></i>
+        <div class="doc-icon-name">工具</div>
+        <div class="doc-icon-code">&amp;#xe631;</div>
+        <div class="doc-icon-fontclass">layui-icon-util</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-templeate-1"></i>
+        <div class="doc-icon-name">选择模板</div>
+        <div class="doc-icon-code">&amp;#xe630;</div>
+        <div class="doc-icon-fontclass">layui-icon-templeate-1</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-upload-circle"></i>
+        <div class="doc-icon-name">上传-圆圈</div>
+        <div class="doc-icon-code">&amp;#xe62f;</div>
+        <div class="doc-icon-fontclass">layui-icon-upload-circle</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-tree"></i>
+        <div class="doc-icon-name">树</div>
+        <div class="doc-icon-code">&amp;#xe62e;</div>
+        <div class="doc-icon-fontclass">layui-icon-tree</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-table"></i>
+        <div class="doc-icon-name">表格</div>
+        <div class="doc-icon-code">&amp;#xe62d;</div>
+        <div class="doc-icon-fontclass">layui-icon-table</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-chart"></i>
+        <div class="doc-icon-name">图表</div>
+        <div class="doc-icon-code">&amp;#xe62c;</div>
+        <div class="doc-icon-fontclass">layui-icon-chart</div>
+    </li>
+
+    <li>
+        <i class="layui-icon layui-icon-chart-screen"></i>
+        <div class="doc-icon-name">图标 报表 屏幕</div>
+        <div class="doc-icon-code">&amp;#xe629;</div>
+        <div class="doc-icon-fontclass">layui-icon-chart-screen</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-engine"></i>
+        <div class="doc-icon-name">引擎</div>
+        <div class="doc-icon-code">&amp;#xe628;</div>
+        <div class="doc-icon-fontclass">layui-icon-engine</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-triangle-d"></i>
+        <div class="doc-icon-name">下三角</div>
+        <div class="doc-icon-code">&amp;#xe625;</div>
+        <div class="doc-icon-fontclass">layui-icon-triangle-d</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-triangle-r"></i>
+        <div class="doc-icon-name">右三角</div>
+        <div class="doc-icon-code">&amp;#xe623;</div>
+        <div class="doc-icon-fontclass">layui-icon-triangle-r</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-file"></i>
+        <div class="doc-icon-name">文件</div>
+        <div class="doc-icon-code">&amp;#xe621;</div>
+        <div class="doc-icon-fontclass">layui-icon-file</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-set-sm"></i>
+        <div class="doc-icon-name">设置-小型</div>
+        <div class="doc-icon-code">&amp;#xe620;</div>
+        <div class="doc-icon-fontclass">layui-icon-set-sm</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-add-circle"></i>
+        <div class="doc-icon-name">添加-圆圈</div>
+        <div class="doc-icon-code">&amp;#xe61f;</div>
+        <div class="doc-icon-fontclass">layui-icon-add-circle</div>
+    </li>
+
+
+    <li>
+        <i class="layui-icon layui-icon-404"></i>
+        <div class="doc-icon-name">404</div>
+        <div class="doc-icon-code">&amp;#xe61c;</div>
+        <div class="doc-icon-fontclass">layui-icon-404</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-about"></i>
+        <div class="doc-icon-name">关于</div>
+        <div class="doc-icon-code">&amp;#xe60b;</div>
+        <div class="doc-icon-fontclass">layui-icon-about</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-up"></i>
+        <div class="doc-icon-name">箭头 向上</div>
+        <div class="doc-icon-code">&amp;#xe619;</div>
+        <div class="doc-icon-fontclass">layui-icon-up</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-down"></i>
+        <div class="doc-icon-name">箭头 向下</div>
+        <div class="doc-icon-code">&amp;#xe61a;</div>
+        <div class="doc-icon-fontclass">layui-icon-down</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-left"></i>
+        <div class="doc-icon-name">箭头 向左</div>
+        <div class="doc-icon-code">&amp;#xe603;</div>
+        <div class="doc-icon-fontclass">layui-icon-left</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-right"></i>
+        <div class="doc-icon-name">箭头 向右</div>
+        <div class="doc-icon-code">&amp;#xe602;</div>
+        <div class="doc-icon-fontclass">layui-icon-right</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-circle-dot"></i>
+        <div class="doc-icon-name">圆点</div>
+        <div class="doc-icon-code">&amp;#xe617;</div>
+        <div class="doc-icon-fontclass">layui-icon-circle-dot</div>
+    </li>
+
+    <li>
+        <i class="layui-icon layui-icon-search"></i>
+        <div class="doc-icon-name">搜索</div>
+        <div class="doc-icon-code">&amp;#xe615;</div>
+        <div class="doc-icon-fontclass">layui-icon-search</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-set-fill"></i>
+        <div class="doc-icon-name">设置-实心</div>
+        <div class="doc-icon-code">&amp;#xe614;</div>
+        <div class="doc-icon-fontclass">layui-icon-set-fill</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-group"></i>
+        <div class="doc-icon-name">群组</div>
+        <div class="doc-icon-code">&amp;#xe613;</div>
+        <div class="doc-icon-fontclass">layui-icon-group</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-friends"></i>
+        <div class="doc-icon-name">好友</div>
+        <div class="doc-icon-code">&amp;#xe612;</div>
+        <div class="doc-icon-fontclass">layui-icon-friends</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-reply-fill"></i>
+        <div class="doc-icon-name">回复 评论 实心</div>
+        <div class="doc-icon-code">&amp;#xe611;</div>
+        <div class="doc-icon-fontclass">layui-icon-reply-fill</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-menu-fill"></i>
+        <div class="doc-icon-name">菜单 隐身 实心</div>
+        <div class="doc-icon-code">&amp;#xe60f;</div>
+        <div class="doc-icon-fontclass">layui-icon-menu-fill</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-log"></i>
+        <div class="doc-icon-name">记录</div>
+        <div class="doc-icon-code">&amp;#xe60e;</div>
+        <div class="doc-icon-fontclass">layui-icon-log</div>
+    </li>
+
+    <li>
+        <i class="layui-icon layui-icon-picture-fine"></i>
+        <div class="doc-icon-name">图片-细体</div>
+        <div class="doc-icon-code">&amp;#xe60d;</div>
+        <div class="doc-icon-fontclass">layui-icon-picture-fine</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-face-smile-fine"></i>
+        <div class="doc-icon-name">表情-笑-细体</div>
+        <div class="doc-icon-code">&amp;#xe60c;</div>
+        <div class="doc-icon-fontclass">layui-icon-face-smile-fine</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-list"></i>
+        <div class="doc-icon-name">列表</div>
+        <div class="doc-icon-code">&amp;#xe60a;</div>
+        <div class="doc-icon-fontclass">layui-icon-list</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-release"></i>
+        <div class="doc-icon-name">发布 纸飞机</div>
+        <div class="doc-icon-code">&amp;#xe609;</div>
+        <div class="doc-icon-fontclass">layui-icon-release</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-ok"></i>
+        <div class="doc-icon-name">对 OK</div>
+        <div class="doc-icon-code">&amp;#xe605;</div>
+        <div class="doc-icon-fontclass">layui-icon-ok</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-help"></i>
+        <div class="doc-icon-name">帮助</div>
+        <div class="doc-icon-code">&amp;#xe607;</div>
+        <div class="doc-icon-fontclass">layui-icon-help</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-chat"></i>
+        <div class="doc-icon-name">客服</div>
+        <div class="doc-icon-code">&amp;#xe606;</div>
+        <div class="doc-icon-fontclass">layui-icon-chat</div>
+    </li>
+
+    <li>
+        <i class="layui-icon layui-icon-top"></i>
+        <div class="doc-icon-name">top 置顶</div>
+        <div class="doc-icon-code">&amp;#xe604;</div>
+        <div class="doc-icon-fontclass">layui-icon-top</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-star"></i>
+        <div class="doc-icon-name">收藏-空心</div>
+        <div class="doc-icon-code">&amp;#xe600;</div>
+        <div class="doc-icon-fontclass">layui-icon-star</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-star-fill"></i>
+        <div class="doc-icon-name">收藏-实心</div>
+        <div class="doc-icon-code">&amp;#xe658;</div>
+        <div class="doc-icon-fontclass">layui-icon-star-fill</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-close-fill"></i>
+        <div class="doc-icon-name">关闭-实心</div>
+        <div class="doc-icon-code">&amp;#x1007;</div>
+        <div class="doc-icon-fontclass">layui-icon-close-fill</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-close"></i>
+        <div class="doc-icon-name">关闭-空心</div>
+        <div class="doc-icon-code">&amp;#x1006;</div>
+        <div class="doc-icon-fontclass">layui-icon-close</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-ok-circle"></i>
+        <div class="doc-icon-name">正确</div>
+        <div class="doc-icon-code">&amp;#x1005;</div>
+        <div class="doc-icon-fontclass">layui-icon-ok-circle</div>
+    </li>
+    <li>
+        <i class="layui-icon layui-icon-add-circle-fine"></i>
+        <div class="doc-icon-name">添加-圆圈-细体</div>
+        <div class="doc-icon-code">&amp;#xe608;</div>
+        <div class="doc-icon-fontclass">layui-icon-add-circle-fine</div>
+    </li>
+</ul>
+@Scripts.Render("~/all/js")
+<script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="fold" id="btn-fold" title="全部展开"><i id="icon-fold" class="layui-icon layui-icon layui-icon-triangle-r"></i></button>
+        <button class="layui-btn layui-btn-sm" lay-event="refresh" id="btn-refresh" title="刷新表格"><i class="layui-icon layui-icon-refresh"></i></button>
+        @*<button data-method="setTop" type="button" class="layui-btn" id="btn-fold" title="全部折叠"><i id="icon-fold" class="layui-icon layui-icon-triangle-d"></i></button>
+            <button data-method="setTop" type="button" class="layui-btn" id="btn-refresh" title="刷新表格"></button>*@
+    </div>
+</script>
+<script type="text/html" id="barDemo">
+    @Html.Action("CreateButtonHtml", "Button", new { menu = "MenuList", type = Convert.ToInt32(BtnType.表格操作列) })
+</script>
+<script>
+    var pageIndex = 1;
+    var pageSize = 10;
+    var count = 0;
+
+    layui.config({
+        base: '../LayUI/'
+    }).extend({
+        treetable: 'treetable-lay/treetable'
+    }).use(['table', 'form', 'element', 'treetable'], getList);
+
+    function Query() {
+        getList();
+    }
+    function getList() {
+        var $ = layui.jquery;
+        var table = layui.table;
+        var form = layui.form;
+        var element = layui.element;
+        var treetable = layui.treetable;
+        var name = document.getElementById("menuName").value;
+        // 渲染表格
+        var renderTable = function () {
+            layer.load(2);
+            treetable.render({
+                loading: true,
+                toolbar: '#toolbarDemo',
+                treeColIndex: 1,
+                treeSpid: "00000000-0000-0000-0000-000000000000",
+                treeDefaultClose: true,
+                accordion: true,
+                treeIdName: 'MenuID',
+                treePidName: 'MenuParentID',
+                elem: '#permissionTable',
+                url: '/Menu/List?menuName=' + name + '&pageIndex=1&pageSize=10000000',
+                page: false,
+                cols: [[
+                    //{ type: 'numbers' },
+                    { field: 'MenuID', title: 'ID', hide: true }//style: 'display:none;'
+                , { field: 'MenuName', title: '权限名称', sort: true }
+                , { field: 'MenuCode', title: '权限代码' }
+                , { field: 'MenuUrl', title: '菜单路径', hide: true }
+                , { field: 'MenuParentID', title: '父级ID', hide: true }
+                , { field: 'MenuParentName', title: '父级菜单', sort: true }
+                , {
+                    field: 'Type', title: '类型', width: 80, sort: true, align: 'center', templet: function (d) {
+                        if (d.Type == "按钮") {
+                            return '<span class="layui-badge MediumTurquoise">' + d.Type + '</span>';
+                        }
+                        else {
+                            return '<span class="layui-badge Gainsboro">' + d.Type + '</span>';
+                        }
+                    }
+                }
+                , { field: 'OrderBy', title: '排序号', width: 80, sort: true }
+                , { field: 'IconCode', title: '图标', width: 80, align: 'center', templet: function (d) { return '<i class="layui-icon ' + d.IconCode + '"></i>'; } }
+                , { fixed: 'right', minWidth: 240, width: 240, align: 'center', title: '操作', toolbar: '#barDemo' }
+                ]],
+                done: function () {
+                    layer.closeAll('loading');
+                    var index=-1;
+                    //分类显示中文名称
+                    $("[data-field='MenuParentID']").children().each(function () {
+                        index++;
+                        if ($(this).text() == '00000000-0000-0000-0000-000000000000') {
+                            $('tr').eq(index).css("background-color", "#F0F8FF");//#5cb7fc
+                            //$('tr').eq(index).css("color", "white");
+                            var html = $('tr').eq(index)[0].innerHTML;
+                            html = html.replace(/btnManage/, "hidden");
+                            $('tr').eq(index).html(html);
+                        } 
+                    });
+                    var typeIndex = -1;
+                    $("[data-field='Type']").children().each(function () {
+                        typeIndex++;
+                        if ($(this).text() == '按钮') {
+                            var html = $('tr').eq(typeIndex)[0].innerHTML;
+                            html = html.replace(/_btnManage/, "hidden");
+                            html = html.replace(/_btnEdit/, "hidden");
+                            html = html.replace(/_btnDel/, "hidden");
+                            $('tr').eq(typeIndex).html(html);
+                        }
+                    });
+                }
+            });
+        };
+        renderTable();
+
+        $('#btn-expand').click(function () {
+            treetable.expandAll('#permissionTable');
+        });
+        table.on('toolbar(permissionTable)', function (obj) {
+            var checkStatus = table.checkStatus(obj.config.id);
+            switch (obj.event) {
+                case 'fold':
+                    var title = $('#btn-fold').attr('title');
+                    if (title == "全部折叠") {
+                        $('#btn-fold').attr('title', "全部展开");
+                        $("#icon-fold").attr("class", "layui-icon layui-icon-triangle-r");
+                        treetable.foldAll('#permissionTable');
+                    }
+                    else {
+                        $('#btn-fold').attr('title', "全部折叠");
+                        $("#icon-fold").attr("class", "layui-icon layui-icon-triangle-d");
+                        treetable.expandAll('#permissionTable');
+                    }
+                    break;
+                case 'refresh':
+                    renderTable();
+                    break;
+            };
+        });
+
+    //监听工具条
+    table.on('tool(permissionTable)', function (obj) {
+        console.log(obj.event);
+        var data = obj.data;
+        if (obj.event === 'detail') {
+            layer.msg('ID：' + data.EmployeeID + ' 的查看操作');
+        } else if (obj.event === 'btnDel') {
+            layer.confirm('确定删除吗？', function (index) {
+                Del(data.MenuID);
+                obj.del();
+                layer.close(index);
+            });
+        } else if (obj.event === 'btnEdit') {
+            $("#MenuCode").attr("readonly", true);
+            initForm(data);
+            //页面层-自定义
+            var openIndex = layer.open({
+                type: 1,
+                title: "编辑菜单",
+                shift: 2,
+                area: ['330px', '500px'],
+                shadeClose: true,//点击阴影出关闭
+                btn: ['保存', '取消'],
+                offset: 't',
+                // btnAlign: 'c',
+                shade: 0.8,
+                id: 'LAY_layuipro', //设定一个id，防止重复弹出
+                btnAlign: 'c',
+                moveType: 1,//拖拽模式，0或者1
+                content: $("#detailFrame"),
+                success: function (layero, index) { },
+                yes: function () {
+                    var menuObj = $("#form").serializeObject();
+                    $.ajax({
+                        dataType: 'JSON',
+                        type: "post",
+                        url: "/Menu/Edit",
+                        data: menuObj,
+                        success: function (data) {
+                            layer.msg(data.msg, {
+                                icon: 1
+                            }, { time: 2000 }, function () {
+                                layer.close(openIndex);
+                                renderTable();
+                            });
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+                        }
+                    })
+                    return;
+                }
+            });
+        }
+        else if (obj.event === 'btnManage') {
+            //页面层-自定义
+            $.ajax({
+                url: '/Button/MenuButtonHtml',
+                type: 'GET',
+                dataType: 'html',
+                //global: false,
+                //cache: false,
+                //timeout: 120000,
+                data: { menuCode: obj.data.MenuCode },
+                success: function (data) {
+                    var btnCheckbox = $("#btnCheckbox");
+                    btnCheckbox.text("");// 清空数据
+                    btnCheckbox.html(data);
+                    layui.form.render();
+                },
+                error: function (XmlHttpRequest, textStatus, errorThrown) {
+                    alert("系统异常，请稍候再试");
+                    return false;
+                }
+            });
+            var openIndex = layer.open({
+                type: 1,
+                title: "按钮管理",
+                shift: 2,
+                offset: 't',
+                area: ['330px', '400px'],
+                shadeClose: true,//点击阴影出关闭
+                btn: ['保存', '取消'],
+                // btnAlign: 'c',
+                shade: 0.8,
+                id: 'btnFrame', //设定一个id，防止重复弹出
+                btnAlign: 'c',
+                moveType: 1,//拖拽模式，0或者1
+                content: $("#btnManageFrame"),
+                success: function (layero, index) {
+                    
+                },
+                yes: function () {
+                    var btnArr = $("#btnManageForm").serializeArray();
+                    var arr = [];
+                    for (var i = 0; i < btnArr.length; i++) {
+                        arr[i] = btnArr[i].value;
+                    }
+                    $.ajax({
+                        dataType: 'JSON',
+                        type: "post",
+                        url: "/Menu/EditMenuButton",
+                        data: { menuCode: obj.data.MenuCode, arr: arr },
+                        success: function (data) {
+                            layer.msg(data.msg, { time: 2000 }, function () {
+                                layer.close(openIndex);
+                                renderTable();
+                            });
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+                        }
+                    })
+                }
+            });
+        }
+        form.render('select');
+    });
+
+    $.ajax({
+        dataType: 'JSON',
+        type: "Get",
+        url: "/Menu/Parent",
+        success: function (data) {
+            $('#selectMenuParent').empty();
+            var select = false;
+            $('#selectMenuParent').append(new Option('请选择', "00000000-0000-0000-0000-000000000000"));
+            $.each(data.data, function (index, item) {
+                $('#selectMenuParent').append(new Option(item.MenuName, item.MenuID));//往下拉菜单里添加元素
+                //设置value（这个值就可以是在更新的时候后台传递到前台的值）为2的值为默认选中
+                //$('#selectId').val(2);
+            })
+            form.render('select');
+        }
+    });
+    }
+
+    
+
+    function initForm(options){
+        //默认参数
+        var defaults = {
+            jsonValue:options,
+            isDebug:true   //是否需要调试，这个用于开发阶段，发布阶段请将设置为false，默认为false,true将会把name value打印出来
+        }
+        //设置参数
+        var setting = defaults;
+        var form = $("#form");
+        jsonValue = setting.jsonValue;
+        //如果传入的json字符串，将转为json对象
+        if($.type(setting.jsonValue) === "string"){
+            jsonValue = $.parseJSON(jsonValue);
+        }
+        //如果传入的json对象为空，则不做任何操作
+        if(!$.isEmptyObject(jsonValue)){
+            var debugInfo = "";
+            $.each(jsonValue,function(key,value){
+                //是否开启调试，开启将会把name value打印出来
+                if(setting.isDebug){
+                    console.log("name:"+key+"; value:"+value);
+                    debugInfo += "name:"+key+"; value:"+value+" || ";
+                }
+                var formField = form.find("[name='"+key+"']");
+                if($.type(formField[0]) === "undefined"){
+                    if(setting.isDebug){
+                        console.log("can not find name:["+key+"] in form!!!");    //没找到指定name的表单
+                    }
+                } else {
+                    var fieldTagName = formField[0].tagName.toLowerCase();
+                    if(fieldTagName == "input"){
+                        if(formField.attr("type") == "radio"){
+                            $("input:radio[name='"+key+"'][value='"+value+"']").attr("checked","checked");
+                        } else {
+                            formField.val(value);
+                            if (key == "IconCode") {
+                                $("#icon-IconCode").attr("class", "layui-icon " + value);
+                            }
+                        }
+                    } else if (fieldTagName == "select") {
+                        //do something special
+                        formField.val(value);
+                        //formField.find("option[value='" + value + "']").attr("selected", "selected");
+                    } else if(fieldTagName == "textarea"){
+                        //do something special
+                        formField.val(value);
+                    } else {
+                        formField.val(value);
+                    }
+
+                }
+            })
+            if(setting.isDebug){
+                console.log(debugInfo);
+            }
+        }
+        return form;    //返回对象，提供链式操作
+    }
+
+    function btnAdd() {
+        $('#form')[0].reset();
+        layui.form.render();
+        $("#MenuCode").attr("readonly", false);
+        var openIndex = layer.open({
+            type: 1,
+            title: "新增菜单",
+            shift: 2,
+            offset: 't',
+            area: ['330px', '500px'],
+            shadeClose: true,//点击阴影出关闭
+            btn: ['保存', '取消'],
+            // btnAlign: 'c',
+            shade: 0.8,
+            id: 'AddMenu', //设定一个id，防止重复弹出
+            btnAlign: 'c',
+            moveType: 1,//拖拽模式，0或者1
+            content: $("#detailFrame"),
+            success: function (layero, index) { },
+            yes: function () {
+                var menuObj = $("#form").serializeObject();
+                $.ajax({
+                    dataType: 'JSON',
+                    type: "post",
+                    url: "/Menu/Add",
+                    data: menuObj,
+                    success: function (data) {
+                        layer.msg(data.msg, { time: 2000 }, function () {
+                            layer.close(openIndex);
+                            renderTable();
+                        });
+                        //layer.alert(data.msg, {
+                        //    title: '编辑数据提示'
+                        //}, function () {
+                        //    layer.close(openIndex);
+                        //})
+
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+                    }
+                })
+                return;
+            }
+        });
+    }
+
+    function iconChange() {
+        $("#icon-IconCode").attr("class", "layui-icon " + $("#IconCode").val());
+    }
+
+    function Del(id) {
+        $.ajax({
+            dataType: 'JSON',
+            type: "post",
+            url: "/Menu/Del?id=" + id,
+            success: function (data) {
+                layer.msg(data.msg);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+            }
+        })
+    }
+
+    $.fn.serializeObject = function () {
+        var o = {};
+        var a = this.serializeArray();
+        $.each(a, function() {
+            if (o[this.name] !== undefined) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+        return o;
+    };
+</script>

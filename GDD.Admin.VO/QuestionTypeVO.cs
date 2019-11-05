@@ -11,5 +11,6 @@ namespace GDD.Admin.VO
         public string QuestionTypeID { get; set; }
         public string QuestionTypeName { get; set; }
         public string QuestionnaireTypeName { get; set; }
+        public int QuestionTypeNumber { get; set; }
     }
 }

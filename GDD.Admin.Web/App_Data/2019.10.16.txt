@@ -1,0 +1,101 @@
+2019-10-16 09:13:48,548 线程ID:[1] 日志级别:[INFO ] : [AppStart]
+2019-10-16 09:13:48,570 线程ID:[1] 日志级别:[WARN ] : [Warning]
+2019-10-16 09:13:48,570 线程ID:[1] 日志级别:[ERROR] : [Error]
+2019-10-16 09:13:48,574 线程ID:[1] 日志级别:[FATAL] : [Fatal]
+2019-10-16 09:13:56,677 线程ID:[16] 日志级别:[INFO ] : [登录成功]
+2019-10-16 09:14:22,464 线程ID:[16] 日志级别:[INFO ] : [查询成功]
+2019-10-16 09:14:22,897 线程ID:[14] 日志级别:[INFO ] : [查询成功]
+2019-10-16 09:14:22,949 线程ID:[19] 日志级别:[INFO ] : [查询成功]
+2019-10-16 09:23:28,308 线程ID:[30] 日志级别:[INFO ] : [登录成功]
+2019-10-16 09:23:31,925 线程ID:[35] 日志级别:[INFO ] : [登录成功]
+2019-10-16 09:23:42,085 线程ID:[30] 日志级别:[INFO ] : [查询成功]
+2019-10-16 09:23:42,491 线程ID:[43] 日志级别:[INFO ] : [查询成功]
+2019-10-16 09:23:42,515 线程ID:[32] 日志级别:[INFO ] : [查询成功]
+2019-10-16 09:23:46,748 线程ID:[46] 日志级别:[INFO ] : [查询成功]
+2019-10-16 09:23:47,104 线程ID:[31] 日志级别:[INFO ] : [查询成功]
+2019-10-16 09:23:47,295 线程ID:[22] 日志级别:[INFO ] : [查询成功]
+2019-10-16 09:23:48,793 线程ID:[47] 日志级别:[INFO ] : [查询成功]
+2019-10-16 09:23:50,341 线程ID:[44] 日志级别:[INFO ] : [查询成功]
+2019-10-16 09:23:52,991 线程ID:[36] 日志级别:[INFO ] : [查询成功]
+2019-10-16 09:23:53,037 线程ID:[29] 日志级别:[INFO ] : [查询成功]
+2019-10-16 09:25:24,901 线程ID:[14] 日志级别:[INFO ] : [查询成功]
+2019-10-16 09:25:27,538 线程ID:[44] 日志级别:[INFO ] : [查询成功]
+2019-10-16 09:25:27,562 线程ID:[46] 日志级别:[INFO ] : [查询成功]
+2019-10-16 09:26:20,907 线程ID:[37] 日志级别:[INFO ] : [查询成功]
+2019-10-16 09:26:21,218 线程ID:[47] 日志级别:[INFO ] : [查询成功]
+2019-10-16 09:26:21,262 线程ID:[26] 日志级别:[INFO ] : [查询成功]
+2019-10-16 09:26:29,757 线程ID:[36] 日志级别:[INFO ] : [删除成功]
+2019-10-16 09:26:32,277 线程ID:[35] 日志级别:[INFO ] : [删除成功]
+2019-10-16 09:26:35,964 线程ID:[43] 日志级别:[INFO ] : [删除成功]
+2019-10-16 09:26:38,325 线程ID:[15] 日志级别:[INFO ] : [查询成功]
+2019-10-16 09:26:41,391 线程ID:[42] 日志级别:[INFO ] : [查询成功]
+2019-10-16 14:27:34,032 线程ID:[1] 日志级别:[INFO ] : [AppStart]
+2019-10-16 14:27:34,040 线程ID:[1] 日志级别:[WARN ] : [Warning]
+2019-10-16 14:27:34,040 线程ID:[1] 日志级别:[ERROR] : [Error]
+2019-10-16 14:27:34,041 线程ID:[1] 日志级别:[FATAL] : [Fatal]
+2019-10-16 14:27:57,749 线程ID:[15] 日志级别:[INFO ] : [登录成功]
+2019-10-16 14:28:00,558 线程ID:[18] 日志级别:[INFO ] : [查询成功]
+2019-10-16 14:28:00,603 线程ID:[19] 日志级别:[INFO ] : [查询成功]
+2019-10-16 14:28:01,117 线程ID:[20] 日志级别:[INFO ] : [查询成功]
+2019-10-16 14:28:06,252 线程ID:[10] 日志级别:[INFO ] : [查询成功]
+2019-10-16 14:28:06,325 线程ID:[6] 日志级别:[INFO ] : [查询成功]
+2019-10-16 14:28:09,539 线程ID:[18] 日志级别:[INFO ] : [查询成功]
+2019-10-16 14:28:09,561 线程ID:[13] 日志级别:[INFO ] : [查询成功]
+2019-10-16 14:28:12,470 线程ID:[17] 日志级别:[INFO ] : [查询成功]
+2019-10-16 14:28:56,050 线程ID:[16] 日志级别:[INFO ] : [添加成功]
+2019-10-16 14:28:58,632 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-10-16 14:29:00,114 线程ID:[14] 日志级别:[INFO ] : [查询成功]
+2019-10-16 14:29:01,243 线程ID:[19] 日志级别:[INFO ] : [查询成功]
+2019-10-16 14:29:01,441 线程ID:[6] 日志级别:[INFO ] : [查询成功]
+2019-10-16 14:29:01,624 线程ID:[10] 日志级别:[INFO ] : [查询成功]
+2019-10-16 14:29:01,855 线程ID:[20] 日志级别:[INFO ] : [查询成功]
+2019-10-16 14:29:02,065 线程ID:[11] 日志级别:[INFO ] : [查询成功]
+2019-10-16 14:29:02,250 线程ID:[9] 日志级别:[INFO ] : [查询成功]
+2019-10-16 14:29:02,426 线程ID:[17] 日志级别:[INFO ] : [查询成功]
+2019-10-16 14:29:02,609 线程ID:[16] 日志级别:[INFO ] : [查询成功]
+2019-10-16 14:29:02,801 线程ID:[10] 日志级别:[INFO ] : [查询成功]
+2019-10-16 14:29:02,987 线程ID:[20] 日志级别:[INFO ] : [查询成功]
+2019-10-16 14:29:03,162 线程ID:[11] 日志级别:[INFO ] : [查询成功]
+2019-10-16 14:29:03,362 线程ID:[12] 日志级别:[INFO ] : [查询成功]
+2019-10-16 14:29:33,922 线程ID:[17] 日志级别:[INFO ] : [查询成功]
+2019-10-16 14:29:33,968 线程ID:[15] 日志级别:[INFO ] : [查询成功]
+2019-10-16 14:29:35,297 线程ID:[11] 日志级别:[INFO ] : [查询成功]
+2019-10-16 14:29:35,313 线程ID:[18] 日志级别:[INFO ] : [查询成功]
+2019-10-16 14:29:38,321 线程ID:[20] 日志级别:[INFO ] : [修改成功]
+2019-10-16 14:29:41,565 线程ID:[6] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Models.Questionnaire, GDD.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.QuestionnaireVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-10-16 14:29:42,792 线程ID:[14] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Models.Questionnaire, GDD.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.QuestionnaireVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-10-16 14:29:43,248 线程ID:[20] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Models.Questionnaire, GDD.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.QuestionnaireVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-10-16 14:29:43,424 线程ID:[9] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Models.Questionnaire, GDD.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.QuestionnaireVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]
+2019-10-16 14:29:59,810 线程ID:[1] 日志级别:[INFO ] : [AppStart]
+2019-10-16 14:29:59,819 线程ID:[1] 日志级别:[WARN ] : [Warning]
+2019-10-16 14:29:59,820 线程ID:[1] 日志级别:[ERROR] : [Error]
+2019-10-16 14:29:59,821 线程ID:[1] 日志级别:[FATAL] : [Fatal]
+2019-10-16 14:30:05,573 线程ID:[11] 日志级别:[INFO ] : [登录成功]
+2019-10-16 14:30:13,565 线程ID:[13] 日志级别:[INFO ] : [查询成功]
+2019-10-16 14:30:13,610 线程ID:[14] 日志级别:[INFO ] : [查询成功]
+2019-10-16 14:30:14,137 线程ID:[12] 日志级别:[INFO ] : [查询成功]
+2019-10-16 14:30:14,865 线程ID:[12] 日志级别:[INFO ] : [查询成功]
+2019-10-16 14:30:14,918 线程ID:[11] 日志级别:[INFO ] : [查询成功]
+2019-10-16 14:30:15,702 线程ID:[12] 日志级别:[INFO ] : [查询成功]
+2019-10-16 14:30:16,378 线程ID:[12] 日志级别:[INFO ] : [查询成功]
+2019-10-16 14:30:16,485 线程ID:[13] 日志级别:[ERROR] : [Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[GDD.Models.Questionnaire, GDD.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[GDD.Admin.VO.QuestionnaireVO, GDD.Admin.VO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]]

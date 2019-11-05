@@ -19,6 +19,9 @@ namespace GDD.Admin.VO
         public string IsRelation { get; set; }
         public string State { get; set; }
         public string QuestionnaireTypeName { get; set; }
-        
+
+        public string QWName { get; set; }
+        public string QuestionWarehouseID { get; set; }
+
     }
 }

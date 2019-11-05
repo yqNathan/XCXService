@@ -25,5 +25,6 @@ namespace GDD.Models
         public Nullable<int> IsRelation { get; set; }
         public Nullable<int> State { get; set; }
         public Nullable<System.Guid> QuestionnaireTypeID { get; set; }
+        public Nullable<System.Guid> QuestionWarehouseID { get; set; }
     }
 }

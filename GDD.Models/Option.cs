@@ -22,5 +22,6 @@ namespace GDD.Models
         public string Creator { get; set; }
         public Nullable<System.DateTime> ModifiedTime { get; set; }
         public string Modifier { get; set; }
+        public Nullable<System.Guid> QuestionnaireTypeID { get; set; }
     }
 }

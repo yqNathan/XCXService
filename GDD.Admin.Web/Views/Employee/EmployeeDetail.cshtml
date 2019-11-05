@@ -12,12 +12,12 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" type="text/css" id="theme" href="~/Content/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="~/LayUI/layui.css" />
+    @Styles.Render("~/bootstrap/css")
+    @Styles.Render("~/LayUI/layuicss")
     <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
     <style>
         /*无方框风格*/
-        .layui-breadcrumb {
+        /*.layui-breadcrumb {
             visibility: visible;
         }
 
@@ -27,10 +27,10 @@
 
         .layui-input-block {
             margin-left: 120px;
-        }
+        }*/
 
         /*方框风格*/
-        label {
+        /*label {
             margin-bottom: 0px;
         }
 
@@ -47,6 +47,14 @@
         }
         .layui-form{
             padding-left:120px;
+        }*/
+
+         .layui-breadcrumb {
+            visibility: visible;
+        }
+
+        .layui-form-pane {
+            margin-top: 2rem;
         }
     </style>
 </head>
@@ -107,10 +115,8 @@
                 </div>
             </div>
             <div class="layui-form-item">
-                <div class="layui-input-block">
                     <input class="layui-btn" lay-submit="" lay-filter="form" value="立即提交" />
                     <input type="reset" class="layui-btn layui-btn-primary" value="重置" />
-                </div>
             </div>
         </form>
     }

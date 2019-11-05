@@ -12,7 +12,7 @@ namespace GDD.Admin.DTO
         public System.Guid QuestionID { get; set; }
         public string QuestionTitle { get; set; }
         public Nullable<int> QuestionNumber { get; set; }
-        public Nullable<System.Guid> QuestionnaireID { get; set; }
+        public Nullable<System.Guid> QuestionWarehouseID { get; set; }
         public Nullable<System.Guid> QuestionTypeID { get; set; }
         public Nullable<System.Guid> OptionTypeID { get; set; }
         public Nullable<int> MaxOptionNumber { get; set; }

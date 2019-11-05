@@ -49,7 +49,7 @@ namespace GDD.Admin.Web.Controllers
 
         [HttpGet]
         [Route("List")]
-        public JsonResult GetQuestionList(string title, int pageIndex, int pageSize)
+        public JsonResult GetQuestionList(Guid? typeId, Guid? questionWarehouseId, Guid? optionTypeId, Guid? questionTypeId , string title, int pageIndex, int pageSize)
         {
             List<Question> list = null;
             List<QuestionVO> listvo = null;
@@ -57,8 +57,8 @@ namespace GDD.Admin.Web.Controllers
             int count = 0;
             try
             {
-                list = questionService.GetQuestionList(title, pageIndex, pageSize);
-                count = questionService.GetQuestionCount(Guid.Empty,title);
+                list = questionService.GetQuestionList(typeId, questionWarehouseId, optionTypeId, questionTypeId, title, pageIndex, pageSize);
+                count = questionService.GetQuestionCount(typeId,questionWarehouseId, optionTypeId, questionTypeId, title);
                 listvo = Mapper.Map<List<QuestionVO>>(list);
                 log.Info("查询成功");
             }

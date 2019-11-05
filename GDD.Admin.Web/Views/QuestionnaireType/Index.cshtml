@@ -1,39 +1,52 @@
-﻿@{
+﻿@using GDD.Common
+@{
     Layout = null;
 }
-<link rel="stylesheet" type="text/css" id="theme" href="~/Content/bootstrap.css" />
-<link rel="stylesheet" type="text/css" href="~/LayUI/layui.css" />
+@Styles.Render("~/bootstrap/css")
+@Styles.Render("~/LayUI/layuicss")
 <style>
+     .layui-form-label {
+        width: 80px;
+        margin-bottom: 0px;
+        padding: 9px 0;
+        vertical-align: central;
+        text-align: left;
+    }
+      .layui-input-block {
+        margin-left: 80px;
+    }
     .layui-btn {
         margin-left: 10px;
     }
+
 </style>
-<div class="demoTable">
-    搜索名称：
-    <div class="layui-inline">
-        <input class="layui-input" name="id" id="demoReload" autocomplete="off">
+<form class="layui-form" action="">
+    <div class="layui-form-item">
+        <div class="layui-row">
+            <div class="layui-inline">
+                <label class="layui-form-label">类型名称：</label>
+                <div class="layui-input-block">
+                    <input class="layui-input" name="id" id="demoReload" autocomplete="off" placeholder="请输入问卷类型名称">
+                </div>
+            </div>
+            @Html.Action("CreateButtonHtml", "Button", new { menu = "QuestionnaireType", type = Convert.ToInt32(BtnType.表格外) })
+        </div>
     </div>
-    <button class="layui-btn" data-type="reload" onclick="search();">搜索</button>
-    <button class="layui-btn " onclick="Add();"><i class="layui-icon layui-icon-add-1"></i></button>
-</div>
+</form>
 <table class="layui-hide" id="table" lay-filter="table"></table>
-<script type="text/javascript" src="~/Scripts/jquery-3.3.1.js"></script>
-<script type='text/javascript' src='~/Scripts/bootstrap.js'></script>
-<script type='text/javascript' src='~/Scripts/respond.js'></script>
-<script type='text/javascript' src='~/LayUI/layui.js'></script>
+@Scripts.Render("~/all/js")
 <script type="text/html" id="toolbarDemo">
     <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="refresh" id="btn-refresh" title="刷新表格"><i class="layui-icon layui-icon-refresh"></i></button>
     </div>
 </script>
 <script type="text/html" id="barDemo">
-    @*<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>*@
-    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    @Html.Action("CreateButtonHtml", "Button", new { menu = "QuestionnaireType", type = Convert.ToInt32(BtnType.表格操作列) })
 </script>
 <script>
-    layui.use(['table','form'], getList);
+    layui.use(['table', 'form'], getList);
 
-    function search() {
+    function Query() {
         getList();
     }
 
@@ -44,53 +57,73 @@
         var pageIndex = 1;
         var pageSize = 10;
         //监听工具条
+
+        var renderTable = function () {
+            layer.load(2);
+            table.render({
+                elem: '#table'
+                , url: '/QuestionnaireType/List?name=' + name
+                , toolbar: '#toolbarDemo'
+                , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                , loading: true
+                , page: true
+                , request: {
+                    pageName: 'pageIndex' //页码的参数名称，默认：page
+                 , limitName: 'pageSize' //每页数据量的参数名，默认：limit
+                }, response: {
+                    statusName: 'code' //规定数据状态的字段名称，默认：code
+                    , statusCode: 0 //规定成功的状态码，默认：0
+                    , msgName: 'msg' //规定状态信息的字段名称，默认：msg
+                    , countName: 'count' //规定数据总数的字段名称，默认：count
+                    , dataName: 'data' //规定数据列表的字段名称，默认：data
+                }
+                , limits: [10, 20, 50, 100, 1000, 10000, 1000000]
+                , cols: [[
+                    { field: 'QuestionnaireTypeID', title: 'ID', width: 0, hide: true }//style: 'display:none;'
+                    , { field: 'QuestionnaireTypeName', title: '类型名称' }
+                    , { fixed: 'right', width: 200, align: 'center', title: '操作', toolbar: '#barDemo' }
+                ]]
+                , page: true
+                , done: function () {
+                    layer.closeAll('loading');
+                }
+            });
+        }
+        renderTable();
+        table.on('toolbar(table)', function (obj) {
+            var data = obj.data;
+            switch (obj.event) {
+                case 'refresh':
+                    renderTable();
+                    break;
+            };
+        });
         table.on('tool(table)', function (obj) {
             var data = obj.data;
-            if (obj.event === 'detail') {
-                layer.msg('ID：' + data.QuestionnaireTypeID + ' 的查看操作');
-            } else if (obj.event === 'del') {
-                layer.confirm('真的删除行么', function (index) {
-                    Del(data.QuestionnaireTypeID);
-                    obj.del();
-                    layer.close(index);
-                });
-            } else if (obj.event === 'edit') {
-                console.log(JSON.stringify(data));
-                location.href = '/QuestionnaireType/QuestionnaireTypeDetail?obj=' + JSON.stringify(data);
-                //var param = "1";
-                //RedirectToRoute(new { controller: "QuestionnaireType", action: "QuestionnaireDetail", id: 123 });
-                //layer.alert('编辑行：<br>' + JSON.stringify(data))
-            }
-        });
-
-        table.render({
-            elem: '#table'
-            , url: '/QuestionnaireType/List?name=' + name
-            , toolbar: '#toolbarDemo'
-            , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
-            , loading: true
-            , page: true
-            , request: {
-                pageName: 'pageIndex' //页码的参数名称，默认：page
-             , limitName: 'pageSize' //每页数据量的参数名，默认：limit
-            }, response: {
-                statusName: 'code' //规定数据状态的字段名称，默认：code
-                , statusCode: 0 //规定成功的状态码，默认：0
-                , msgName: 'msg' //规定状态信息的字段名称，默认：msg
-                , countName: 'count' //规定数据总数的字段名称，默认：count
-                , dataName: 'data' //规定数据列表的字段名称，默认：data
-            }
-            , limits: [10, 20, 50, 100, 1000, 10000, 1000000]
-            , cols: [[
-                { field: 'QuestionnaireTypeID', title: 'ID', width: 0, hide: true }//style: 'display:none;'
-                , { field: 'QuestionnaireTypeName', title: '类型名称' }
-                , { fixed: 'right', width: 178, align: 'center', title: '操作', toolbar: '#barDemo' }
-            ]]
-            , page: true
+            switch (obj.event) {
+                case 'detail':
+                    layer.msg('ID：' + data.QuestionnaireTypeID + ' 的查看操作');
+                    break;
+                case 'btnDel':
+                    layer.confirm('真的删除行么', function (index) {
+                        Del(data.QuestionnaireTypeID);
+                        obj.del();
+                        layer.close(index);
+                    });
+                    break;
+                case 'btnEdit':
+                    //$("#newPage").attr("src", pageTarget); 再试一次
+                    location.href = '/QuestionnaireType/QuestionnaireTypeDetail?obj=' + JSON.stringify(data);
+                    //location.replace("/QuestionnaireType/QuestionnaireTypeDetail)
+                    @*window.location.href = '@Url.Action("QuestionnaireTypeDetail", "QuestionnaireType")' + '?obj=' + JSON.stringify(data);*@
+                    //window.open("/QuestionnaireType/QuestionnaireTypeDetail?obj=" + JSON.stringify(data));
+                    //window.location.hash = '/QuestionnaireType/QuestionnaireTypeDetail?obj=' + JSON.stringify(data);
+                    break;
+            };
         });
     }
 
-    function Add() {
+    function btnAdd() {
         location.href = '/QuestionnaireType/QuestionnaireTypeDetail';
     }
 
@@ -98,7 +131,7 @@
         $.ajax({
             dataType: 'JSON',
             type: "post",
-            url: "/QuestionnaireType/Del?id="+id,
+            url: "/QuestionnaireType/Del?id=" + id,
             success: function (data) {
                 layer.msg(data.msg);
             },

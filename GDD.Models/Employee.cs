@@ -23,12 +23,12 @@ namespace GDD.Models
         public Nullable<System.Guid> FunctionalgroupID { get; set; }
         public Nullable<System.Guid> JobTypeID { get; set; }
         public Nullable<System.Guid> RoleID { get; set; }
-        public Nullable<System.Guid> DegreeID { get; set; }
         public string Position { get; set; }
         public Nullable<int> Status { get; set; }
         public Nullable<System.DateTime> CreateTime { get; set; }
         public Nullable<System.DateTime> HireTime { get; set; }
         public Nullable<System.DateTime> LoginTime { get; set; }
         public string Password { get; set; }
+        public string OpenID { get; set; }
     }
 }

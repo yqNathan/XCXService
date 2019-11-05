@@ -1,7 +1,9 @@
-﻿using GDD.Admin.Business.BLL;
+﻿using AutoMapper;
+using GDD.Admin.Business.BLL;
 using GDD.Admin.Business.IBLL;
 using GDD.Admin.Web.Filter;
 using GDD.Models;
+using GDD.Admin.VO;
 using log4net;
 using Newtonsoft.Json;
 using System;
@@ -48,15 +50,17 @@ namespace GDD.Admin.Web.Controllers
 
         [HttpGet]
         [Route("List")]
-        public JsonResult GetOptionList(string name, int pageIndex, int pageSize)
+        public JsonResult GetOptionList(string name, Guid? QuestionnaireTypeID, int pageIndex, int pageSize)
         {
             List<Option> list = null;
+            List<OptionVO> listvo = null;
             JsonResult result = new JsonResult();
             int count = 0;
             try
             {
-                list = optionService.GetOptionList(name, pageIndex, pageSize);
-                count = optionService.GetOptionCount(name);
+                list = optionService.GetOptionList(name, QuestionnaireTypeID, pageIndex, pageSize);
+                count = optionService.GetOptionCount(name, QuestionnaireTypeID);
+                listvo = Mapper.Map<List<OptionVO>>(list);
                 log.Info("查询成功");
             }
             catch (Exception e)
@@ -65,7 +69,7 @@ namespace GDD.Admin.Web.Controllers
             }
             finally
             {
-                result = Json(new { code = 0, msg = "查询成功", count = count, data = list }, JsonRequestBehavior.AllowGet);
+                result = Json(new { code = 0, msg = "查询成功", count = count, data = listvo }, JsonRequestBehavior.AllowGet);
             }
             return result;
         }
@@ -101,13 +105,14 @@ namespace GDD.Admin.Web.Controllers
             {
                 option.OptionID = Guid.NewGuid();
                 option.CreateTime = DateTime.Now;
-                option.Creator = (Session["user"] as Employee)?.EmployeeName;
+                option.Creator = (Session["user"] as SYS_User)?.UserName;
                 bool isSuccess = optionService.InsertOption(option);
                 log.Info("添加成功");
             }
             catch (Exception e)
             {
                 log.Error(e.Message);
+                result = Json(new { msg = "添加失败" }, JsonRequestBehavior.AllowGet);
             }
             finally
             {
@@ -125,7 +130,7 @@ namespace GDD.Admin.Web.Controllers
             try
             {
                 option.ModifiedTime = DateTime.Now;
-                option.Modifier = (Session["user"] as Employee)?.EmployeeName;
+                option.Modifier = (Session["user"] as SYS_User)?.UserName;
                 bool isSuccess = optionService.UpdateOption(option);
                 if (isSuccess)
                 {
@@ -165,6 +170,7 @@ namespace GDD.Admin.Web.Controllers
             catch (Exception e)
             {
                 log.Error(e.Message);
+                result = Json(new { msg = "删除失败" }, JsonRequestBehavior.AllowGet);
             }
             finally
             {

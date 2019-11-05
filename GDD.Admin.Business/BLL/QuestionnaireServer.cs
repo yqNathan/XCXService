@@ -93,6 +93,7 @@ namespace GDD.Admin.Business.BLL
                 {
                     Questionnaire questionnaire = db.Questionnaire.SingleOrDefault(p => p.QuestionnaireID == obj.QuestionnaireID);
                     questionnaire.QuestionnaireName = obj.QuestionnaireName;
+                    questionnaire.QuestionWarehouseID = obj.QuestionWarehouseID;
                     questionnaire.Version = obj.Version;
                     questionnaire.LowestScore = obj.LowestScore;
                     questionnaire.IsRelation = obj.IsRelation;
@@ -109,7 +110,6 @@ namespace GDD.Admin.Business.BLL
             }
             
         }
-
 
         /// <summary>
         /// 删除问卷
@@ -139,7 +139,6 @@ namespace GDD.Admin.Business.BLL
                 return questionnaire?.QuestionnaireName;
             }
         }
-
 
         /// <summary>
         /// 获取已提交人员总数

@@ -19,7 +19,7 @@ namespace GDD.Admin.Web.Controllers
     [RoutePrefix("Import")]
     public class ImportController : Controller
     {
-        private static readonly ILog log = LogManager.GetLogger(typeof(QuestionnaireMGTController));
+        private static readonly ILog log = LogManager.GetLogger(typeof(QuestionnaireController));
         IDepartmentService departmentService;
         IFunctionalgroupService functionalgroupService;
         IImportService importService;
@@ -203,7 +203,7 @@ namespace GDD.Admin.Web.Controllers
                 option.OptionNumber = Convert.ToInt32(dt.Rows[i]["序号"].ToString().Replace(" ", ""));
                 option.OptionScore = Convert.ToInt32(dt.Rows[i]["分值"].ToString().Replace(" ", ""));
                 option.CreateTime = DateTime.Now;
-                option.Creator = (Session["user"] as Employee)?.EmployeeName;
+                option.Creator = (Session["user"] as SYS_User)?.UserName;
                 options.Add(option);
             }
             importService.ImportOption(options);
@@ -226,7 +226,7 @@ namespace GDD.Admin.Web.Controllers
                 questionType.QuestionnaireTypeID = new Guid(dt.Rows[i]["问卷类型ID"].ToString().Replace(" ", ""));
                 questionType.QuestionTypeName =dt.Rows[i]["题目类型名称"].ToString().Replace(" ", "");
                 questionType.CreateTime = DateTime.Now;
-                questionType.Creator = (Session["user"] as Employee)?.EmployeeName;
+                questionType.Creator = (Session["user"] as SYS_User)?.UserName;
                 questionTypes.Add(questionType);
             }
             importService.ImportQuestionType(questionTypes);

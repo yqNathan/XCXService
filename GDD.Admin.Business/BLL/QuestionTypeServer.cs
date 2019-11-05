@@ -93,6 +93,7 @@ namespace GDD.Admin.Business.BLL
                     QuestionType questionType = db.QuestionType.SingleOrDefault(p => p.QuestionTypeID == obj.QuestionTypeID);
                     questionType.QuestionnaireTypeID = obj.QuestionnaireTypeID;
                     questionType.QuestionTypeName = obj.QuestionTypeName;
+                    questionType.QuestionTypeNumber = obj.QuestionTypeNumber;
                     questionType.ModifiedTime = obj.ModifiedTime;
                     questionType.Modifier = obj.Modifier;
                     return db.SaveChanges() > 0;

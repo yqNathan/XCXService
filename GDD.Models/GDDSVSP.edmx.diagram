@@ -5,14 +5,12 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="cefdb3f36b104d8dbee083fafb12d9a7" Name="Diagram1">
-        <EntityTypeShape EntityType="GDDSVSPModel.Degree" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="GDDSVSPModel.Department" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="GDDSVSPModel.Dormitory" Width="1.5" PointX="0.75" PointY="3.75" />
         <EntityTypeShape EntityType="GDDSVSPModel.Employee" Width="1.5" PointX="2.75" PointY="3.75" />
         <EntityTypeShape EntityType="GDDSVSPModel.FunctionalGroup" Width="1.5" PointX="4.75" PointY="0.75" />
         <EntityTypeShape EntityType="GDDSVSPModel.JobType" Width="1.5" PointX="4.75" PointY="3.75" />
         <EntityTypeShape EntityType="GDDSVSPModel.Manager" Width="1.5" PointX="6.75" PointY="0.75" />
-        <EntityTypeShape EntityType="GDDSVSPModel.Menu" Width="1.5" PointX="6.75" PointY="3.75" />
         <EntityTypeShape EntityType="GDDSVSPModel.Option" Width="1.5" PointX="4.75" PointY="6.75" />
         <EntityTypeShape EntityType="GDDSVSPModel.OptionType" Width="1.5" PointX="6.75" PointY="6.75" />
         <EntityTypeShape EntityType="GDDSVSPModel.Question" Width="1.5" PointX="8.75" PointY="0.75" />
@@ -20,10 +18,16 @@
         <EntityTypeShape EntityType="GDDSVSPModel.QuestionnaireSubmission" Width="1.5" PointX="2.75" PointY="9.75" />
         <EntityTypeShape EntityType="GDDSVSPModel.QuestionOptionMapping" Width="1.5" PointX="4.75" PointY="9.75" />
         <EntityTypeShape EntityType="GDDSVSPModel.QuestionType" Width="1.5" PointX="10.75" PointY="0.75" />
-        <EntityTypeShape EntityType="GDDSVSPModel.Role" Width="1.5" PointX="10.75" PointY="3.75" />
-        <EntityTypeShape EntityType="GDDSVSPModel.RoleMenuMapping" Width="1.5" PointX="10.75" PointY="6.75" />
         <EntityTypeShape EntityType="GDDSVSPModel.QuestionnaireType" Width="1.5" PointX="7.375" PointY="11.75" />
         <EntityTypeShape EntityType="GDDSVSPModel.QuestionAnswerMapping" Width="1.5" PointX="11.375" PointY="9.75" />
+        <EntityTypeShape EntityType="GDDSVSPModel.QuestionWarehouse" Width="1.5" PointX="0.75" PointY="12.75" />
+        <EntityTypeShape EntityType="GDDSVSPModel.SYS_Menu" Width="1.5" PointX="13.375" PointY="0.75" />
+        <EntityTypeShape EntityType="GDDSVSPModel.SYS_REL_MenuButton" Width="1.5" PointX="13.375" PointY="4.75" />
+        <EntityTypeShape EntityType="GDDSVSPModel.SYS_REL_RoleMenuButton" Width="1.5" PointX="13.375" PointY="7.75" />
+        <EntityTypeShape EntityType="GDDSVSPModel.SYS_Role" Width="1.5" PointX="9.375" PointY="13.75" />
+        <EntityTypeShape EntityType="GDDSVSPModel.UserRoleRelation" Width="1.5" PointX="13.375" PointY="10.75" />
+        <EntityTypeShape EntityType="GDDSVSPModel.SYS_Button" Width="1.5" PointX="3.375" PointY="12.75" />
+        <EntityTypeShape EntityType="GDDSVSPModel.SYS_User" Width="1.5" PointX="11.375" PointY="13.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

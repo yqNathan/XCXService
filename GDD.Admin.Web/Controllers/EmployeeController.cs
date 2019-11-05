@@ -78,6 +78,7 @@ namespace GDD.Admin.Web.Controllers
                 else
                 {
                     Session.Add("user", obj);
+                    
                     JsonCache.SetCache("employee", obj, System.DateTime.Now.AddMinutes(10), TimeSpan.Zero);
                     msg = "登录成功";
                 }
@@ -90,14 +91,14 @@ namespace GDD.Admin.Web.Controllers
             finally
             {
                 //result = Json(new { code = code, msg = msg,  data = obj }, JsonRequestBehavior.AllowGet);
-                result = Json(new Result {  Code = code,  Msg = msg, Data = obj }, JsonRequestBehavior.AllowGet);
+                result = Json(new{  Code = code,  Msg = msg, Data = obj , SessionID = Session.SessionID }, JsonRequestBehavior.AllowGet);
             }
             return result;
         }
 
         [HttpGet]
         [Route("List")]
-        public JsonResult GetEmployeeList(string name, int pageIndex, int pageSize)
+        public JsonResult GetEmployeeList(string name,Guid? departmentId, Guid? functionalGroupId, int pageIndex, int pageSize)
         {
             List<Employee> list = null;
             List<EmployeeVO> listvo = null;
@@ -105,8 +106,8 @@ namespace GDD.Admin.Web.Controllers
             int count = 0;
             try
             {
-                list = employeeService.GetEmployeeList(name, pageIndex, pageSize);
-                count = employeeService.GetEmployeeCount(name,Guid.Empty);
+                list = employeeService.GetEmployeeList(name, departmentId, functionalGroupId ,pageIndex, pageSize);
+                count = employeeService.GetEmployeeCount(name, departmentId, functionalGroupId);
                 listvo = Mapper.Map<List<EmployeeVO>>(list);
                 log.Info("查询成功");
             }
@@ -123,7 +124,7 @@ namespace GDD.Admin.Web.Controllers
 
         [HttpGet]
         [Route("SubmittedList")]
-        public JsonResult GetSubmittedEmployeeList(string name, Guid? departmentId, Guid? questionnaireId, int pageIndex, int pageSize , int isSubmit)
+        public JsonResult GetSubmittedEmployeeList(string name, Guid? departmentId,Guid? functionalGroupId, Guid? questionnaireId, int pageIndex, int pageSize , int isSubmit)
         {
             List<SubmittedEmployee> list = null;
             List<SubmittedEmployeeVO> listvo = null;
@@ -131,8 +132,8 @@ namespace GDD.Admin.Web.Controllers
             int count = 0;
             try
             {
-                list = employeeService.GetSubmittedEmployeeList(name, departmentId, questionnaireId, pageIndex, pageSize, isSubmit);
-                count = employeeService.GetSubmittedEmployeeCount(name, departmentId, questionnaireId, isSubmit);
+                list = employeeService.GetSubmittedEmployeeList(name, departmentId, functionalGroupId, questionnaireId, pageIndex, pageSize, isSubmit);
+                count = employeeService.GetSubmittedEmployeeCount(name, departmentId, functionalGroupId,questionnaireId, isSubmit);
                 listvo = Mapper.Map<List<SubmittedEmployeeVO>>(list);
                 log.Info("查询成功");
             }

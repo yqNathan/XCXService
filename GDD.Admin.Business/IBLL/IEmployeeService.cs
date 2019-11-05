@@ -24,7 +24,7 @@ namespace GDD.Admin.Business.IBLL
         /// <param name="pageIndex">当前页</param>
         /// <param name="pageSize">分页大小</param>
         /// <returns></returns>
-        List<Employee> GetEmployeeList(string name, int pageIndex, int pageSize);
+        List<Employee> GetEmployeeList(string name, Guid? departmentId, Guid? functionalGroupId , int pageIndex, int pageSize);
 
         /// <summary>
         /// 获取问卷提交人员集合
@@ -36,7 +36,7 @@ namespace GDD.Admin.Business.IBLL
         /// <param name="pageSize">分页大小</param>
         /// <param name="isSubmit">是否已提交  0：否  1：是</param>
         /// <returns></returns>
-        List<SubmittedEmployee> GetSubmittedEmployeeList(string name, Guid? departmentId, Guid? questionnaireId, int pageIndex, int pageSize, int isSubmit);
+        List<SubmittedEmployee> GetSubmittedEmployeeList(string name, Guid? departmentId, Guid? functionalGroupId, Guid? questionnaireId, int pageIndex, int pageSize, int isSubmit);
 
         /// <summary>
         /// 获取人员总数
@@ -44,7 +44,7 @@ namespace GDD.Admin.Business.IBLL
         /// <param name="name">人员名称</param>
         /// <param name="departmentId">人员名称</param>
         /// <returns></returns>
-        int GetEmployeeCount(string name, Guid? departmentId);
+        int GetEmployeeCount(string name, Guid? departmentId, Guid? functionalGroupId);
 
         /// <summary>
         /// 添加人员
@@ -76,6 +76,6 @@ namespace GDD.Admin.Business.IBLL
         /// <param name="questionnaireId">问卷ID</param>
         /// <param name="isSubmit">是否已提交  0：否  1：是</param>
         /// <returns></returns>
-        int GetSubmittedEmployeeCount(string name, Guid? departmentId, Guid? questionnaireId, int isSubmit);
+        int GetSubmittedEmployeeCount(string name, Guid? departmentId, Guid? functionalGroupId, Guid? questionnaireId, int isSubmit);
     }
 }

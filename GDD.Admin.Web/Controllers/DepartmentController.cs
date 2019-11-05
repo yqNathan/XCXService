@@ -15,7 +15,7 @@ namespace GDD.Admin.Web.Controllers
     public class DepartmentController : BaseController
     {
         IDepartmentService departmentService;
-        private static readonly ILog log = LogManager.GetLogger(typeof(QuestionnaireMGTController));
+        private static readonly ILog log = LogManager.GetLogger(typeof(QuestionnaireController));
 
         public DepartmentController()
         {

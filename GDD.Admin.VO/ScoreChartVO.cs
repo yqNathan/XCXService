@@ -22,6 +22,8 @@ namespace GDD.Admin.VO
         public int? OptionScore { get; set; }
         public string OptionReason { get; set; }
         public DateTime? CreateTime { get; set; }
+        public Guid? OptionTypeID { get; set; }
+        public string OptionTypeName { get; set; }
     }
 
     public class ScoreChartVO
@@ -34,6 +36,7 @@ namespace GDD.Admin.VO
         public string QuestionNumber { get; set; }
         public string OptionNumber { get; set; }
         public string OptionName { get; set; }
+        public string OptionTypeName { get; set; }
         public string OptionScore { get; set; }
         public string OptionReason { get; set; }
         public string CreateTime { get; set; }

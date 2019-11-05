@@ -1,0 +1,368 @@
+﻿@using GDD.Common
+@{
+    Layout = null;
+}
+@Styles.Render("~/bootstrap/css")
+@Styles.Render("~/LayUI/layuicss")
+<style>
+     .w-auto {
+        width: auto;
+    }
+
+    .w-fixed {
+        width: 100px;
+    }
+
+    .layui-layer-shade {
+        opacity: 0.1 !important;
+    }
+
+    ._margin {
+        /*margin-left:20px;*/
+        margin-top: 18px;
+    }
+
+    a {
+        color: #01AAED;
+    }
+</style>
+
+<form class="layui-form" action="">
+    <div class="layui-form-item">
+        <div class="layui-row">
+            <div class="layui-inline">
+                <label class="layui-form-label  w-auto">按钮名称：</label>
+                <div class="layui-input-inline">
+                    <input class="layui-input" name="id" id="BtnName" autocomplete="off" placeholder="请输入按钮名称">
+                </div>
+            </div>
+            @Html.Action("CreateButtonHtml", "Button", new { menu = "BtnList", type = Convert.ToInt32(BtnType.表格外) })
+        </div>
+    </div>
+</form>
+
+<div id="detail-main" style="display: none;">
+    <form class="layui-form _margin" action="" id="form">
+        <input type="hidden" name="ButtonID" value="">
+        <div class="layui-form-item">
+            <label class="layui-form-label w-fixed">按钮名称</label>
+            <div class="layui-input-inline">
+                <input type="text" name="BtnName" lay-verify="required" autocomplete="off" placeholder="请输入按钮名称" class="layui-input" value="" />
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label w-fixed">按钮代码</label>
+            <div class="layui-input-inline">
+                <input type="text" name="BtnCode" id="BtnCode" lay-verify="required" autocomplete="off" placeholder="请输入按钮代码" class="layui-input" value="" />
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label w-fixed">按钮描述</label>
+            <div class="layui-input-inline">
+                <input type="text" name="BtnDescribe" lay-verify="required" autocomplete="off" placeholder="请输入按钮描述" class="layui-input" value="" />
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label w-fixed">按钮位置</label>
+            <div class="layui-input-inline">
+                <select name="BtnType"  id="BtnType" lay-filter="BtnType">
+                    <option value="-1"></option>
+                    <option value="0">表格外</option>
+                    @*<option value="1">表格头部</option>*@
+                    <option value="2">表格操作列</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label w-fixed">显示样式</label>
+            <div class="layui-input-inline">
+                <select name="ShowType" id="ShowType" lay-filter="ShowType">
+                    <option value="-1"></option>
+                    <option value="0">纯图标</option>
+                    <option value="1">纯文字</option>
+                    <option value="2">图标加文字</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label w-fixed">排序号</label>
+            <div class="layui-input-inline">
+                <input type="text" name="BtnOrder" lay-verify="required" autocomplete="off" placeholder="请输入排序号" class="layui-input" value="" />
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label w-fixed">图标</label>
+            <div class="layui-input-inline">
+                <input type="text" name="BtnIcon" lay-verify="required" id="IconCode" autocomplete="off" placeholder="请输入图标编号" class="layui-input" value="" oninput="iconChange()" />
+            </div>
+            <div class="layui-form-mid layui-word-aux"><i id="icon-IconCode" class="layui-icon "></i></div>
+            <div class="layui-input-inline">
+                <a href="https://www.layui.com/doc/element/icon.html" target="_blank">图标编号链接</a>
+            </div>
+        </div>
+    </form>
+</div>
+<table class="layui-hide" id="table" lay-filter="table"></table>
+@Scripts.Render("~/all/js")
+<script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="refresh" id="btn-refresh" title="刷新表格"><i class="layui-icon layui-icon-refresh"></i></button>
+    </div>
+</script>
+<script type="text/html" id="barDemo">
+    @Html.Action("CreateButtonHtml", "Button", new { menu = "BtnList", type = Convert.ToInt32(BtnType.表格操作列) })
+</script>
+<script>
+    layui.use(['table', 'form'], getList);
+
+    function Query() {
+        getList();
+    }
+
+    function getList() {
+        var table = layui.table;
+        var form = layui.form;
+        var name = $("#BtnName").val();
+        var pageIndex = 1;
+        var pageSize = 10;
+        //监听工具条
+        table.on('tool(table)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'detail') {
+                layer.msg('ID：' + data.ButtonID + ' 的查看操作');
+            } else if (obj.event === 'btnDel') {
+                layer.confirm('真的删除行么', function (index) {
+                    Del(data.ButtonID);
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if (obj.event === 'btnEdit') {
+                initForm(data);
+                $("#BtnCode").attr("readonly", true);
+                //页面层-自定义
+                var openIndex = layer.open({
+                    type: 1,
+                    title: "编辑按钮",
+                    shift: 2,
+                    offset: 't',
+                    area: ['330px', '540px'],
+                    shadeClose: true,//点击阴影出关闭
+                    btn: ['保存', '取消'],
+                    // btnAlign: 'c',
+                    shade: 0.8,
+                    id: 'EditButton', //设定一个id，防止重复弹出
+                    btnAlign: 'c',
+                    moveType: 1,//拖拽模式，0或者1
+                    content: $("#detail-main"),
+                    success: function (layero, index) { },
+                    yes: function () {
+                        var btnObj = $("#form").serializeObject();
+                        $.ajax({
+                            dataType: 'JSON',
+                            type: "post",
+                            url: "/Button/Edit",
+                            data: btnObj,
+                            success: function (data) {
+                                layer.msg(data.msg, { time: 2000 }, function () {
+                                    layer.close(openIndex);
+                                    getList();
+                                });
+                            },
+                            error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+                            }
+                        })
+                        return;
+                    }
+                });
+            }
+            form.render('select');
+        });
+         
+
+        var renderTable = function () {
+            layer.load(2);
+            table.render({
+                elem: '#table'
+                , url: '/Button/List?name=' + name
+                , toolbar: '#toolbarDemo'
+                , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                , loading: true
+                , page: true
+                , request: {
+                    pageName: 'pageIndex' //页码的参数名称，默认：page
+                 , limitName: 'pageSize' //每页数据量的参数名，默认：limit
+                },
+                limits: [10, 20, 50, 100, 1000, 10000, 1000000],
+                response: {
+                    statusName: 'code' //规定数据状态的字段名称，默认：code
+                    , statusCode: 0 //规定成功的状态码，默认：0
+                    , msgName: 'msg' //规定状态信息的字段名称，默认：msg
+                    , countName: 'count' //规定数据总数的字段名称，默认：count
+                    , dataName: 'data' //规定数据列表的字段名称，默认：data
+                }
+                , cols: [[
+                   { field: 'ButtonID', title: 'ID', width: 0, hide: true }//style: 'display:none;'
+                    , { field: 'BtnCode', title: '代码' }
+                    , { field: 'BtnName', title: '名称' }
+                    , { field: 'BtnOrder', title: '排序号' }
+                    , { field: 'BtnDescribe', title: '描述' }
+                    , { field: 'BtnIcon', title: '图标', templet: function (d) { return '<i class="layui-icon ' + d.BtnIcon + '"></i>'; } }
+                    , { field: 'BtnType', title: '显示位置' }
+                    , { field: 'ShowType', title: '显示样式' }
+                    , { field: 'CreateTime', title: '创建时间', hide: true, }
+                    , { field: 'Creator', title: '创建人', hide: true }
+                    , { field: 'ModifiedTime', title: '修改时间', hide: true }
+                    , { field: 'Modifier', title: '修改人', hide: true }
+                    , { fixed: 'right', width: 200, align: 'center', title: '操作', toolbar: '#barDemo' }
+                ]]
+                , done: function () {
+                    layer.closeAll('loading');
+                }
+            });
+        }
+        renderTable();
+        table.on('toolbar(table)', function (obj) {
+            var data = obj.data;
+            switch (obj.event) {
+                case 'refresh':
+                    renderTable();
+                    break;
+            };
+        });
+    }
+
+    function initForm(options) {
+        //默认参数
+        var defaults = {
+            jsonValue: options,
+            isDebug: true   //是否需要调试，这个用于开发阶段，发布阶段请将设置为false，默认为false,true将会把name value打印出来
+        }
+        //设置参数
+        var setting = defaults;
+        var form = $("#form");
+        jsonValue = setting.jsonValue;
+        //如果传入的json字符串，将转为json对象
+        if ($.type(setting.jsonValue) === "string") {
+            jsonValue = $.parseJSON(jsonValue);
+        }
+        //如果传入的json对象为空，则不做任何操作
+        if (!$.isEmptyObject(jsonValue)) {
+            var debugInfo = "";
+            $.each(jsonValue, function (key, value) {
+                //是否开启调试，开启将会把name value打印出来
+                if (setting.isDebug) {
+                    console.log("name:" + key + "; value:" + value);
+                    debugInfo += "name:" + key + "; value:" + value + " || ";
+                }
+                var formField = form.find("[name='" + key + "']");
+                if ($.type(formField[0]) === "undefined") {
+                    if (setting.isDebug) {
+                        console.log("can not find name:[" + key + "] in form!!!");    //没找到指定name的表单
+                    }
+                } else {
+                    var fieldTagName = formField[0].tagName.toLowerCase();
+                    if (fieldTagName == "input") {
+                        if (formField.attr("type") == "radio") {
+                            $("input:radio[name='" + key + "'][value='" + value + "']").attr("checked", "checked");
+                        } else {
+                            formField.val(value);
+                            if (key == "BtnIcon") {
+                                $("#icon-IconCode").attr("class", "layui-icon " + value);
+                            }
+                        }
+                    } else if (fieldTagName == "select") {
+                        //do something special
+                        formField.val(value);
+                        //formField.find("option[value='" + value + "']").attr("selected", "selected");
+                    } else if (fieldTagName == "textarea") {
+                        //do something special
+                        formField.val(value);
+                    } else {
+                        formField.val(value);
+                    }
+
+                }
+            })
+            if (setting.isDebug) {
+                console.log(debugInfo);
+            }
+        }
+        return form;    //返回对象，提供链式操作
+    }
+
+    function btnAdd() {
+        $('#form')[0].reset();
+        $("#BtnCode").attr("readonly", false);
+        layui.form.render();
+        var openIndex = layer.open({
+            type: 1,
+            title: "新增按钮",
+            shift: 2,
+            offset: 't',
+            area: ['330px', '540px'],
+            shadeClose: true,//点击阴影出关闭
+            btn: ['保存', '取消'],
+            // btnAlign: 'c',
+            shade: 0.8,
+            id: 'AddButton', //设定一个id，防止重复弹出
+            btnAlign: 'c',
+            moveType: 1,//拖拽模式，0或者1
+            content: $("#detail-main"),
+            success: function (layero, index) { },
+            yes: function () {
+                var btnObj = $("#form").serializeObject();
+                $.ajax({
+                    dataType: 'JSON',
+                    type: "post",
+                    url: "/Button/Add",
+                    data: btnObj,
+                    success: function (data) {
+                        layer.msg(data.msg, { time: 2000 }, function () {
+                            layer.close(openIndex);
+                            getList();
+                        });
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+                    }
+                })
+                return;
+            }
+        });
+    }
+
+    function Del(id) {
+        $.ajax({
+            dataType: 'JSON',
+            type: "post",
+            url: "/Button/Del?id="+id,
+            success: function (data) {
+                layer.msg(data.msg);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+            }
+        })
+    }
+
+    function iconChange() {
+        $("#icon-IconCode").attr("class", "layui-icon " + $("#IconCode").val());
+    }
+
+    $.fn.serializeObject = function () {
+        var o = {};
+        var a = this.serializeArray();
+        $.each(a, function () {
+            if (o[this.name] !== undefined) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+        return o;
+    };
+</script>

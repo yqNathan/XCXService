@@ -15,10 +15,13 @@ namespace GDD.Admin.Business.AutoMapper
     public class QuestionnaireProfile : Profile
     {
         IQuestionnaireTypeService questionnaireTypeService = new QuestionnaireTypeServer();
+        IQuestionWarehouseService questionWarehouseService = new QuestionWarehouseServer();
         public QuestionnaireProfile()
         {
             CreateMap<Questionnaire, QuestionnaireVO>()
                 .ForMember(dto => dto.QuestionnaireID, (map) => map.MapFrom(m => m.QuestionnaireID.ToString()))
+                .ForMember(dto => dto.QuestionWarehouseID, (map) => map.MapFrom(m => m.QuestionWarehouseID.ToString()))
+                .ForMember(dto => dto.QWName, (map) => map.MapFrom(m => questionWarehouseService.GetQuestionWarehouseNameById(m.QuestionWarehouseID)))
                 .ForMember(dto => dto.QuestionnaireTypeName, (map) => map.MapFrom(m => questionnaireTypeService.GetQuestionnaireTypeNameById(m.QuestionnaireTypeID)))
                 .ForMember(dto => dto.CreateTime, (map) => map.MapFrom(m => m.CreateTime.Value.ToString("yyyy-MM-dd HH:mm:ss")))
                 .ForMember(dto => dto.IsRelation, (map) => map.MapFrom(m => ((QuestionnaireIsRelation)m.IsRelation).ToString() ))

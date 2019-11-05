@@ -25,11 +25,27 @@ namespace GDD.Admin.Business.BLL
         /// <param name="pageIndex">当前页</param>
         /// <param name="pageSize">分页大小</param>
         /// <returns>题目集合</returns>
-        public List<Question> GetQuestionList(string title, int pageIndex, int pageSize)
+        public List<Question> GetQuestionList(Guid? typeId ,Guid? questionWarehouseId , Guid? optionTypeId, Guid? questionTypeId, string title, int pageIndex, int pageSize)
         {
             using (var db = base.GDDSVSPDb)
             {
                 IQueryable<Question> baseQuery = db.Question;
+                if (questionWarehouseId != null && questionWarehouseId != Guid.Empty)
+                {
+                    baseQuery = baseQuery.Where(p => p.QuestionWarehouseID == questionWarehouseId);
+                }
+                if (optionTypeId != null && optionTypeId != Guid.Empty)
+                {
+                    baseQuery = baseQuery.Where(p => p.OptionTypeID == optionTypeId);
+                }
+                if (questionTypeId != null && questionTypeId != Guid.Empty)
+                {
+                    baseQuery = baseQuery.Where(p => p.QuestionTypeID == questionTypeId);
+                }
+                if (typeId != null && typeId != Guid.Empty)
+                {
+                    baseQuery = baseQuery.Where(p => p.QuestionnaireTypeID == typeId);
+                }
                 if (!String.IsNullOrEmpty(title))
                 {
                     baseQuery = baseQuery.Where(p => p.QuestionTitle.Contains(title));
@@ -44,14 +60,14 @@ namespace GDD.Admin.Business.BLL
         /// </summary>
         /// <param name="name">题目名称</param>
         /// <returns></returns>
-        public int GetQuestionCount(Guid? questionnaireId ,string title)
+        public int GetQuestionCount(Guid? typeId , Guid? questionWarehouseId , Guid? optionTypeId, Guid? questionTypeId, string title)
         {
             using (var db = base.GDDSVSPDb)
             {
                 IQueryable<Question> baseQuery = db.Question;
-                if (questionnaireId != null && questionnaireId != Guid.Empty)
+                if (questionWarehouseId != null && questionWarehouseId != Guid.Empty)
                 {
-                    baseQuery = baseQuery.Where(p => p.QuestionnaireID == questionnaireId);  
+                    baseQuery = baseQuery.Where(p => p.QuestionWarehouseID == questionWarehouseId);  
                 }
                 if (!String.IsNullOrEmpty(title))
                 {
@@ -86,6 +102,7 @@ namespace GDD.Admin.Business.BLL
                         {
                             QuestionOptionMapping obj = new QuestionOptionMapping();
                             obj.QuestionOptionID = Guid.NewGuid();
+                            obj.QuestionWarehouseID = questionDTO.QuestionWarehouseID;
                             obj.QuestionID = questionID;
                             obj.OptionID = questionDTO.Options[i].OptionID;
                             questionOptionMappings.Add(obj);
@@ -99,7 +116,6 @@ namespace GDD.Admin.Business.BLL
                 catch (Exception ex)
                 {
                     throw ex;
-                    return false;
                 }
             }
             return true;
@@ -121,9 +137,9 @@ namespace GDD.Admin.Business.BLL
                     {
                         Question question = db.Question.SingleOrDefault(p => p.QuestionID == questionDTO.QuestionID);
                         question.QuestionnaireTypeID = questionDTO.QuestionnaireTypeID;
+                        question.QuestionWarehouseID = questionDTO.QuestionWarehouseID;
                         question.QuestionTitle = questionDTO.QuestionTitle;
                         question.QuestionNumber = questionDTO.QuestionNumber;
-                        question.QuestionnaireID = questionDTO.QuestionnaireID;
                         question.QuestionTypeID = questionDTO.QuestionTypeID;
                         question.OptionTypeID = questionDTO.OptionTypeID;
                         question.MaxOptionNumber = questionDTO.MaxOptionNumber;
@@ -142,6 +158,7 @@ namespace GDD.Admin.Business.BLL
                             QuestionOptionMapping obj = new QuestionOptionMapping();
                             obj.QuestionOptionID = Guid.NewGuid();
                             obj.QuestionID = questionDTO.QuestionID;
+                            obj.QuestionWarehouseID = questionDTO.QuestionWarehouseID;
                             obj.OptionID = questionDTO.Options[i].OptionID;
                             questionOptionMappings.Add(obj);
                         }
@@ -153,7 +170,6 @@ namespace GDD.Admin.Business.BLL
                 catch (Exception ex)
                 {
                     throw ex;
-                    return false;
                 }
             }
             return true;
@@ -170,6 +186,10 @@ namespace GDD.Admin.Business.BLL
             {
                 Question Question = db.Question.SingleOrDefault(p => p.QuestionID == id);
                 db.Question.Remove(Question);
+
+                var delList = db.QuestionOptionMapping.Where(p => p.QuestionID == id);
+                db.QuestionOptionMapping.RemoveRange(delList);
+
                 return db.SaveChanges() > 0;
             }
         }

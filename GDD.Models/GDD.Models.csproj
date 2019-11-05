@@ -52,9 +52,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Degree.cs">
-      <DependentUpon>GDDSVSP.tt</DependentUpon>
-    </Compile>
     <Compile Include="Department.cs">
       <DependentUpon>GDDSVSP.tt</DependentUpon>
     </Compile>
@@ -88,9 +85,6 @@
     <Compile Include="Manager.cs">
       <DependentUpon>GDDSVSP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Menu.cs">
-      <DependentUpon>GDDSVSP.tt</DependentUpon>
-    </Compile>
     <Compile Include="Option.cs">
       <DependentUpon>GDDSVSP.tt</DependentUpon>
     </Compile>
@@ -119,10 +113,28 @@
     <Compile Include="QuestionType.cs">
       <DependentUpon>GDDSVSP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Role.cs">
+    <Compile Include="QuestionWarehouse.cs">
       <DependentUpon>GDDSVSP.tt</DependentUpon>
     </Compile>
-    <Compile Include="RoleMenuMapping.cs">
+    <Compile Include="SYS_Button.cs">
+      <DependentUpon>GDDSVSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SYS_Menu.cs">
+      <DependentUpon>GDDSVSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SYS_REL_MenuButton.cs">
+      <DependentUpon>GDDSVSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SYS_REL_RoleMenuButton.cs">
+      <DependentUpon>GDDSVSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SYS_Role.cs">
+      <DependentUpon>GDDSVSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SYS_User.cs">
+      <DependentUpon>GDDSVSP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserRoleRelation.cs">
       <DependentUpon>GDDSVSP.tt</DependentUpon>
     </Compile>
   </ItemGroup>

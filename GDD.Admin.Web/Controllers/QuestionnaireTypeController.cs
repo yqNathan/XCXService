@@ -79,7 +79,7 @@ namespace GDD.Admin.Web.Controllers
             {
                 questionnaireType.QuestionnaireTypeID = Guid.NewGuid();
                 questionnaireType.CreateTime = DateTime.Now;
-                questionnaireType.Creator = (Session["user"] as Employee)?.EmployeeName;
+                questionnaireType.Creator = (Session["user"] as SYS_User)?.UserName;
                 bool isSuccess = questionnaireTypeService.InsertQuestionnaireType(questionnaireType);
                 log.Info("添加成功");
             }
@@ -103,7 +103,7 @@ namespace GDD.Admin.Web.Controllers
             try
             {
                 questionnaireType.ModifiedTime = DateTime.Now;
-                questionnaireType.Modifier = (Session["user"] as Employee)?.EmployeeName;
+                questionnaireType.Modifier = (Session["user"] as SYS_User)?.UserName;
                 bool isSuccess = questionnaireTypeService.UpdateQuestionnaireType(questionnaireType);
                 if (isSuccess)
                 {

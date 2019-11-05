@@ -18,14 +18,22 @@ namespace GDD.Admin.Web.Controllers
         IRoleService roleService = new RoleServer();
         public ActionResult Index()
         {
-            Employee vo = new Employee();
-            var employee = (Employee)JsonCache.GetCache("employee");
-            if (employee != null)
+            SYS_User vo = new SYS_User();
+            var user = (Session["user"] as SYS_User);
+            //var user = (SYS_User)JsonCache.GetCache("user");
+            if (user != null)
             {
-                vo = employee;
+                vo = user;
             }
-            ViewData["Employee"] = vo;
+            ViewData["User"] = vo;
             return View();
+        }
+
+        [HttpGet]
+        public JsonResult SetThemeColor(string color)
+        {
+            ConfigHelper.SetAppSettingValue("theme_color", color);
+            return Json(new { code = 0,  message = "success" }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult About()

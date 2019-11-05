@@ -15,7 +15,7 @@ namespace GDD.Admin.Web.Controllers
     public class FunctionalGroupController : BaseController
     {
         IFunctionalgroupService functionalgroupService;
-        private static readonly ILog log = LogManager.GetLogger(typeof(QuestionnaireMGTController));
+        private static readonly ILog log = LogManager.GetLogger(typeof(QuestionnaireController));
 
         public FunctionalGroupController()
         {
